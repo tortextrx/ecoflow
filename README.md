@@ -1,83 +1,47 @@
-# ecoFlow - Asistente IA para Gestión ecoSoftWEB
+# ecoFlow 🌿
 
-ecoFlow es un asistente conversacional inteligente desarrollado sobre **FastAPI** y **OpenRouter/GPT-4o**, diseñado para actuar como puente natural entre usuarios y el ERP **ecoSoftWEB**.
+Asistente ERP conversacional e inteligente diseñado para ecoSoftWEB. 
 
-Permite la gestión de entidades (clientes/acreedores), el registro de partes de trabajo y el procesado multimodal de facturas de gasto mediante visión artificial.
+ecoFlow permite interactuar con el ERP a través de lenguaje natural para gestionar entidades, artículos, servicios, contratos y facturación de forma ágil, segura y trazable.
 
-## 🚀 Funcionalidades Principales
+## 🛠️ Capacidades Actuales (v4.0)
 
-- **Alta Conversacional**: Crea clientes y acreedores solo hablando con el bot.
-- **Flujo de Servicios**: Genera partes de trabajo (NC=x) y consulta históricos de mantenimiento.
-- **Multimodal (Gasto OCR)**: Sube una foto de un ticket; ecoFlow extrae el CIF, fecha e importes, asocia el acreedor y graba la factura de gasto (NC=6).
-- **Resolución Inteligente**: Búsqueda flexible por nombre o CIF con gestión de ambigüedad.
-- **Conexión Real ERP**: Integración directa con la API de ecoSoftWEB.
+El sistema soporta las siguientes operaciones de forma completa:
 
-## 🏛️ Estructura del Proyecto
+- **Entidades**: Alta de clientes/proveedores, consulta de datos (NIF, teléfono, email) y borrado seguro.
+- **Servicios**: Apertura de partes de trabajo, consulta de historial de actuaciones y cierre.
+- **Contratos**: Gestión de contratos de mantenimiento, creación vinculada a cliente y facturación recurrente.
+- **Artículos**: Búsqueda por descripción/referencia y alta de nuevos artículos.
+- **Facturación**: Creación de presupuestos, pedidos, albaranes, gastos y prefacturas. (⚠️ Bloqueo de seguridad para facturas finales NC=13 y simplificadas NC=20).
 
-```text
-/ecoflow
-  /app
-    /services      # Lógica de negocio (Orchestrator, Cognitive, Resolver)
-    /tools         # Herramientas funcionales (Search, Create, Register)
-    /connectors    # Conexión con la API de ecoSoftWEB
-    /mappers       # Transformadores de datos chat <-> ERP
-    /models        # Esquemas Pydantic y modelos SQLAlchemy
-    /api           # Endpoints de FastAPI
-    /core          # Configuración, DB y Logging
-  /docs            # Documentación técnica (Arquitectura, Flujos, Decisiones)
-  /tests           # Pruebas unitarias e integración
-  README.md        # Este archivo
-  requirements.txt # Dependencias del proyecto
-  .env.example     # Plantilla de configuración
-```
+Para un detalle técnico, consulta [FUNCTIONAL_CAPABILITIES.md](docs/FUNCTIONAL_CAPABILITIES.md).
 
-## 🛠️ Stack Tecnológico
+## 🏗️ Arquitectura
 
-- **Backend**: Python 3.12+ / FastAPI.
-- **IA/LLM**: GPT-4o vía OpenRouter API.
-- **ERP**: ecoSoftWEB API (NC=1, 2, 6, etc).
-- **OCR/Vision**: GPT-4o Vision + pdfplumber.
-- **Base de Datos**: PostgreSQL (para persistencia de jobs e histórica).
+ecoFlow utiliza una arquitectura segregada para garantizar la fiabilidad:
 
-## ⚙️ Configuración y Arranque
+1.  **Capa Cognitiva**: Clasificación de intenciones y extracción de entidades mediante LLM.
+2.  **Orquestador Determinista**: Máquina de estados que asegura que las operaciones ERP se ejecuten solo tras confirmaciones y validaciones.
+3.  **Capa de Humanización**: Generación de respuestas naturales y empáticas sobre los resultados técnicos.
+4.  **Conectores ERP**: Integración directa con las APIs de ecoSoftWEB.
 
-1. Clona el repositorio.
-2. Crea un entorno virtual e instala dependencias:
+## 🚀 Despliegue en serverIA
+
+El despliegue está automatizado bajo la política [SERVERIA_DEPLOYMENT_POLICY.md](docs/SERVERIA_DEPLOYMENT_POLICY.md).
 
 ```bash
-python -m venv venv
-source venv/bin/activate # o venv\Scripts\activate en Windows
+# Instalación
 pip install -r requirements.txt
+
+# Ejecución (Desarrollo)
+uvicorn app.main:app --reload --port 18080
 ```
 
-3. Configura las variables de entorno:
+## 🔒 Seguridad y Privacidad
 
-```bash
-cp .env.example .env
-# Edita .env con tus tokens de ecoSoftWEB y OpenRouter
-```
-
-4. Arranca el servicio:
-
-```bash
-uvicorn app.main:app --port 18080 --reload
-```
-
-## 🧪 Cómo probarlo
-
-### Endpoint de Chat (JSON)
-
-Puedes interactuar con el bot enviando un POST a:
-`http://localhost:18080/api/ecoflow/chat`
-
-**Payload ejemplo**:
-
-```json
-{
-  "session_id": "TEST_01",
-  "message": "Busca la dirección de Tiger Stores"
-}
-```
+- **Sin Credenciales**: El repositorio no contiene contraseñas ni tokens. Toda la configuración se gestiona vía variables de entorno.
+- **Borrado Seguro**: Las operaciones destructivas requieren una confirmación explícita con la palabra "CONFIRMO".
+- **Trazabilidad**: Cada petición genera un `trace_id` único vinculado al `session_id` del usuario.
 
 ---
-*Desarrollado para la automatización avanzada de procesos de gestión en ecoBot.*
+© 2026 ecoSoftWEB - ecoFlow Project
