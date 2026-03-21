@@ -4,6 +4,8 @@ from app.services.cognitive_service import cognitive_service
 from app.services.resolver import resolver
 from app.services.tools.registry import tool_registry
 
+from app.services.orchestrator_routing import detect_active_flow, detect_proactive_history_intent, detect_new_flow
+
 logger = logging.getLogger("ecoflow")
 
 def clean_text(text: str) -> str:
@@ -21,32 +23,34 @@ class Orchestrator:
             return await self._handle_multimodal(session, file_bytes, filename)
 
         st = session.get("state", "idle")
-        # Pasamos el estado al cerebro para mejor extraccion
         analysis = await cognitive_service.parse_intent(message, f"Estado: {st}")
         intent = str(analysis.get("intent", ""))
         entities = analysis.get("entities", {})
         msg_c = clean_text(message)
         
         # 1. PRIORIDAD ABSOLUTA: FLUJOS EN CURSO (Sticky)
-        if st == "AWAITING_ENTITY_CONFIRM" or session.get("flow_mode") == "entity":
-            return await self._flow_entity(session, message, analysis)
-        if st == "AWAITING_SERVICE_CONFIRM" or session.get("flow_mode") == "service":
-            return await self._flow_service(session, message, analysis)
-        if st == "AWAITING_EXPENSE_CONFIRM" or session.get("flow_mode") == "expense":
-            return await self._flow_expense(session, message, analysis)
+        active_flow = detect_active_flow(st, session)
+        if active_flow == "disambiguation": return await self._handle_disambiguation(session, message)
+        if active_flow == "entity": return await self._flow_entity(session, message, analysis)
+        if active_flow == "service": return await self._flow_service(session, message, analysis)
+        if active_flow == "expense": return await self._flow_expense(session, message, analysis)
 
-        # 2. CONSULTA DE CAMPOS (Feature v11.0)
+        # 2. CONSULTA DE CAMPOS
         if intent == "consultar_campo":
             campo = entities.get("campo")
             target_name = entities.get("nombre_cliente")
-            
-            # Paso 1: Resolver entidad si se indica nombre, sino usar last_resolved
             last = session.get("last_resolved_entity")
             if target_name:
                 res = await resolver.resolve_entity(name=target_name)
                 if res["status"] == "RESOLVED":
+                    session["last_resolved_entity"] = res["data"]
                     entidad = res["data"]
-                    session["last_resolved_entity"] = entidad
+                elif res["status"] == "AMBIGUOUS":
+                    session["state"] = "AWAITING_DISAMBIGUATION"
+                    session["ambiguous_options"] = res.get("options", [])
+                    session["pending_action"] = {"intent": "consultar_campo", "campo": campo}
+                    opts_text = "\n".join([f"{i+1}. {x.get('nombre')} (CIF: {x.get('cif')})" for i, x in enumerate(session["ambiguous_options"])])
+                    return {"reply": f"Hay varias coincidencias. Selecciona una para consultar su {campo}:\n{opts_text}", "state": "AWAITING_DISAMBIGUATION"}
                 else:
                     return {"reply": f"No encuentro a {target_name} para darte su {campo}.", "state": "idle"}
             elif last:
@@ -54,35 +58,26 @@ class Orchestrator:
             else:
                 return {"reply": "¿De qué cliente quieres saber el/la " + (campo or "dato") + "?", "state": "idle"}
             
-            # Paso 2: Obtener campo
             if not campo: return {"reply": f"¿Qué dato quieres saber de {entidad['nombre']}? (dirección, teléfono, email)", "state": "idle"}
-            
             valor = await resolver.obtener_campo(entidad["pkey"], campo)
-            nombre_label = entidad["nombre"]
-            return {"reply": f"El/La {campo} de {nombre_label} es: {valor}", "state": "idle"}
+            return {"reply": f"El/La {campo} de {entidad['nombre']} es: {valor}", "state": "idle"}
 
-        # 3. DETECCION PROACTIVA POR PKEY (Solo si no hay flujo activo)
-        found_pkey = None
-        if not re.search(r'[a-zA-Z]', message) and len(message.strip()) <= 7:
-            pkey_m = re.search(r'\b(\d{5})\b', message)
-            if pkey_m: found_pkey = int(pkey_m.group(1))
-        
-        if not found_pkey: found_pkey = entities.get("pkey_servicio")
-
-        if found_pkey:
-            is_history_intent = intent in ["query_history", "add_history"]
-            is_history_keyword = any(k in msg_c for k in ["historia", "actuacio", "nota", "ver", "dime"])
-            if is_history_intent or is_history_keyword:
-                if any(k in msg_c for k in ["meter", "pon", "graba", "linea"]) or intent == "add_history":
-                    return await self._handle_add_history(session, found_pkey, entities.get("descripcion") or message)
-                return await self._handle_query_history(session, found_pkey)
+        # 3. DETECCION PROACTIVA POR PKEY
+        hist = detect_proactive_history_intent(message, msg_c, intent, entities)
+        if hist:
+            if hist["action"] == "add_history":
+                return await self._handle_add_history(session, hist["pkey"], hist["nota"])
+            return await self._handle_query_history(session, hist["pkey"])
 
         # 4. LANZAMIENTO DE NUEVOS FLUJOS
-        if intent == "create_entity" or "alta" in msg_c:
-            session["flow_mode"] = "entity"; session["flow_data"] = {}
+        new_flow = detect_new_flow(intent, msg_c)
+        if new_flow == "entity":
+            session["flow_mode"] = "entity"
+            session["flow_data"] = {}
             return await self._flow_entity(session, message, analysis)
-        if intent == "open_task" or any(k in msg_c for k in ["servicio", "tarea"]):
-            session["flow_mode"] = "service"; session["flow_data"] = {}
+        if new_flow == "service":
+            session["flow_mode"] = "service"
+            session["flow_data"] = {}
             return await self._flow_service(session, message, analysis)
 
         return await self._process_general(session, analysis, message)
@@ -93,13 +88,25 @@ class Orchestrator:
         if new_data.get("nombre_cliente"): new_data["nombre"] = new_data["nombre_cliente"]
         for k, v in new_data.items():
             if v: session["flow_data"][k] = v
-        d = session["flow_data"]
+        
+        d = session.get("flow_data", {})
+        
+        # Recuperación de estado previo multi-turno
+        last_ent = session.get("last_resolved_entity")
+        if not d.get("_nombre_entidad") and not d.get("nombre") and last_ent:
+            d["_pkey_entidad"] = last_ent.get("pkey")
+            d["_nombre_entidad"] = last_ent.get("nombre")
         
         if not d.get("_nombre_entidad") and (d.get("nombre") or d.get("nombre_cliente")):
             res = await resolver.resolve_entity(name=d.get("nombre") or d.get("nombre_cliente"))
             if res["status"]=="RESOLVED": 
                 d.update({"_pkey_entidad":res["data"]["pkey"], "_nombre_entidad":res["data"]["nombre"]})
                 session["last_resolved_entity"] = res["data"]
+            elif res["status"] == "AMBIGUOUS":
+                session["state"] = "AWAITING_DISAMBIGUATION"
+                session["ambiguous_options"] = res.get("options", [])
+                opts_text = "\n".join([f"{i+1}. {x.get('nombre')} (CIF: {x.get('cif')})" for i, x in enumerate(session["ambiguous_options"])])
+                return {"reply": f"Hay varias coincidencias para el cliente. Selecciona una:\n{opts_text}", "state": "AWAITING_DISAMBIGUATION"}
         
         if not d.get("_nombre_entidad"):
             session["state"] = "AWAITING_SERVICE_CONFIRM"
@@ -122,7 +129,7 @@ class Orchestrator:
         if new_data.get("nombre_cliente"): new_data["nombre"] = new_data["nombre_cliente"]
         for k, v in new_data.items():
             if v: session["flow_data"][k] = v
-        d = session["flow_data"]
+        d = session.get("flow_data", {})
         
         if not d.get("nombre"):
             session["state"] = "AWAITING_ENTITY_CONFIRM"
@@ -166,8 +173,39 @@ class Orchestrator:
                 entidad = res["data"]
                 session["last_resolved_entity"] = entidad
                 return {"reply": f"He encontrado a **{entidad['nombre']}** (ID {entidad['pkey']}). ¿Qué quieres consultar?", "state": "idle"}
+            elif res["status"] == "AMBIGUOUS":
+                session["state"] = "AWAITING_DISAMBIGUATION"
+                session["ambiguous_options"] = res.get("options", [])
+                opts_text = "\n".join([f"{i+1}. {x.get('nombre')} (CIF: {x.get('cif')})" for i, x in enumerate(session["ambiguous_options"])])
+                return {"reply": f"He encontrado varias coincidencias. Elige una:\n{opts_text}", "state": "AWAITING_DISAMBIGUATION"}
         
         return {"reply": "Dime qué gestión hacemos.", "state": "idle"}
+
+    async def _handle_disambiguation(self, session: dict, message: str) -> dict:
+        options = session.get("ambiguous_options", [])
+        sel = resolver.parse_selection(message, len(options))
+        if sel is None:
+            return {"reply": f"Por favor, elige un número del 1 al {len(options)}.", "state": "AWAITING_DISAMBIGUATION"}
+        
+        chosen = options[sel - 1]
+        session["last_resolved_entity"] = chosen
+        session.pop("ambiguous_options", None)
+        
+        pa = session.pop("pending_action", None)
+        if pa and pa.get("intent") == "consultar_campo":
+            campo = pa.get("campo")
+            valor = await resolver.obtener_campo(chosen["pkey"], campo)
+            session["state"] = "idle"
+            return {"reply": f"El/La {campo} de {chosen['nombre']} es: {valor}", "state": "idle"}
+            
+        flow_mode = session.get("flow_mode")
+        if flow_mode == "service":
+            session["flow_data"]["_pkey_entidad"] = chosen["pkey"]
+            session["flow_data"]["_nombre_entidad"] = chosen["nombre"]
+            return await self._flow_service(session, "", {})
+            
+        session["state"] = "idle"
+        return {"reply": f"He seleccionado a **{chosen['nombre']}** (ID {chosen['pkey']}). ¿Qué necesitas consultar?", "state": "idle"}
 
     async def _handle_multimodal(self, session: dict, file_bytes, filename) -> dict:
         data = await tool_registry.extractor.extract(file_bytes, filename)

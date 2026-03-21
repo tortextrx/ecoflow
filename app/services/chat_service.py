@@ -1,8 +1,9 @@
-import logging, json, os
+import logging, json, os, time
 from app.services.orchestrator import orchestrator
 
 logger = logging.getLogger("ecoflow")
 SESSIONS_FILE = "/tmp/ecoflow_sessions.json"
+SESSION_TTL_SECONDS = 86400  # 24 horas
 
 def _load_sessions():
     if not os.path.exists(SESSIONS_FILE): return {}
@@ -17,15 +18,30 @@ def _save_sessions(sessions):
 
 def _get_session(sid):
     s = _load_sessions()
-    # Si la sesion no existe, la inicializamos
-    if sid not in s: 
-        s[sid] = {"state": "idle", "context": {}, "last_pk": None, "resolved_entities": {}}
-        _save_sessions(s)
+    now_ts = time.time()
+    
+    # TTL cleanup local
+    expired = [k for k, v in s.items() if (now_ts - v.get("updated_at", now_ts)) > SESSION_TTL_SECONDS]
+    for k in expired: 
+        if k != sid: s.pop(k, None)
+
+    # Iniciar o refrescar
+    if sid not in s or (now_ts - s.get(sid, {}).get("updated_at", now_ts)) > SESSION_TTL_SECONDS:
+        s[sid] = {
+            "state": "idle", 
+            "context": {}, 
+            "last_pk": None, 
+            "resolved_entities": {},
+            "session_version": "1.1" # metadata
+        }
+    
+    s[sid]["updated_at"] = now_ts
+    _save_sessions(s)
     return s[sid]
 
 def _commit_session(sid, session_data):
-    """Guarda el objeto sesion completo, permitiendo la ELIMINACION de claves (pop)."""
     s = _load_sessions()
+    session_data["updated_at"] = time.time()
     s[sid] = session_data
     _save_sessions(s)
 
