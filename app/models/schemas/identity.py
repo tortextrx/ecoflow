@@ -17,6 +17,7 @@ class ConversationContext(BaseModel):
     started_at: datetime
     last_activity: datetime
     status: Literal["active", "idle", "completed", "error"]
+    session_data: dict = {}
 
 class OperationContext(BaseModel):
     operation_id: UUID

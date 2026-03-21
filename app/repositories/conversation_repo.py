@@ -19,12 +19,13 @@ async def get_active(db: AsyncSession, actor_id: str) -> ConversationContext | N
             actor_id=conv.actor_id,
             started_at=conv.started_at,
             last_activity=conv.last_activity,
-            status=conv.status
+            status=conv.status,
+            session_data=conv.session_data or {}
         )
     return None
 
 async def create(db: AsyncSession, actor_id: str) -> ConversationContext:
-    conv = Conversation(actor_id=actor_id)
+    conv = Conversation(actor_id=actor_id, session_data={})
     db.add(conv)
     await db.flush()
     return ConversationContext(
@@ -32,7 +33,8 @@ async def create(db: AsyncSession, actor_id: str) -> ConversationContext:
         actor_id=conv.actor_id,
         started_at=conv.started_at,
         last_activity=conv.last_activity,
-        status=conv.status
+        status=conv.status,
+        session_data=conv.session_data
     )
 
 async def touch(db: AsyncSession, conversation_id: UUID):
@@ -40,4 +42,11 @@ async def touch(db: AsyncSession, conversation_id: UUID):
         update(Conversation)
         .where(Conversation.conversation_id == conversation_id)
         .values(last_activity=datetime.utcnow())
+    )
+
+async def update_session_data(db: AsyncSession, conversation_id: UUID, session_data: dict):
+    await db.execute(
+        update(Conversation)
+        .where(Conversation.conversation_id == conversation_id)
+        .values(session_data=session_data, last_activity=datetime.utcnow())
     )
