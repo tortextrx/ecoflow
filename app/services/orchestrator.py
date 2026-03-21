@@ -115,13 +115,22 @@ class Orchestrator:
             session["state"] = "AWAITING_SERVICE_CONFIRM"
             return {"reply": f"¿Qué trabajo hacemos para **{d['_nombre_entidad']}**?", "state": "AWAITING_SERVICE_CONFIRM"}
 
-        if analysis.get("intent") == "confirm" or clean_text(message) in ["si", "venga", "adelante", "ok"]:
+        # Validacion de calidad de la descripcion
+        desc_clean = clean_text(d["descripcion"])
+        generics = ["haz algo", "revisar", "arreglar", "mantenimiento", "averia", "reparar", "mirar", "ver", "prueba", "test"]
+        if desc_clean in generics or len(desc_clean) < 10:
+            d.pop("descripcion", None)
+            session["state"] = "AWAITING_SERVICE_CONFIRM"
+            return {"reply": "Por favor, especifica un poco más el trabajo a realizar (por ejemplo: 'revisar el motor principal' o 'fuga de agua en tubería').", "state": "AWAITING_SERVICE_CONFIRM"}
+
+        if analysis.get("intent") == "confirm" or clean_text(message) in ["si", "venga", "adelante", "ok", "graba", "guardar"]:
             payload = {"MODO_ID": 0, "CLIENTE": d["_pkey_entidad"], "CLIENTE_DELEGACION": 1, "ESTADO": 0, "SUCURSAL": "1", "NIVELCONTROL": 1, "TIPOCONTACTO": 1, "TIPO_SERVICIO": 1, "SERVICIO_DESCRIPCION": d["descripcion"], "FECHA_INICIO": get_now_iso()}
             r = await tool_registry.crear_servicio.execute(payload)
-            return self._clear_flow(session, f"✅ Creado servicio {r['pkey']} para {d['_nombre_entidad']}.") if r.get("success") else {"reply": "Error ERP.", "state": "idle"}
+            return self._clear_flow(session, f"✅ Creado servicio {r['pkey']} para {d['_nombre_entidad']}.") if r.get("success") else {"reply": "Error ERP al crear servicio.", "state": "idle"}
         
         session["state"] = "AWAITING_SERVICE_CONFIRM"
-        return {"reply": f"Servicio para **{d['_nombre_entidad']}**: {d['descripcion']}. ¿Grabo?", "state": "AWAITING_SERVICE_CONFIRM"}
+        resumen = d['descripcion'] if len(d['descripcion']) <= 50 else d['descripcion'][:47] + "..."
+        return {"reply": f"📋 **Resumen del Trabajo**\n- **Cliente**: {d['_nombre_entidad']}\n- **Tarea**: {resumen}\n\n¿Grabo este servicio en el ERP?", "state": "AWAITING_SERVICE_CONFIRM"}
 
     async def _flow_entity(self, session: dict, message: str, analysis: dict) -> dict:
         new_data = analysis.get("entities", {})
