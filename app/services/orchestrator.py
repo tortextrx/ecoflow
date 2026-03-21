@@ -18,7 +18,7 @@ def get_now_iso() -> str:
     return datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
 class Orchestrator:
-    async def dispatch(self, session: dict, message: str, file_bytes=None, filename=None) -> dict:
+    async def dispatch(self, session: dict, message: str, file_bytes=None, filename=None, trace_id=None) -> dict:
         if file_bytes and filename:
             return await self._handle_multimodal(session, file_bytes, filename)
 
@@ -28,12 +28,16 @@ class Orchestrator:
         entities = analysis.get("entities", {})
         msg_c = clean_text(message)
         
+        logger.info(f"[TRACE:{trace_id}] Intención detectada: '{intent}' con entidades: {list(entities.keys())}")
+        
         # 1. PRIORIDAD ABSOLUTA: FLUJOS EN CURSO (Sticky)
         active_flow = detect_active_flow(st, session)
-        if active_flow == "disambiguation": return await self._handle_disambiguation(session, message)
-        if active_flow == "entity": return await self._flow_entity(session, message, analysis)
-        if active_flow == "service": return await self._flow_service(session, message, analysis)
-        if active_flow == "expense": return await self._flow_expense(session, message, analysis)
+        if active_flow:
+            logger.info(f"[TRACE:{trace_id}] Decisión de flujo (Activo previo): {active_flow}")
+            if active_flow == "disambiguation": return await self._handle_disambiguation(session, message)
+            if active_flow == "entity": return await self._flow_entity(session, message, analysis)
+            if active_flow == "service": return await self._flow_service(session, message, analysis)
+            if active_flow == "expense": return await self._flow_expense(session, message, analysis)
 
         # 2. CONSULTA DE CAMPOS
         if intent == "consultar_campo":
@@ -71,15 +75,18 @@ class Orchestrator:
 
         # 4. LANZAMIENTO DE NUEVOS FLUJOS
         new_flow = detect_new_flow(intent, msg_c)
-        if new_flow == "entity":
-            session["flow_mode"] = "entity"
-            session["flow_data"] = {}
-            return await self._flow_entity(session, message, analysis)
-        if new_flow == "service":
-            session["flow_mode"] = "service"
-            session["flow_data"] = {}
-            return await self._flow_service(session, message, analysis)
+        if new_flow:
+            logger.info(f"[TRACE:{trace_id}] Decisión de flujo (Lanzado): {new_flow}")
+            if new_flow == "entity":
+                session["flow_mode"] = "entity"
+                session["flow_data"] = {}
+                return await self._flow_entity(session, message, analysis)
+            if new_flow == "service":
+                session["flow_mode"] = "service"
+                session["flow_data"] = {}
+                return await self._flow_service(session, message, analysis)
 
+        logger.info(f"[TRACE:{trace_id}] Decisión de flujo: fallback general")
         return await self._process_general(session, analysis, message)
 
     async def _flow_service(self, session: dict, message: str, analysis: dict) -> dict:

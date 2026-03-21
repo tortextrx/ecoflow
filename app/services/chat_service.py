@@ -45,20 +45,30 @@ def _commit_session(sid, session_data):
     s[sid] = session_data
     _save_sessions(s)
 
+from app.connectors.base import ecoflow_trace_ctx
+
 class ChatService:
     """Capa de Transporte: Gestor de Sesion (Fix Persistencia pop)."""
 
-    async def handle(self, session_id: str, message: str, file_bytes=None, filename=None):
+    async def handle(self, session_id: str, message: str, file_bytes=None, filename=None, trace_id=None):
         from app.models.schemas.chat import ChatResponse
+        
+        trace_id = trace_id or "local-" + str(int(time.time()))
+        ecoflow_trace_ctx.set(trace_id)
+        
+        logger.info(f"[TRACE:{trace_id}] === NUEVA PETICIÓN ===")
+        logger.info(f"[TRACE:{trace_id}] Entrada: session='{session_id}' mensaje='{message}'")
         
         # 1. Cargar Sesion
         session = _get_session(session_id)
         
         # 2. Delegar en Orquestador
-        res = await orchestrator.dispatch(session, message, file_bytes, filename)
+        res = await orchestrator.dispatch(session, message, file_bytes, filename, trace_id=trace_id)
         
         # 3. Guardar SESION COMPLETA (Crucial para limpiar estados pendientes)
         _commit_session(session_id, session)
+        
+        logger.info(f"[TRACE:{trace_id}] Respuesta: {res.get('reply')[:50]}...")
         
         # 4. Responder
         return ChatResponse(

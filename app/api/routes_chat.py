@@ -1,5 +1,5 @@
-import logging
-from fastapi import APIRouter, UploadFile, File, Form
+import logging, uuid
+from fastapi import APIRouter, UploadFile, File, Form, Header
 from fastapi.responses import JSONResponse
 from typing import Optional
 from app.services.chat_service import ChatService
@@ -13,8 +13,11 @@ chat_service = ChatService()
 async def chat(
     session_id: str = Form(...),
     message: Optional[str] = Form(""),
-    file: Optional[UploadFile] = File(None)
+    file: Optional[UploadFile] = File(None),
+    x_trace_id: Optional[str] = Header(None)
 ):
+    trace_id = x_trace_id or str(uuid.uuid4())
+    
     file_bytes = None
     filename = None
     if file and file.filename:
@@ -26,6 +29,7 @@ async def chat(
         session_id=session_id,
         message=message or "",
         file_bytes=file_bytes,
-        filename=filename
+        filename=filename,
+        trace_id=trace_id
     )
     return response
