@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ecoFlow — Asistente Inteligente</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+  --accent:#00d4ff;--accent2:#0070f3;--accent-dim:rgba(0,212,255,.12);
+  --text:#e2e8f0;--muted:#64748b;--radius:18px;
+  --bot-bg:rgba(0,212,255,.07);--user-bg:rgba(255,255,255,.05);
+}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  display:flex;align-items:center;justify-content:center;
+}
+.shell{
+  width:min(820px,100%);height:100dvh;
+  display:flex;flex-direction:column;
+  background:rgba(11,15,26,.97);
+  border:1px solid var(--border);
+}
+
+/* HEADER */
+.hd{
+  height:68px;padding:0 20px;flex-shrink:0;
+  background:rgba(8,12,24,.98);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.hd-left{display:flex;align-items:center;gap:12px}
+.orb{
+  width:40px;height:40px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(from 0deg,#00d4ff,#0070f3,#00d4ff);
+  animation:spin 5s linear infinite;
+  box-shadow:0 0 16px rgba(0,212,255,.45);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.brand{font-size:1.15rem;font-weight:700;letter-spacing:-.02em}
+.brand span{color:var(--accent)}
+.sub{font-size:.7rem;color:var(--muted);margin-top:2px}
+.pill{
+  display:flex;align-items:center;gap:6px;font-size:.73rem;color:#4ade80;
+  background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);
+  padding:4px 12px;border-radius:999px;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* CHAT */
+.chat{flex:1;overflow-y:auto;padding:20px 16px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.chat::-webkit-scrollbar{width:4px}
+.chat::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+.row{display:flex}
+.row.me{justify-content:flex-end}
+.bub{
+  max-width:74%;padding:11px 15px;border-radius:var(--radius);
+  font-size:.88rem;line-height:1.65;animation:pop .18s ease;
+  word-break:break-word;
+}
+@keyframes pop{from{opacity:0;transform:translateY(5px) scale(.97)}to{opacity:1;transform:none}}
+.bub.bot{background:var(--bot-bg);border:1px solid rgba(0,212,255,.2);border-bottom-left-radius:4px}
+.bub.bot strong,.bub.bot b{color:var(--accent)}
+.bub.me{background:var(--user-bg);border:1px solid var(--border);border-bottom-right-radius:4px}
+.bub.file{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(0,112,243,.1);border:1px solid rgba(0,112,243,.3);
+  border-bottom-right-radius:4px;font-size:.83rem;color:var(--accent);
+}
+
+/* TYPING */
+.typing-row{display:flex;align-items:center;gap:10px;padding:0 16px 8px}
+.typing-bub{
+  display:flex;gap:4px;align-items:center;
+  background:var(--bot-bg);border:1px solid rgba(0,212,255,.2);
+  padding:10px 14px;border-radius:var(--radius);border-bottom-left-radius:4px;
+}
+.typing-bub span{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:bounce 1.2s infinite}
+.typing-bub span:nth-child(2){animation-delay:.2s}
+.typing-bub span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.tlabel{font-size:.75rem;color:var(--muted)}
+
+/* INPUT */
+.bar{
+  flex-shrink:0;padding:12px 14px;
+  background:rgba(8,12,24,.98);border-top:1px solid var(--border);
+  display:flex;align-items:flex-end;gap:8px;
+}
+.attach{
+  width:38px;height:38px;border-radius:50%;color:var(--muted);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;border:none;background:none;
+  transition:all .2s;
+}
+.attach:hover{color:var(--accent);background:var(--accent-dim)}
+.attach svg{width:19px;height:19px}
+.prev{
+  display:none;align-items:center;gap:6px;
+  background:rgba(0,112,243,.12);border:1px solid rgba(0,112,243,.3);
+  border-radius:8px;padding:4px 10px;font-size:.75rem;color:var(--accent);
+  max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.clr{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;padding:0 2px;flex-shrink:0}
+.clr:hover{color:#f87171}
+textarea{
+  flex:1;min-height:40px;max-height:120px;resize:none;outline:none;font-family:inherit;
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  color:var(--text);font-size:.88rem;padding:10px 13px;line-height:1.5;transition:border-color .2s;
+}
+textarea:focus{border-color:rgba(0,212,255,.4)}
+textarea::placeholder{color:var(--muted)}
+.send{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  box-shadow:0 4px 12px rgba(0,112,243,.4);transition:all .2s;
+}
+.send:hover{transform:scale(1.06);box-shadow:0 6px 18px rgba(0,212,255,.5)}
+.send:active{transform:scale(.96)}
+.send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.send svg{width:18px;height:18px}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="hd">
+    <div class="hd-left">
+      <div class="orb"></div>
+      <div>
+        <div class="brand">eco<span>Flow</span></div>
+        <div class="sub">Asistente conectado a ecoSoftWEB</div>
+      </div>
+    </div>
+    <div class="pill"><span class="dot"></span>Conectado</div>
+  </header>
+
+  <main class="chat" id="chat"></main>
+
+  <div class="typing-row" id="typingRow" style="display:none">
+    <div class="typing-bub"><span></span><span></span><span></span></div>
+    <span class="tlabel" id="tlabel">ecoFlow está pensando...</span>
+  </div>
+
+  <footer class="bar">
+    <label class="attach" title="Subir imagen o PDF">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.586 10.461l-10.05 10.049a6 6 0 01-8.485-8.486l10.05-10.048a4 4 0 015.657 5.657l-10.05 10.049a2 2 0 01-2.828-2.829l9.344-9.344-1.414-1.414-9.344 9.343a4 4 0 005.657 5.657l10.05-10.048a6 6 0 00-8.485-8.485L2.101 12.106a8 8 0 0011.314 11.313l10.049-10.049-1.878-1.909z"/></svg>
+      <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf" style="display:none">
+    </label>
+    <div class="prev" id="prev">
+      <span id="prevName"></span>
+      <button class="clr" id="clr">✕</button>
+    </div>
+    <textarea id="txt" placeholder="Escribe un mensaje..." rows="1"></textarea>
+    <button class="send" id="sendBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/></svg>
+    </button>
+  </footer>
+</div>
+<script>
+const chat=document.getElementById('chat'),
+  txt=document.getElementById('txt'),
+  btn=document.getElementById('sendBtn'),
+  fi=document.getElementById('fileInput'),
+  prev=document.getElementById('prev'),
+  prevName=document.getElementById('prevName'),
+  clr=document.getElementById('clr'),
+  typingRow=document.getElementById('typingRow'),
+  tlabel=document.getElementById('tlabel');
+
+const SID='eco_'+Math.random().toString(36).slice(2,9);
+let pendingFile=null;
+
+function md(s){
+  return s
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/\n/g,'<br>');
+}
+
+function bubble(text,side,isFile=false){
+  const row=document.createElement('div');row.className='row'+(side==='me'?' me':'');
+  const b=document.createElement('div');b.className='bub '+side+(isFile?' file':'');
+  if(isFile){
+    const ext=text.split('.').pop().toLowerCase();
+    b.innerHTML=(ext==='pdf'?'📄':'🖼️')+' '+text;
+  }else{b.innerHTML=md(text)}
+  row.appendChild(b);chat.appendChild(row);
+  chat.scrollTop=chat.scrollHeight;
+}
+
+function showTyping(label='ecoFlow está pensando...'){
+  tlabel.textContent=label;typingRow.style.display='flex';
+  chat.scrollTop=chat.scrollHeight;
+}
+function hideTyping(){typingRow.style.display='none'}
+
+txt.addEventListener('input',()=>{txt.style.height='auto';txt.style.height=Math.min(txt.scrollHeight,120)+'px'});
+txt.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
+btn.addEventListener('click',send);
+fi.addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;
+  pendingFile=f;prevName.textContent=f.name.length>22?f.name.slice(0,20)+'...':f.name;
+  prev.style.display='flex';
+});
+clr.addEventListener('click',()=>{pendingFile=null;fi.value='';prev.style.display='none'});
+
+// mensaje de bienvenida
+bubble('\u00a1Hola! Soy **ecoFlow**, tu asistente de gesti\u00f3n conectado a ecoSoftWEB.\n\nPuedo ayudarte a:\n\u00a0\u00a0\ud83d\udd0d Buscar entidades por CIF o nombre\n\u00a0\u00a0\ud83d\udcc4 Procesar facturas y documentos\n\u00a0\u00a0\u2705 Crear pre-entidades autom\u00e1ticamente\n\nEscr\u00edbeme o sube una imagen/PDF de una factura para empezar.','bot');
+
+async function send(){
+  const t=txt.value.trim();
+  if(!t&&!pendingFile)return;
+  btn.disabled=true;
+  if(pendingFile)bubble(pendingFile.name,'me',true);
+  if(t)bubble(t,'me');
+  txt.value='';txt.style.height='auto';
+  showTyping(pendingFile?'ecoFlow est\u00e1 analizando el documento...':'ecoFlow est\u00e1 pensando...');
+  const fd=new FormData();
+  fd.append('session_id',SID);fd.append('message',t);
+  if(pendingFile)fd.append('file',pendingFile);
+  try{
+    const r=await fetch('/api/ecoflow/chat',{method:'POST',body:fd});
+    const d=await r.json();
+    hideTyping();bubble(d.reply,'bot');
+    if(d.state==='done')setTimeout(()=>bubble('\u00bfHay algo m\u00e1s en lo que pueda ayudarte?','bot'),900);
+  }catch(e){hideTyping();bubble('\u26a0\ufe0f Error de conexi\u00f3n. Int\u00e9ntalo de nuevo.','bot')}
+  pendingFile=null;fi.value='';prev.style.display='none';btn.disabled=false;
+}
+</script>
+</body>
+</html>

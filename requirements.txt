@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+httpx
+pydantic
+pydantic-settings
+python-dotenv
+sqlalchemy
+asyncpg
+tenacity
+paramiko
+openai
+pdfplumber
+pdf2image
+Pillow
+python-multipart
+python-magic-bin ; platform_system == 'Windows'
+python-magic ; platform_system != 'Windows'

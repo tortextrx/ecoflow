@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Temporary Scripts & Manual Validations
+temp_*.py
+val_*.py
+*_v3.py
+*.bak
+diag_*.py
+/tests/regresion/ # if any
+/archivos/ # if any
+
+# Persistence & Logs
+/tmp/
+/media/
+/static/uploads/
+*.sqlite
+*.db
+app.jsonl
+*.log
+/var/log/
+
+# Secrets
+.env
+.env.bak
+.env.old
+.env.example.bak
+
+# IDE & Assistant
+.vscode/
+.idea/
+.agent/
+.gemini/
+.git/ # (redundant but safe)
+.DS_Store
+Thumbs.db
