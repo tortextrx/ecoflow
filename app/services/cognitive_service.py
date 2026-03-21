@@ -4,9 +4,8 @@ from app.core.config import settings
 logger = logging.getLogger("ecoflow")
 
 class CognitiveService:
-    """Motor de Intenciones v2.4 (Contextual).
-    Reestablece el contexto para evitar confusiones entre CIFs y PKEYs.
-    Añade capacidad de consulta de campos de entidad.
+    """Motor de Intenciones v3.0 (Multi-Domain ERP).
+    Detecta intenciones para todos los módulos: entidades, artículos, servicios, contratos y facturación.
     """
     def __init__(self):
         self.api_key = settings.openrouter_api_key
@@ -14,29 +13,71 @@ class CognitiveService:
 
     async def parse_intent(self, text: str, context: str = "") -> dict:
         system_prompt = """
-        Eres el Cerebro de ecoFlow. Traduces lenguaje natural a comandos ERP.
-
-        INTENCIONES (intent):
-        - create_entity: Iniciar alta de cliente.
-        - open_task: Crear un servicio/tarea.
-        - query_history: Ver historial de un servicio.
-        - add_history: Añadir nota al historial.
-        - confirm: Confirmar accion (si, ok, adelante).
-        - cancel: Cancelar accion (no, para, anula).
-        - consultar_campo: Solicitar direccion, telefono o email de una entidad.
-
-        ENTIDADES (entities):
-        - nombre_cliente: cliente o empresa.
-        - pkey_servicio: ID servicio (5 dígitos).
-        - descripcion: qué hay que hacer.
-        - cif: CIF/NIF del cliente.
-        - campo: Campo especifico (direccion, telefono, email).
+        Eres el Clasificador de Intenciones de ecoFlow, un asistente ERP.
+        Tu trabajo es traducir lenguaje natural a comandos estructurados JSON.
         
-        REGLAS DE ORO:
-        - Si el usuario da un nombre o responde a "¿A qué nombre...?", es nombre_cliente.
-        - Si el usuario da un CIF o responde a "¿Y el CIF...?", es cif.
-        - Si pide dirección, teléfono o mail, usa consultar_campo y mapea el campo correspondiente.
+        MÓDULOS Y OPERACIONES DISPONIBLES (use SOLO estos, no inventes):
+        
+        ENTIDADES:
+        - create_entity    : Dar de alta cliente/proveedor/acreedor.
+        - query_entity     : Buscar o consultar datos de una entidad.
+        - consultar_campo  : Pedir un campo específico (teléfono, email, dirección).
+        - delete_entity    : Borrar entidad. RIESGO ALTO.
+        
+        SERVICIOS:
+        - open_task        : Crear servicio/tarea para un cliente.
+        - query_history    : Ver historial de actuaciones de un servicio (por PKEY).
+        - add_history      : Añadir nota/actuación al historial de un servicio.
+        - delete_service   : Borrar servicio. RIESGO ALTO.
+        
+        ARTÍCULOS:
+        - query_article    : Buscar artículo por descripción o referencia.
+        - create_article   : Dar de alta un artículo nuevo.
+        
+        CONTRATOS:
+        - create_contract  : Crear un contrato para un cliente.
+        - query_contract   : Consultar un contrato por PKEY o cliente.
+        - list_contracts   : Listar contratos de un cliente.
+        - delete_contract  : Borrar un contrato. RIESGO ALTO.
+        
+        FACTURACIÓN (⚠️ Restricciones reales de la API):
+        - query_factura    : Consultar documento de facturación por PKEY.
+        - list_facturas    : Buscar documentos de facturación filtrados.
+        - create_presupuesto_compra : NC=1. Presupuesto de compra.
+        - create_pedido_compra      : NC=2. Pedido de compra.
+        - create_albaran_compra     : NC=4. Albarán de compra.
+        - create_factura_compra     : NC=5. Factura de compra.
+        - create_gasto              : NC=6. Factura de gasto (documento de gasto libre).
+        - create_presupuesto_venta  : NC=10. Presupuesto de venta.
+        - create_pedido_venta       : NC=11. Pedido de venta.
+        - create_albaran_venta      : NC=12. Albarán de venta.
+        - create_prefactura         : NC=17. Prefactura de venta (NO factura directa).
+        - delete_factura            : Borrar documento. RIESGO ALTO. NO permite borrar NC=13 ni NC=20.
+
+        CONVERSACION GENERAL:
+        - confirm          : Usuario confirma ("si", "venga", "adelante", "ok", "dale").
+        - cancel           : Usuario cancela ("no", "para", "cancela", "olvídalo").
+        - unknown          : Nada de lo anterior encaja.
+        
+        ENTIDADES EXTRAÍDAS (entities):
+        - nombre_cliente   : Nombre comercial del cliente/empresa.
+        - cif              : CIF o NIF del cliente.
+        - pkey_servicio    : ID de servicio (5 dígitos normalmente).
+        - pkey_contrato    : ID de contrato.
+        - pkey_factura     : ID de factura/documento.
+        - descripcion      : Descripción del trabajo, artículo o contrato.
+        - campo            : Campo a consultar (telefono, email, direccion).
+        - referencia       : Referencia del contrato, presupuesto u artículo.
+        - precio           : Precio unitario.
+        - total            : Importe total.
+        - fecha            : Fecha específica.
+        - observaciones    : Observaciones o notas.
+        
+        REGLAS:
         - Responde SIEMPRE en JSON puro: {"intent": "X", "entities": {"campo": "valor"}}
+        - NIF y CIF son lo mismo a efectos del sistema, mapea ambos a "cif".
+        - Si el usuario dice "menudo coñazo", "venga va", "tira", "hazlo" → intent=confirm si hay flujo activo.
+        - Si hay ambigüedad entre intent, elige el más probable dado el contexto.
         """
 
         payload = {

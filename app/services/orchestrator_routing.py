@@ -4,9 +4,12 @@ from typing import Optional, Dict, Any
 def detect_active_flow(state: str, session: dict) -> Optional[str]:
     """Detecta si hay un flujo activo en la sesión y devuelve su identificador."""
     if state == "AWAITING_DISAMBIGUATION": return "disambiguation"
-    if state == "AWAITING_ENTITY_CONFIRM" or session.get("flow_mode") == "entity": return "entity"
-    if state == "AWAITING_SERVICE_CONFIRM" or session.get("flow_mode") == "service": return "service"
-    if state == "AWAITING_EXPENSE_CONFIRM" or session.get("flow_mode") == "expense": return "expense"
+    if state in ("AWAITING_ENTITY_CONFIRM",) or session.get("flow_mode") == "entity": return "entity"
+    if state in ("AWAITING_SERVICE_CONFIRM",) or session.get("flow_mode") == "service": return "service"
+    if state in ("AWAITING_EXPENSE_CONFIRM",) or session.get("flow_mode") == "expense": return "expense"
+    if state in ("AWAITING_CONTRATO_COLLECT",) or session.get("flow_mode") == "contract": return "contract"
+    if state in ("AWAITING_FACTURA_COLLECT",) or session.get("flow_mode") == "factura": return "factura"
+    if state in ("AWAITING_ARTICULO_COLLECT",) or session.get("flow_mode") == "article": return "article"
     return None
 
 def detect_proactive_history_intent(message: str, msg_c: str, intent: str, entities: dict) -> Optional[Dict[str, Any]]:
@@ -16,7 +19,7 @@ def detect_proactive_history_intent(message: str, msg_c: str, intent: str, entit
         pkey_m = re.search(r'\b(\d{5})\b', message)
         if pkey_m: found_pkey = int(pkey_m.group(1))
     
-    if not found_pkey: 
+    if not found_pkey:
         found_pkey = entities.get("pkey_servicio")
 
     if found_pkey:

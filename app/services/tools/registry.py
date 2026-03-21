@@ -2,6 +2,7 @@ from .entidades_tools import CrearEntidadTool, ObtenerEntidadTool, ListarEntidad
 from .facturacion_tools import GrabarFacturacionTool, ObtenerFacturacionTool, ListarFacturacionesTool, BorrarFacturacionTool
 from .servicios_tools import CrearServicioTool, ObtenerServicioTool, BorrarServicioTool, GrabarHistoricoTool, ObtenerHistoricoServicioTool
 from .articulos_tools import CrearArticuloTool, ObtenerArticuloTool, ListarArticulosTool
+from .contratos_tools import CrearContratoTool, ObtenerContratoTool, ListarContratosTool, ModificarContratoTool, BorrarContratoTool
 from .extraer_documento import ExtractorMultimodalTool
 from .buscar_entidad import BuscarEntidadTool
 from .registrar_gasto import RegistrarGastoTool
@@ -32,6 +33,13 @@ class ToolRegistry:
         self.borrar_servicio = BorrarServicioTool()
         self.grabar_historico = GrabarHistoricoTool()
         self.obtener_historico_servicio = ObtenerHistoricoServicioTool()
+        
+        # Contratos (nuevo)
+        self.crear_contrato = CrearContratoTool()
+        self.obtener_contrato = ObtenerContratoTool()
+        self.listar_contratos = ListarContratosTool()
+        self.modificar_contrato = ModificarContratoTool()
+        self.borrar_contrato = BorrarContratoTool()
         
         # Otros
         self.extractor = ExtractorMultimodalTool()
