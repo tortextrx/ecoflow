@@ -5,10 +5,8 @@ from app.models.db.job import Job
 from app.models.db.raw_message import RawMessage
 from app.repositories import job_repo, raw_message_repo, event_repo
 from app.services.identity_resolver import IdentityResolver
-from app.services.orchestrator import Orchestrator
-from app.services.intent_service import IntentService
-from app.providers.openai_responses import OpenAIResponsesProvider
 from app.models.schemas.incoming import IncomingMessage
+from app.services.chat_service import ChatService
 
 async def process_message(raw_message_id):
     log = logging.getLogger("ecoflow")
@@ -31,12 +29,12 @@ async def process_message(raw_message_id):
             await event_repo.append(db, actor.actor_id, "message_received", {"text": msg.text}, conv.conversation_id)
             await db.commit()
             
-            provider = OpenAIResponsesProvider()
-            intent_service = IntentService(llm=provider)
-            orch = Orchestrator(intent_service=intent_service)
-            
-            # Si orch.run lanza una excepción (ej. ConnectTimeout), saltamos al except
-            response_text = await orch.run(db, actor, conv, msg)
+            # [REFACTOR-PENDING] Migrar a nuevo ChatService.handle() con session_id
+            # Provider, IntentService y Orchestrator.run() están deprecated a favor
+            # del flujo centralizado de chat_service.py -> orchestrator.dispatch()
+            chat_svc = ChatService()
+            res_dict = await chat_svc.handle(session_id=str(conv.conversation_id), message=msg.text)
+            response_text = res_dict.reply
             
             # Si llegamos aquí, se considera ÉXITO lógico o de negocio
             await event_repo.append(db, actor.actor_id, "response_sent", {"text": response_text}, conv.conversation_id)

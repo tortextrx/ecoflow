@@ -18,7 +18,6 @@ from app.models.db.raw_message import RawMessage
 from app.repositories import job_repo, raw_message_repo, event_repo
 from app.services.identity_resolver import IdentityResolver
 from app.services.orchestrator import Orchestrator
-from app.services.intent_service import IntentService
 from app.providers.openai_responses import OpenAIResponsesProvider
 from app.models.schemas.incoming import IncomingMessage
 
@@ -38,10 +37,13 @@ async def process_message(raw_message_id):
             actor, conv = await resolver.resolve(db, raw.channel, raw.raw_actor_id)
             await event_repo.append(db, actor.actor_id, "message_received", {"text": msg.text}, conv.conversation_id)
             await db.commit()
-            provider = OpenAIResponsesProvider()
-            intent_service = IntentService(llm=provider)
-            orch = Orchestrator(intent_service=intent_service)
-            response_text = await orch.run(db, actor, conv, msg)
+            
+            # [REFACTOR-PENDING] Flujo centralizado
+            from app.services.chat_service import ChatService
+            chat_svc = ChatService()
+            res_dict = await chat_svc.handle(session_id=str(conv.conversation_id), message=msg.text)
+            response_text = res_dict.reply
+            
             await event_repo.append(db, actor.actor_id, "response_sent", {"text": response_text}, conv.conversation_id)
             await job_repo.complete_job(db, job.job_id)
             await raw_message_repo.set_status(db, raw_message_id, "done")
