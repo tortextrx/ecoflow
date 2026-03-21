@@ -1,7 +1,8 @@
-import json, logging, httpx
+import json, logging, httpx, contextvars
 from app.core.config import settings
 
 logger = logging.getLogger("ecoflow")
+ecoflow_trace_ctx = contextvars.ContextVar("ecoflow_trace_id", default="no-trace")
 
 class CognitiveService:
     """Motor de Intenciones v3.0 (Multi-Domain ERP).
@@ -89,12 +90,18 @@ class CognitiveService:
             "response_format": {"type": "json_object"}
         }
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        trace_id = ecoflow_trace_ctx.get()
 
         try:
             async with httpx.AsyncClient() as client:
-                resp = await client.post(self.url, json=payload, headers=headers, timeout=10)
+                resp = await client.post(self.url, json=payload, headers=headers, timeout=12.0)
+                resp.raise_for_status()
                 return json.loads(resp.json()["choices"][0]["message"]["content"])
-        except Exception:
-            return {"intent": "unknown", "entities": {}}
+        except httpx.TimeoutException as te:
+            logger.error({"action": "llm_timeout", "trace_id": trace_id, "layer": "cognitive", "error": str(te)})
+            return {"intent": "unknown", "entities": {}, "error": "timeout"}
+        except Exception as e:
+            logger.error({"action": "llm_error", "trace_id": trace_id, "layer": "cognitive", "error": str(e)}, exc_info=True)
+            return {"intent": "unknown", "entities": {}, "error": "system_error"}
 
 cognitive_service = CognitiveService()

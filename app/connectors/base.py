@@ -1,4 +1,4 @@
-import httpx, logging, json, os, contextvars
+import httpx, logging, contextvars
 from tenacity import retry, wait_exponential, stop_after_attempt, retry_if_exception_type
 from app.core.config import settings
 
@@ -19,44 +19,39 @@ class BaseEcoSoftConnector:
             "Accept": "application/json"
         }
 
-    @retry(wait=wait_exponential(multiplier=1, min=2, max=10), stop=stop_after_attempt(3), retry=retry_if_exception_type(httpx.RequestError))
+    @retry(wait=wait_exponential(multiplier=1, min=2, max=10), stop=stop_after_attempt(3), retry=retry_if_exception_type((httpx.RequestError, httpx.TimeoutException)))
     async def _post(self, endpoint: str, data: dict) -> dict:
         url = f"{self.base_url}{endpoint}"
         headers = self._headers()
         trace_id = ecoflow_trace_ctx.get()
         
-        logger.info(f"[TRACE:{trace_id}] Llamada ERP a endpoint={endpoint}")
+        # Ocultamos información confidencial en los logs
+        safe_headers = {**headers, "Authorization": "***"}
+        logger.info({"action": "erp_request_start", "endpoint": endpoint, "payload": data, "headers": safe_headers, "trace_id": trace_id})
         
-        # TRAZADO CRÍTICO: Guardamos exactamente qué vamos a enviar
-        trace = {
-            "trace_id": trace_id,
-            "url": url,
-            "headers": headers,
-            "payload": data
-        }
+        # Timeout robusto: 10s connect, 45s read
+        timeout = httpx.Timeout(10.0, read=45.0)
         
-        trace_file = f"/tmp/ecoflow_trace_{trace_id}.json" if trace_id != "no-trace" else "/tmp/ecoflow_trace.json"
-        
-        # Append seguro (un array de peticiones por trace_id)
-        if os.path.exists(trace_file):
-            try:
-                with open(trace_file, "r") as f:
-                    existing = json.load(f)
-                    if not isinstance(existing, list): existing = [existing]
-            except Exception:
-                existing = []
-            existing.append(trace)
-            with open(trace_file, "w") as f: json.dump(existing, f, indent=2)
-        else:
-            with open(trace_file, "w") as f: json.dump([trace], f, indent=2)
-        
-        async with httpx.AsyncClient(http2=False) as client:
-            resp = await client.post(url, json=data, headers=headers, timeout=30.0)
-            
-            # Guardamos la respuesta cruda también para ver el error del ERP
-            log_resp_file = f"/tmp/ecoflow_response_{trace_id}.log" if trace_id != "no-trace" else "/tmp/ecoflow_response.log"
-            with open(log_resp_file, "a") as f:
-                f.write(f"\n--- POST {endpoint} ---\nSTATUS: {resp.status_code}\nBODY: {resp.text}\n")
+        try:
+            async with httpx.AsyncClient(http2=False, timeout=timeout) as client:
+                resp = await client.post(url, json=data, headers=headers)
                 
-            resp.raise_for_status()
-            return resp.json()
+                try:
+                    resp_data = resp.json()
+                except Exception:
+                    resp_data = {"raw_text": resp.text[:500]}
+
+                logger.info({"action": "erp_response", "endpoint": endpoint, "status_code": resp.status_code, "resp_data": resp_data, "trace_id": trace_id})
+                
+                resp.raise_for_status()
+                return resp_data
+        except httpx.TimeoutException as te:
+            logger.error({"action": "erp_timeout", "endpoint": endpoint, "trace_id": trace_id, "error": str(te)})
+            return {"error": "Timeout conectando con el ERP. Es posible que el servidor esté saturado.", "success": False}
+        except httpx.HTTPStatusError as hse:
+            logger.error({"action": "erp_http_error", "endpoint": endpoint, "status_code": hse.response.status_code, "trace_id": trace_id, "error": str(hse)})
+            # Devolvemos error seguro en vez de romper la promesa, para que falle graciosamente en la capa de resolver/tools
+            return {"error": f"Error HTTP {hse.response.status_code} del ERP.", "success": False}
+        except Exception as e:
+            logger.error({"action": "erp_unexpected_error", "endpoint": endpoint, "trace_id": trace_id, "error": str(e)}, exc_info=True)
+            return {"error": "Fallo inesperado al conectar con el ERP.", "success": False}

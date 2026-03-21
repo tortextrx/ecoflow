@@ -1,9 +1,11 @@
 import httpx
 import json
 import logging
+import contextvars
 from app.core.config import settings
 
 logger = logging.getLogger("ecoflow")
+ecoflow_trace_ctx = contextvars.ContextVar("ecoflow_trace_id", default="no-trace")
 
 # Estrategias conversacionales definidas por contexto
 RESPONSE_STRATEGIES = """
@@ -75,13 +77,19 @@ class ResponseService:
             "temperature": 0.8 # Micro-variación permitida para no sonar enlatado
         }
         
+        trace_id = ecoflow_trace_ctx.get()
+
         try:
             async with httpx.AsyncClient() as client:
-                resp = await client.post(self.url, json=payload, headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}, timeout=12)
+                resp = await client.post(self.url, json=payload, headers={"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}, timeout=12.0)
+                resp.raise_for_status()
                 data = resp.json()["choices"][0]["message"]["content"]
                 return json.loads(data)["reply"]
+        except httpx.TimeoutException as te:
+            logger.error({"action": "llm_timeout", "trace_id": trace_id, "layer": "humanization", "error": str(te)})
+            return technical_message # Fallback gracefully
         except Exception as e:
-            logger.error(f"Fallo en Humanization Layer: {e}")
+            logger.error({"action": "llm_error", "trace_id": trace_id, "layer": "humanization", "error": str(e)}, exc_info=True)
             return technical_message # Fallback silencioso (degradacion gracefully a texto crudo)
 
 response_service = ResponseService()
