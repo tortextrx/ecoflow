@@ -4,15 +4,17 @@ Fecha de revisión: 2026-03-21 (UTC)
 
 ## Verificación rápida del estado Git (revisión adicional)
 
-- En el repositorio local revisado, el historial visible es:
-  - `d0c6fea (HEAD -> work) docs: agregar auditoría Antigravity y estado post-cambios`
+- En este entorno local de auditoría, el historial visible es:
+  - `9066c81 (HEAD -> work) docs: add git-state verification and sync discrepancy note`
+  - `d0c6fea docs: agregar auditoría Antigravity y estado post-cambios`
   - `2b792bf Initial commit - ecoFlow core system`
-- **No aparece** el commit reportado `8ab1ef4` en esta copia local.
-- Por tanto, en este entorno no hay evidencia de que se hayan aplicado/publicado cambios funcionales recientes en `app/services/resolver.py`.
+- En esta copia local **no existe remoto `origin` configurado**, por lo que no se puede contrastar directamente contra GitHub desde aquí.
+- Evidencia aportada por consola de `serverIA/Windows` indica que en `main` remoto sí aparecen commits funcionales posteriores, incluido `8ab1ef4` y una secuencia previa (`e433dca`, `e65d30f`, `e077f37`, `95271de`).
+- Conclusión operativa: hay una **divergencia de contexto** entre esta copia local de auditoría y el estado reportado en `origin/main`.
 
 ## 1) Qué ha cambiado realmente
 
-Comparando el estado actual contra el commit base del repositorio (`2b792bf`), los cambios reales introducidos son exclusivamente documentales:
+Comparando el estado **de esta copia local** contra el commit base (`2b792bf`), los cambios reales introducidos son exclusivamente documentales:
 
 - **Archivos nuevos:** `docs/auditoria_antigravity.md` y `docs/auditoria_estado_post_antigravity.md`.
 - **No hay cambios en código ejecutable** de `app/`.
@@ -29,13 +31,13 @@ Conclusión: no se han modificado rutas, servicios, conectores, mappers ni lógi
 1. **Deriva arquitectónica no resuelta**: `main.py` y `process_new.py` instancian `Orchestrator(intent_service=...)`, pero el `Orchestrator` activo sólo expone `dispatch(...)` y no constructor/`run` acorde a ese contrato.
 2. **Sesión frágil por archivo global en `/tmp`** sin locking ni control de concurrencia.
 3. **Trazas de ERP en archivos globales sobrescritos** (`/tmp/ecoflow_trace.json`, `/tmp/ecoflow_response.log`), dificultando auditoría concurrente.
-4. **Riesgo de falsa sensación de avance**: al no haber cambios en `app/`, no hay mejora funcional real todavía.
-5. **Desajuste entre narrativa y estado git local**: se reporta un push con cambios de `resolver.py`, pero en esta copia local `resolver.py` mantiene la implementación previa (sin estado `AWAITING_DISAMBIGUATION` en orquestador ni nuevo contrato de selección persistente).
+4. **Riesgo de falsa sensación de avance en esta copia local**: aquí no hay cambios en `app/`.
+5. **Riesgo de trazabilidad cruzada**: si se audita una copia local desalineada del remoto, se pueden sacar conclusiones incorrectas del estado real de producción.
 
 ## 3) Qué partes del sistema se han tocado
 
-- Sólo documentación en `docs/`.
-- Partes NO tocadas: API chat/interna, orquestador, resolver, tools, conectores, mappers, persistencia, job queue.
+- En esta copia local: sólo documentación en `docs/`.
+- Según evidencia de consola aportada por usuario en `main`: sí se tocaron `app/services/resolver.py` y varios documentos raíz (`ARTICULOS.md`, `CONTRATOS.md`, `ECOFLOW_CONTEXT.md`, `ENTIDADES.md`, `FACTURACION.md`, `SERVERIA_DEPLOYMENT_POLICY.md`, `SERVICIOS.md`).
 
 ## 4) Qué puede haberse roto o quedado frágil
 
@@ -50,10 +52,11 @@ Conclusión: no se han modificado rutas, servicios, conectores, mappers ni lógi
 
 ## 5) Siguiente paso lógico recomendado
 
-Aplicar una primera iteración **de bajo impacto** centrada sólo en:
-- resolución de entidades por nombre + desambiguación controlada,
-- manteniendo intactos los flujos estables de alta, servicio e ingreso de gasto,
-- y validando exclusivamente en `serverIA`.
+Antes de nueva iteración funcional, hacer **conciliación de baseline**:
+- auditar directamente el árbol de `main` en `serverIA` (commit `8ab1ef4` y anteriores),
+- generar diff técnico real de `resolver.py` y del impacto en flujos,
+- sólo después lanzar una iteración de bajo impacto (desambiguación + no regresión),
+- con validación exclusivamente en `serverIA`.
 
 ---
 
