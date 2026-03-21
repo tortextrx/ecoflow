@@ -30,6 +30,14 @@ class ResolverService:
             if 1 <= n <= max_options: return n
         return None
 
+    def _normalize_string(self, text: str) -> str:
+        if not text: return ""
+        import unicodedata, re
+        text = text.lower().strip()
+        normalized = unicodedata.normalize('NFD', text)
+        clean = "".join(c for c in normalized if unicodedata.category(c) != 'Mn')
+        return re.sub(r'[^\w\s]', '', clean)
+
     async def resolve_entity(self, name: str = None, cif: str = None, context_pk: int = None) -> dict:
         """Resuelve y devuelve una entidad normalizada (Prioriza Exacto)."""
         if context_pk:
@@ -43,24 +51,36 @@ class ResolverService:
 
         if name:
             name_clean = name.strip()
-            # 1. Intento Exacto
-            res = await tool_registry.listar_entidades.execute({"DENCOM": name_clean})
+            name_norm = self._normalize_string(name_clean)
+            
+            # Busqueda amplia inicial por comodin
+            res = await tool_registry.listar_entidades.execute({"DENCOM": f"%{name_clean}%"})
             lista = res.get("data", [])
             
-            if len(lista) == 1:
-                return {"status": "RESOLVED", "data": self.normalize_entidad(lista[0])}
-            
-            # 2. Intento con comodines (solo si no hay exacto)
             if not lista:
-                res = await tool_registry.listar_entidades.execute({"DENCOM": f"%{name_clean}%"})
+                # Fallback: Quitar palabras sueltas cortas o intentar busqueda muy abierta
+                res = await tool_registry.listar_entidades.execute({"DENCOM": f"%{name_clean.split()[0]}%"})
                 lista = res.get("data", [])
-                if len(lista) == 1:
-                    return {"status": "RESOLVED", "data": self.normalize_entidad(lista[0])}
 
-            if len(lista) > 1:
-                return {"status": "AMBIGUOUS", "options": lista[:5]}
-            
-            if not lista: return {"status": "NOT_FOUND"}
+            if lista:
+                # 1. Filtro exacto (normalizado)
+                exact_matches = [x for x in lista if self._normalize_string(x.get("DENCOM", "")) == name_norm]
+                if len(exact_matches) == 1:
+                    return {"status": "RESOLVED", "data": self.normalize_entidad(exact_matches[0])}
+                
+                # 2. Filtro contains (normalizado)
+                contains_matches = exact_matches or [x for x in lista if name_norm in self._normalize_string(x.get("DENCOM", ""))]
+                if len(contains_matches) == 1:
+                    return {"status": "RESOLVED", "data": self.normalize_entidad(contains_matches[0])}
+                
+                candidatos = contains_matches if contains_matches else lista
+                
+                if len(candidatos) > 0:
+                    options = [self.normalize_entidad(x) for x in candidatos[:5]]
+                    # Si solo quedó uno tras todo
+                    if len(options) == 1:
+                        return {"status": "RESOLVED", "data": options[0]}
+                    return {"status": "AMBIGUOUS", "options": options}
 
         return {"status": "NOT_FOUND"}
 
