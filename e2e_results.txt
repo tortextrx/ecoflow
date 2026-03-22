@@ -1,0 +1,84 @@
+
+▶ Ejecutando Escenario: Entidad - Alta y Borrado (Session: e2e-3117eb)
+  👤 Usuario: Crea un cliente nuevo llamado E2ETestClient con NIF B99887766
+  🤖 ecoFlow: 📋 **Confirmación de Alta**
+- Cliente: **E2ETestClient**
+- CIF: B99887766
+
+¿Lo grabo ya?
+  👤 Usuario: sí, grábalo
+  🤖 ecoFlow: ¡Genial! Ya está registrado con el ID 43013593.
+  ❌ Falla: Falta palabra clave esperada 'éxito'
+  ❌ Falla: Falta palabra clave esperada 'alta'
+❌ ESCENARIO FALLIDO: Entidad - Alta y Borrado
+
+▶ Ejecutando Escenario: Artículo - Alta (Session: e2e-da40d7)
+  👤 Usuario: Da de alta un artículo llamado Cable Red 2M E2E por 5 euros
+  🤖 ecoFlow: ¡Genial! Vamos a dar de alta el artículo con el siguiente dato:
+
+📋 **Confirmación de Alta**  
+- **Cliente:** Cable Red 2M E2E  
+- **Precio:** 5 euros  
+
+¿Lo grabo ya?
+  👤 Usuario: ok dale
+  🤖 ecoFlow: ¡Genial! Ya está todo listo y registrado con el ID 43013594.
+  ❌ Falla: Falta palabra clave esperada 'alta'
+  ❌ Falla: Falta palabra clave esperada 'éxito'
+❌ ESCENARIO FALLIDO: Artículo - Alta
+
+▶ Ejecutando Escenario: Servicios - Apertura y Notas (Session: e2e-faa51a)
+  👤 Usuario: Abre un parte de trabajo diciendo 'Reinstalar Windows E2E'
+  🤖 ecoFlow: Perfecto, voy a abrir un parte de trabajo para 'Reinstalar Windows E2E'. Solo necesito saber, ¿para qué cliente es el servicio?
+  ❌ Falla: Falta palabra clave esperada 'falta'
+❌ ESCENARIO FALLIDO: Servicios - Apertura y Notas
+
+▶ Ejecutando Escenario: Contratos - Gestión Completa (Session: e2e-96630b)
+  👤 Usuario: Crea un contrato de mantenimiento de servidores E2E por 150 euros al mes para PKEY 23154
+  🤖 ecoFlow: Para poder crear el contrato de mantenimiento de servidores E2E por 150 euros al mes, necesito saber para qué cliente lo vamos a hacer. ¿Me puedes decir el nombre del cliente?
+  👤 Usuario: ok graba
+  🤖 ecoFlow: ¡Perfecto! Solo necesito saber para qué cliente es el servicio. ¿Me lo puedes decir?
+  ❌ Falla: Falta palabra clave esperada 'contrato'
+  ❌ Falla: Falta palabra clave esperada 'éxito'
+❌ ESCENARIO FALLIDO: Contratos - Gestión Completa
+
+▶ Ejecutando Escenario: Facturación - Gasto (Session: e2e-7aa63a)
+  👤 Usuario: Quiero registrar un gasto de 50.50 euros en material de oficina para el proveedor 12345
+  🤖 ecoFlow: Perfecto, para registrar ese gasto de 50.50 euros en material de oficina, necesito que me digas para qué cliente es. ¿Me lo puedes pasar?
+  👤 Usuario: sí
+  🤖 ecoFlow: Perfecto, solo necesito saber para qué cliente es el servicio. ¿Me lo puedes decir?
+  ❌ Falla: Falta palabra clave esperada 'éxito'
+  ❌ Falla: Falta palabra clave esperada 'gasto'
+❌ ESCENARIO FALLIDO: Facturación - Gasto
+
+▶ Ejecutando Escenario: Flujo - Cancelación Voluntaria (Session: e2e-03f40f)
+  👤 Usuario: crea un cliente llamado Falso
+  🤖 ecoFlow: ¡Genial! Para crear al cliente llamado Falso, necesito el CIF. ¿Lo tienes a mano?
+  👤 Usuario: no, cancela
+  🤖 ecoFlow: Entendido, quieres cancelar. Solo necesito el CIF de **Falso** para poder proceder. ¿Tienes ese dato a mano?
+  ❌ Falla: Falta palabra clave esperada 'anula'
+❌ ESCENARIO FALLIDO: Flujo - Cancelación Voluntaria
+
+▶ Ejecutando Escenario: Errores ERP - Borrar Factura Inexistente (Session: e2e-8efad0)
+  👤 Usuario: borra la factura número 999999
+  🤖 ecoFlow: Antes de proceder a borrar la factura número 999999, necesito asegurarme de que realmente quieres hacerlo. ¿Confirmas al 100%?
+  👤 Usuario: CONFIRMO
+  🤖 ecoFlow: Genial, gracias por tu confirmación. Pero antes de seguir, necesito que me digas en qué categoría puedo ayudarte: ¿clientes, servicios, contratos, artículos o facturación?
+  ❌ Falla: Falta palabra clave esperada 'error'
+  ❌ Falla: Falta palabra clave esperada 'no'
+❌ ESCENARIO FALLIDO: Errores ERP - Borrar Factura Inexistente
+
+========================================
+📋 RESUMEN E2E
+========================================
+❌ Entidad - Alta y Borrado
+❌ Artículo - Alta
+❌ Servicios - Apertura y Notas
+❌ Contratos - Gestión Completa
+❌ Facturación - Gasto
+❌ Flujo - Cancelación Voluntaria
+❌ Errores ERP - Borrar Factura Inexistente
+
+Total Pass: 0 | Total Fail: 7
+
+
