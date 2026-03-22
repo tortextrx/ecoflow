@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +8,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  --bg: #05070a;
-  --surface: #0c121d;
-  --surface-alt: #131b2b;
-  --border: #1e293b;
-  --border-bright: #334155;
-  --accent: #00f2ff;
-  --accent-dim: rgba(0,242,255,0.12);
-  --text: #f8fafc;
+  /* DARK THEME (CORE) */
+  --bg: #05090a;
+  --surface: #0c181a;
+  --surface-alt: #122124;
+  --border: #1a2f32;
+  --border-bright: #2d4f54;
+  --accent: #16B6CD;
+  --accent-secondary: #F99746;
+  --accent-dim: rgba(22, 182, 205, 0.12);
+  --text: #f1f5f9;
   --muted: #94a3b8;
   --radius: 2px;
   --font-mono: 'JetBrains Mono', monospace;
-  --bot-bg: rgba(0,242,255,0.03);
+  --bot-bg: rgba(22, 182, 205, 0.03);
+  --dot-color: #16B6CD;
+  --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-alt: #f1f5f9;
+  --border: #cbd5e1;
+  --border-bright: #94a3b8;
+  --accent: #16B6CD;
+  --accent-secondary: #F99746;
+  --accent-dim: rgba(22, 182, 205, 0.08);
+  --text: #0f172a;
+  --muted: #64748b;
+  --bot-bg: rgba(22, 182, 205, 0.04);
+  --dot-color: #16B6CD;
+  --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,25 +56,25 @@
   }
 }
 
-html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); }
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }
 body {
   font-family: 'Inter', system-ui, sans-serif;
   display: flex; align-items: center; justify-content: center;
   -webkit-font-smoothing: antialiased;
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.05) 0%, transparent 80%),
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    radial-gradient(circle at 50% 50%, var(--accent-dim) 0%, transparent 80%),
+    linear-gradient(rgba(22, 182, 205, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 182, 205, 0.03) 1px, transparent 1px);
   background-size: 100% 100%, 40px 40px, 40px 40px;
 }
 
 .shell {
   width: min(840px, 100%); height: 100dvh;
   display: flex; flex-direction: column;
-  background: rgba(5, 7, 10, 0.94);
+  background: var(--bg);
   border-left: 1px solid var(--border);
   border-right: 1px solid var(--border);
-  position: relative;
+  position: relative; box-shadow: var(--shadow);
 }
 
 /* HEADER */
@@ -65,34 +85,42 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 .hd-left { display: flex; align-items: center; gap: 16px; }
-.orb-container { position: relative; width: 44px; height: 44px; }
+.orb-container { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
 .orb {
   width: 100%; height: 100%; border-radius: 50%;
-  background: conic-gradient(from 0deg, #00f2ff, #0070f3, #00f2ff);
+  background: conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--accent));
   animation: spin 8s linear infinite;
-  box-shadow: 0 0 20px rgba(0,242,255,0.4);
+  box-shadow: 0 0 20px rgba(22, 182, 205, 0.3);
 }
 .orb-overlay {
   position: absolute; inset: 4px; border-radius: 50%;
-  background: var(--surface); border: 2px solid rgba(0,242,255,0.2);
+  background: var(--surface); border: 2px solid var(--accent-dim);
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.brand { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; letter-spacing: -0.05em; text-transform: uppercase; }
+.brand { font-family: var(--font-mono); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.05em; }
 .brand span { color: var(--accent); }
 .sub { font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
 
+.hd-right { display: flex; align-items: center; gap: 12px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border); color: var(--muted);
+  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s; border-radius: var(--radius);
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
+
 .status {
-  display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.65rem; color: #4ade80;
-  background: rgba(74,222,128,0.05); border: 1px solid rgba(74,222,128,0.2);
+  display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent);
+  background: var(--accent-dim); border: 1px solid var(--accent);
   padding: 6px 14px; border-radius: var(--radius);
 }
-.dot { width: 4px; height: 4px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+.dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1.1); } 50% { opacity: 0.4; transform: scale(0.9); } }
 
-/* CHAT */
-.chat { flex: 1; overflow-y: auto; padding: 32px 24px; display: flex; flex-direction: column; gap: 20px; scroll-behavior: smooth; }
-.chat::-webkit-scrollbar { width: 3px; }
+/* CHAT AREA */
+.chat { flex: 1; overflow-y: auto; padding: 32px 24px; display: flex; flex-direction: column; gap: 24px; scroll-behavior: smooth; }
+.chat::-webkit-scrollbar { width: 4px; }
 .chat::-webkit-scrollbar-thumb { background: var(--border-bright); }
 
 .row { display: flex; width: 100%; }
@@ -106,22 +134,16 @@ body {
 }
 @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
-.bub.bot {
-  border-left: 3px solid var(--accent);
-  background: var(--bot-bg);
-}
+.bub.bot { border-left: 3px solid var(--accent); background: var(--bot-bg); }
 .bub.bot::before {
-  content: "ECOFLOW // SYSTEM";
+  content: "ecoFlow // System";
   position: absolute; top: -18px; left: 0;
   font-family: var(--font-mono); font-size: 0.6rem; color: var(--accent); opacity: 0.8;
 }
 
-.bub.me {
-  border-right: 3px solid #64748b;
-  background: rgba(255,255,255,0.02);
-}
+.bub.me { border-right: 3px solid var(--muted); background: var(--surface); }
 .bub.me::before {
-  content: "USER // AUTH";
+  content: "Auth // User";
   position: absolute; top: -18px; right: 0;
   font-family: var(--font-mono); font-size: 0.6rem; color: var(--muted); opacity: 0.8;
 }
@@ -130,19 +152,19 @@ body {
 
 .file-card {
   display: flex; align-items: center; gap: 12px;
-  background: rgba(0, 242, 255, 0.05); border: 1px solid rgba(0, 242, 255, 0.2);
-  padding: 10px 14px; margin-top: 4px;
+  background: var(--accent-dim); border: 1px solid var(--accent);
+  padding: 10px 14px; margin-top: 4px; border-radius: var(--radius);
 }
 .file-card svg { color: var(--accent); flex-shrink: 0; }
 
 /* TYPING */
-.typing { display: flex; align-items: center; gap: 12px; padding: 0 24px 16px; opacity: 0.8; }
+.typing { display: flex; align-items: center; gap: 12px; padding: 0 24px 16px; }
 .typing-dots { display: flex; gap: 4px; }
 .typing-dots span { width: 5px; height: 5px; background: var(--accent); animation: bounceDots 1.4s infinite; }
 .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
 .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes bounceDots { 0%, 80%, 100% { transform: scale(1); opacity: 0.4; } 40% { transform: scale(1.4); opacity: 1; } }
-.typing-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.05em; }
+.typing-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.05em; font-weight: 700; }
 
 /* INPUT BAR */
 .bar {
@@ -154,16 +176,15 @@ body {
 .action-btn {
   width: 44px; height: 44px; border: 1px solid var(--border); background: var(--bg);
   color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: border-color 0.2s, color 0.2s, background 0.2s; flex-shrink: 0;
+  transition: all 0.2s; flex-shrink: 0; border-radius: var(--radius);
 }
 .action-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
-.action-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .file-preview {
   display: none; align-items: center; gap: 10px;
   background: var(--accent-dim); border: 1px solid var(--accent);
   padding: 6px 12px; font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);
-  max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-radius: var(--radius);
 }
 .btn-close { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1rem; line-height: 1; }
 
@@ -171,20 +192,21 @@ textarea {
   flex: 1; min-height: 44px; max-height: 160px; resize: none; outline: none;
   font-family: inherit; font-size: 0.95rem; border: 1px solid var(--border);
   background: var(--bg); color: var(--text); padding: 11px 16px; line-height: 1.5;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s; border-radius: var(--radius);
 }
 textarea:focus { border-color: var(--accent); }
-textarea::placeholder { color: #475569; }
+textarea::placeholder { color: var(--muted); opacity: 0.5; }
 
 .btn-send {
   width: 46px; height: 46px; border: none; cursor: pointer;
-  background: var(--accent); color: var(--bg);
+  background: var(--accent-secondary); color: white;
   display: flex; align-items: center; justify-content: center;
-  transition: transform 0.1s, filter 0.2s; flex-shrink: 0;
+  transition: all 0.2s; flex-shrink: 0; border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(249, 151, 70, 0.3);
 }
-.btn-send:hover { filter: brightness(1.1); transform: translateY(-1px); }
-.btn-send:active { transform: translateY(1px); }
-.btn-send:disabled { opacity: 0.3; cursor: not-allowed; filter: grayscale(1); }
+.btn-send:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249, 151, 70, 0.4); }
+.btn-send:active { transform: translateY(0); }
+.btn-send:disabled { opacity: 0.3; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn-send svg { width: 22px; height: 22px; }
 </style>
 </head>
@@ -198,17 +220,22 @@ textarea::placeholder { color: #475569; }
       </div>
       <div>
         <div class="brand">eco<span>Flow</span></div>
-        <div class="sub">CORE TERMINAL // ERP CONNECT</div>
+        <div class="sub">Dynamic ERP Terminal</div>
       </div>
     </div>
-    <div class="status"><span class="dot"></span>ACTIVE</div>
+    <div class="hd-right">
+      <button class="theme-toggle" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">
+        <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+      </button>
+      <div class="status"><span class="dot"></span>ACTIVE</div>
+    </div>
   </header>
 
   <main class="chat" id="chatArea"></main>
 
   <div class="typing" id="typingArea" style="display:none">
     <div class="typing-dots"><span></span><span></span><span></span></div>
-    <span class="typing-label" id="typingLabel">SYSTEM IS PROCESSING…</span>
+    <span class="typing-label" id="typingLabel">ecoFlow IS PROCESSING…</span>
   </div>
 
   <footer class="bar">
@@ -236,10 +263,30 @@ const chatArea=document.getElementById('chatArea'),
   fileName=document.getElementById('fileName'),
   clearFile=document.getElementById('clearFile'),
   typingArea=document.getElementById('typingArea'),
-  typingLabel=document.getElementById('typingLabel');
+  typingLabel=document.getElementById('typingLabel'),
+  themeToggle=document.getElementById('themeToggle'),
+  themeIcon=document.getElementById('themeIcon'),
+  htmlEl=document.documentElement;
 
 const SID='eco_'+Math.random().toString(36).slice(2,10);
 let pendingFile=null;
+
+// THEME HANDLING
+const SUN_PATH='<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>';
+const MOON_PATH='<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>';
+
+function setTheme(theme) {
+  htmlEl.setAttribute('data-theme', theme);
+  themeIcon.innerHTML = theme==='dark' ? SUN_PATH : MOON_PATH;
+  localStorage.setItem('ecoflow-theme', theme);
+}
+themeToggle.addEventListener('click', () => {
+  const current = htmlEl.getAttribute('data-theme');
+  setTheme(current==='dark' ? 'light' : 'dark');
+});
+
+const savedTheme = localStorage.getItem('ecoflow-theme') || 'dark';
+setTheme(savedTheme);
 
 function md(s){
   return s
@@ -267,7 +314,7 @@ function addBubble(text,side,isFile=false){
   chatArea.scrollTop=chatArea.scrollHeight;
 }
 
-function showTyping(label='SYSTEM IS PROCESSING…'){
+function showTyping(label='ecoFlow IS PROCESSING…'){
   typingLabel.textContent=label; typingArea.style.display='flex';
   chatArea.scrollTop=chatArea.scrollHeight;
 }
@@ -297,7 +344,7 @@ clearFile.addEventListener('click',()=>{
 
 // Mensaje inicial
 setTimeout(()=>{
-  addBubble('\u00a1Hola! Soy **ecoFlow**, tu asistente inteligente conectado a ecoSoftWEB.\n\nPuedo ayudarte con mucho m\u00e1s:\n\u00a0\u00a0\ud83d\udd0d **Entidades**: Localizar o crear por CIF, nombre o direcci\u00f3n.\n\u00a0\u00a0\ud83d\udcc4 **Documentos**: Procesar facturas, albaranes y presupuestos.\n\u00a0\u00a0\u2705 **Gesti\u00f3n**: Altas r\u00e1pidas de pre-clientes y servicios.\n\u00a0\u00a0\ud83d\udce6 **Art\u00edculos**: Consultar stock y disponibilidad en tiempo real.\n\u00a0\u00a0\ud83d\udcdd **Historial**: A\u00f1adir notas y seguimiento directamente.\n\nEscr\u00edbeme o sube un documento PDF/imagen para empezar.','bot');
+  addBubble('\u00a1Hola! Soy **ecoFlow**, tu asistente inteligente conectado a ecoSoftWEB.\n\nPuedo ayudarte con mucho m\u00e1s:\n\n\u00a0\u00a0\ud83d\udd0d **Entidades**: Localizar o crear clientes por CIF.\n\u00a0\u00a0\ud83d\udcc4 **Documentos**: Procesar facturas de gasto y albaranes.\n\u00a0\u00a0\u2705 **Gesti\u00f3n**: Altas r\u00e1pidas de servicios comerciales.\n\u00a0\u00a0\ud83d\udce6 **Stock**: Consultar stock y disponibilidad.\n\u00a0\u00a0\ud83d\udcdd **Historial**: A\u00f1adir notas r\u00e1pidas de seguimiento.\n\nSube una factura o dime qu\u00e9 necesitas gestionar hoy.','bot');
 }, 300);
 
 async function sendMessage(){
