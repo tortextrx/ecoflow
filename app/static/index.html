@@ -85,17 +85,17 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 .hd-left { display: flex; align-items: center; gap: 16px; }
-.orb-container { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
+.orb-container { position: relative; width: 48px; height: 48px; flex-shrink: 0; }
 .orb {
   width: 100%; height: 100%; border-radius: 50%;
   background: conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--accent));
-  animation: spin 8s linear infinite;
-  box-shadow: 0 0 20px rgba(22, 182, 205, 0.3);
+  animation: spin 6s linear infinite;
+  box-shadow: 0 0 15px var(--accent-dim);
 }
 .orb-overlay {
-  position: absolute; inset: 2px; border-radius: 50%;
-  background: url('avatar.png') center/cover no-repeat;
-  border: 1px solid var(--border);
+  position: absolute; inset: 4px; border-radius: 50%;
+  background: url('ecoScanCalidad.png') center/cover no-repeat;
+  background-color: var(--surface);
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
