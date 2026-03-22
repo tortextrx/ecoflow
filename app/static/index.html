@@ -87,15 +87,16 @@ body {
 .hd-left { display: flex; align-items: center; gap: 16px; }
 .orb-container { position: relative; width: 48px; height: 48px; flex-shrink: 0; }
 .orb {
-  width: 100%; height: 100%; border-radius: 50%;
+  position: absolute; inset: 0; border-radius: 50%;
   background: conic-gradient(from 0deg, var(--accent), var(--accent-secondary), var(--accent));
   animation: spin 6s linear infinite;
   box-shadow: 0 0 15px var(--accent-dim);
 }
-.orb-overlay {
-  position: absolute; inset: 4px; border-radius: 50%;
-  background: url('ecoScanCalidad.png') center/cover no-repeat;
-  background-color: var(--surface);
+.orb-img {
+  position: absolute; inset: 3px; width: 42px; height: 42px;
+  border-radius: 50%; object-fit: cover;
+  background-color: var(--bg);
+  z-index: 2;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -217,7 +218,7 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
     <div class="hd-left">
       <div class="orb-container">
         <div class="orb"></div>
-        <div class="orb-overlay"></div>
+        <img src="ecoScanCalidad.png" class="orb-img" alt="ecoFlow Robot" aria-hidden="true">
       </div>
       <div>
         <div class="brand">eco<span>Flow</span></div>
