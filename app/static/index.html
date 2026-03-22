@@ -237,7 +237,7 @@ textarea::placeholder { color: var(--muted); opacity: 0.5; }
 
   <div class="typing" id="typingArea" style="display:none">
     <div class="typing-dots"><span></span><span></span><span></span></div>
-    <span class="typing-label" id="typingLabel">ecoFlow IS PROCESSING…</span>
+    <span class="typing-label" id="typingLabel">ecoFlow ESTÁ PROCESANDO…</span>
   </div>
 
   <footer class="bar">
@@ -316,7 +316,7 @@ function addBubble(text,side,isFile=false){
   chatArea.scrollTop=chatArea.scrollHeight;
 }
 
-function showTyping(label='ecoFlow IS PROCESSING…'){
+function showTyping(label='ecoFlow EST\u00c1 PROCESANDO\u2026'){
   typingLabel.textContent=label; typingArea.style.display='flex';
   chatArea.scrollTop=chatArea.scrollHeight;
 }
@@ -346,7 +346,7 @@ clearFile.addEventListener('click',()=>{
 
 // Mensaje inicial
 setTimeout(()=>{
-  addBubble('\u00a1Hola! Soy **ecoFlow**, tu asistente inteligente conectado a ecoSoftWEB.\n\nPuedo ayudarte con mucho m\u00e1s:\n\n\u00a0\u00a0\ud83d\udd0d **Entidades**: Localizar o crear clientes por CIF.\n\u00a0\u00a0\ud83d\udcc4 **Documentos**: Procesar facturas de gasto y albaranes.\n\u00a0\u00a0\u2705 **Gesti\u00f3n**: Altas r\u00e1pidas de servicios comerciales.\n\u00a0\u00a0\ud83d\udce6 **Stock**: Consultar stock y disponibilidad.\n\u00a0\u00a0\ud83d\udcdd **Historial**: A\u00f1adir notas r\u00e1pidas de seguimiento.\n\nSube una factura o dime qu\u00e9 necesitas gestionar hoy.','bot');
+  addBubble('\u00a1Hola! Soy **ecoFlow**, tu asistente inteligente conectado a ecoSoftWEB.\n\nPuedo ayudarte con mucho m\u00e1s:\n\n\u00a0\u00a0\ud83d\udd0d **Entidades**: Localizar o crear clientes, proveedores, acreedores, etc.\n\u00a0\u00a0\ud83d\udcc4 **Facturaci\u00f3n**: A\u00f1adir compras y gastos.\n\u00a0\u00a0\u2705 **Gesti\u00f3n**: Generar servicios o tareas.\n\u00a0\u00a0\ud83d\udcdd **Historial servicios**: A\u00f1adir notas r\u00e1pidas de seguimiento.\n\u00a0\u00a0\ud83d\udce6 **Art\u00edculos**: Alta y consulta de art\u00edculos.\n\nSube una factura o dime qu\u00e9 necesitas gestionar hoy.','bot');
 }, 300);
 
 async function sendMessage(){
