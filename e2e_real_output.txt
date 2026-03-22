@@ -1,0 +1,6 @@
+BASE_URL=http://127.0.0.1:18080
+SESSION=srvreal-5291dc66
+
+[SMOKE] GET /
+
+RESULTADO GLOBAL E2E REAL: FAIL (EXCEPTION) -> All connection attempts failed

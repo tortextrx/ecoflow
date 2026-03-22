@@ -1,4 +1,4 @@
-from .entidades_tools import CrearEntidadTool, ObtenerEntidadTool, ListarEntidadesTool
+from .entidades_tools import CrearEntidadTool, ObtenerEntidadTool, ListarEntidadesTool, BorrarEntidadTool, ModificarEntidadTool
 from .facturacion_tools import GrabarFacturacionTool, ObtenerFacturacionTool, ListarFacturacionesTool, BorrarFacturacionTool
 from .servicios_tools import CrearServicioTool, ObtenerServicioTool, BorrarServicioTool, GrabarHistoricoTool, ObtenerHistoricoServicioTool
 from .articulos_tools import CrearArticuloTool, ObtenerArticuloTool, ListarArticulosTool
@@ -13,6 +13,8 @@ class ToolRegistry:
         self.crear_entidad = CrearEntidadTool()
         self.obtener_entidad = ObtenerEntidadTool()
         self.listar_entidades = ListarEntidadesTool()
+        self.borrar_entidad = BorrarEntidadTool()
+        self.modificar_entidad = ModificarEntidadTool()
         self.buscar_entidad = BuscarEntidadTool()
         
         # Facturacion

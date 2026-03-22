@@ -1,16 +1,26 @@
-import logging, time
+import logging, time, os
 from app.services.orchestrator import orchestrator
 from app.connectors.base import ecoflow_trace_ctx
 from app.core.db import AsyncSessionLocal
+from app.core.config import settings
 from app.services.identity_resolver import IdentityResolver
 from app.repositories import conversation_repo
 
 logger = logging.getLogger("ecoflow")
 
+
+def resolve_test_mode(header_mode: str | None) -> str:
+    """Prioridad: header > variable de entorno."""
+    hm = (header_mode or "").strip().lower()
+    if hm:
+        return hm
+    env_mode = os.getenv("ECOFLOW_TEST_MODE", settings.ecoflow_test_mode or "")
+    return (env_mode or "").strip().lower()
+
 class ChatService:
     """Capa de Transporte: Gestor de Sesion Persistente en DB."""
 
-    async def handle(self, session_id: str, message: str, file_bytes=None, filename=None, trace_id=None):
+    async def handle(self, session_id: str, message: str, file_bytes=None, filename=None, trace_id=None, test_mode: str | None = None):
         from app.models.schemas.chat import ChatResponse
         
         trace_id = trace_id or "local-" + str(int(time.time()))
@@ -46,7 +56,8 @@ class ChatService:
             
             # Solo aplicamos el coste de naturalización si hay respuesta de texto a mostrar y no es vacío,
             # y no es una subida de ficheros (multimodal a futuro donde mensaje=None).
-            if message:
+            effective_mode = resolve_test_mode(test_mode)
+            if message and effective_mode != "raw":
                 human_reply = await response_service.humanize(message, tech_reply, raw_state)
             else:
                 human_reply = tech_reply

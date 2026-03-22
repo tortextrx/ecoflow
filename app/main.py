@@ -2,6 +2,7 @@ import asyncio, logging
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 from app.core.config import settings
 from app.core.logging_config import setup_logging
 from app.core.db import engine, Base
@@ -29,7 +30,11 @@ app = FastAPI(title="ecoFlow", version=settings.app_version, lifespan=lifespan)
 # Only active frontend route
 from app.api.routes_chat import router as chat_router
 app.include_router(chat_router)
-app.mount("/ecoflow-chat", StaticFiles(directory="/home/ecoflow/app/static", html=True), name="chat")
+
+_linux_static = Path("/home/ecoflow/app/static")
+_local_static = Path(__file__).resolve().parent / "static"
+_static_dir = _linux_static if _linux_static.exists() else _local_static
+app.mount("/ecoflow-chat", StaticFiles(directory=str(_static_dir), html=True), name="chat")
 
 @app.get("/")
 async def root():

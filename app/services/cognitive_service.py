@@ -23,6 +23,7 @@ class CognitiveService:
         - create_entity    : Dar de alta cliente/proveedor/acreedor.
         - query_entity     : Buscar o consultar datos de una entidad.
         - consultar_campo  : Pedir un campo específico (teléfono, email, dirección).
+        - modify_entity    : Modificar datos de entidad (email, teléfono, dirección, observaciones).
         - delete_entity    : Borrar entidad. RIESGO ALTO.
         
         SERVICIOS:
@@ -37,6 +38,7 @@ class CognitiveService:
         
         CONTRATOS:
         - create_contract  : Crear un contrato para un cliente.
+        - modify_contract  : Modificar un contrato existente por PKEY (precio, referencia, descripción, observaciones).
         - query_contract   : Consultar un contrato por PKEY o cliente.
         - list_contracts   : Listar contratos de un cliente.
         - delete_contract  : Borrar un contrato. RIESGO ALTO.
@@ -62,11 +64,21 @@ class CognitiveService:
         
         ENTIDADES EXTRAÍDAS (entities):
         - nombre_cliente   : Nombre comercial del cliente/empresa.
+        - tipo_entidad     : cliente, proveedor, acreedor, personal laboral, sucursal, usuario del sistema.
         - cif              : CIF o NIF del cliente.
+        - direccion        : Dirección postal.
+        - poblacion        : Población / ciudad.
+        - provincia        : Provincia.
+        - cp               : Código postal.
+        - telefono         : Teléfono.
+        - email            : Email.
         - pkey_servicio    : ID de servicio (5 dígitos normalmente).
         - pkey_contrato    : ID de contrato.
         - pkey_factura     : ID de factura/documento.
         - descripcion      : Descripción del trabajo, artículo o contrato.
+        - operario         : Nombre o referencia del operario.
+        - nombre_proveedor : Nombre del proveedor para compras/artículos.
+        - familia          : ID de familia de artículo si se indica.
         - campo            : Campo a consultar (telefono, email, direccion).
         - referencia       : Referencia del contrato, presupuesto u artículo.
         - precio           : Precio unitario.

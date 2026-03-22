@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     ecosoft_default_gasto_articulo_ref: str = "GASTO_GENERICO"
     openrouter_api_key: str = ""
     openai_api_key: str = ""
+    ecoflow_test_mode: str = ""
     media_base_path: str = "/var/ecoflow/media"
     log_path: str = "/var/log/ecoflow/app.jsonl"
     job_max_attempts: int = 3

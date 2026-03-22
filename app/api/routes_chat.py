@@ -18,7 +18,8 @@ async def chat(
     session_id: str = Form(..., max_length=100, pattern=r"^[a-zA-Z0-9_-]+$"),
     message: Optional[str] = Form("", max_length=1000),
     file: Optional[UploadFile] = File(None),
-    x_trace_id: Optional[str] = Header(None, max_length=100)
+    x_trace_id: Optional[str] = Header(None, max_length=100),
+    x_ecoflow_test_mode: Optional[str] = Header(None, max_length=20)
 ):
     trace_id = x_trace_id or str(uuid.uuid4())
     
@@ -44,7 +45,8 @@ async def chat(
             message=message or "",
             file_bytes=file_bytes,
             filename=filename,
-            trace_id=trace_id
+            trace_id=trace_id,
+            test_mode=x_ecoflow_test_mode
         )
         return response
     except Exception as e:

@@ -36,3 +36,22 @@ class ListarEntidadesTool:
         r = await _connector.buscar_entidades(payload)
         lista = _parse_lista(r)
         return {"success": r.get("mensaje")=="OK", "data": lista, "found": bool(lista), "error": r.get("lista") if r.get("mensaje") != "OK" else None}
+
+
+class BorrarEntidadTool:
+    """Elimina una entidad por PKEY. Operacion IRREVERSIBLE."""
+    async def execute(self, payload: dict) -> dict:
+        pkey = payload.get("pkey") or payload.get("PKEY")
+        r = await _connector.borrar_entidad(pkey)
+        success = r.get("mensaje") == "OK"
+        return {"success": success, "error": r.get("lista") if not success else None}
+
+
+class ModificarEntidadTool:
+    """Modifica campos de una entidad existente por PKEY."""
+    async def execute(self, payload: dict) -> dict:
+        if not payload.get("PKEY"):
+            return {"success": False, "error": "Falta PKEY para modificar entidad"}
+        r = await _connector.modificar_entidad(payload)
+        success = r.get("mensaje") == "OK"
+        return {"success": success, "error": r.get("lista") if not success else None}

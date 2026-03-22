@@ -15,26 +15,28 @@ class GrabarFacturacionTool:
     async def execute(self, payload: dict) -> dict:
         # payload: {nivelcontrol, pkey_entidad, total, referencia, descripcion, observaciones}
         r = await _connector.grabar_facturacion(payload)
-        return {"success": r.get("mensaje")=="OK", "pkey": r.get("lista"), "response": r}
+        success = r.get("mensaje") == "OK"
+        return {"success": success, "pkey": r.get("lista") if success else None, "error": r.get("lista") if not success else None, "response": r}
 
 class ObtenerFacturacionTool:
     """Busca un documento por su PKEY."""
     async def execute(self, payload: dict) -> dict:
         # payload: {pkey}
         pkey = payload.get("pkey")
-        r = await _connector.obtener_documento(pkey)
+        r = await _connector.obtener_facturacion(pkey)
         lista = _parse_lista(r)
         return {"success": r.get("mensaje")=="OK", "data": lista[0] if lista else {}, "found": bool(lista)}
 
 class ListarFacturacionesTool:
     """Busca facturas segun filtros (ENTIDAD, FECHA_DESDE, etc)."""
     async def execute(self, payload: dict) -> dict:
-        r = await _connector.obtener_documentos(payload)
+        r = await _connector.obtener_facturaciones(payload)
         lista = _parse_lista(r)
         return {"success": r.get("mensaje")=="OK", "data": lista, "found": bool(lista)}
 
 class BorrarFacturacionTool:
     async def execute(self, payload: dict) -> dict:
         pkey = payload.get("pkey")
-        r = await _connector.borrar_documento(pkey)
-        return {"success": r.get("mensaje")=="OK"}
+        r = await _connector.borrar_facturacion(pkey)
+        success = r.get("mensaje") == "OK"
+        return {"success": success, "error": r.get("lista") if not success else None}
