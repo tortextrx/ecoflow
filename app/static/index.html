@@ -358,7 +358,7 @@ async function sendMessage(){
   if(t) addBubble(t,'user');
   
   msgInput.value=''; msgInput.style.height='auto';
-  showTyping(pendingFile?'ANALYZING DOCUMENT…':'QUERYING SYSTEM…');
+  showTyping(pendingFile?'Analizando documento\u2026':'Estoy pensando');
   
   const fd=new FormData();
   fd.append('session_id',SID); fd.append('message',t);

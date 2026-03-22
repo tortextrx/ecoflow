@@ -14,5 +14,5 @@ try:
     sftp = client.open_sftp()
     with sftp.file(REMOTE_PATH, 'w') as sf: sf.write(content)
     sftp.close(); client.close()
-    print("Final Message Deploy OK")
+    print("Final Localization Deploy OK")
 except Exception as e: print(f"Error: {e}")
