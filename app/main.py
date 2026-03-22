@@ -35,6 +35,7 @@ _linux_static = Path("/home/ecoflow/app/static")
 _local_static = Path(__file__).resolve().parent / "static"
 _static_dir = _linux_static if _linux_static.exists() else _local_static
 app.mount("/ecoflow-chat", StaticFiles(directory=str(_static_dir), html=True), name="chat")
+app.mount("/api/ecoflow/static", StaticFiles(directory=str(_static_dir)), name="static_proxy")
 
 @app.get("/")
 async def root():
