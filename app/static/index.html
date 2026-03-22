@@ -98,7 +98,7 @@ body{
   transition:all .2s;
 }
 .attach:hover{color:var(--accent);background:var(--accent-dim)}
-.attach svg{width:19px;height:19px}
+.attach svg{width:20px;height:20px}
 .prev{
   display:none;align-items:center;gap:6px;
   background:rgba(0,112,243,.12);border:1px solid rgba(0,112,243,.3);
@@ -148,7 +148,7 @@ textarea::placeholder{color:var(--muted)}
 
   <footer class="bar">
     <label class="attach" title="Subir imagen o PDF">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M21.586 10.461l-10.05 10.049a6 6 0 01-8.485-8.486l10.05-10.048a4 4 0 015.657 5.657l-10.05 10.049a2 2 0 01-2.828-2.829l9.344-9.344-1.414-1.414-9.344 9.343a4 4 0 005.657 5.657l10.05-10.048a6 6 0 00-8.485-8.485L2.101 12.106a8 8 0 0011.314 11.313l10.049-10.049-1.878-1.909z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.242 4.242l7-7a1 1 0 00-1.414-1.414l-7 7a1 1 0 01-1.414-1.414l7-7a1 1 0 011.414 1.414l-7 7a3 3 0 01-4.242-4.242l7-7a5 5 0 017.071 7.071l-7 7a1 1 0 001.414 1.414l7-7a7 7 0 000-9.9z" clip-rule="evenodd" /></svg>
       <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.pdf" style="display:none">
     </label>
     <div class="prev" id="prev">
@@ -211,7 +211,7 @@ fi.addEventListener('change',e=>{
 clr.addEventListener('click',()=>{pendingFile=null;fi.value='';prev.style.display='none'});
 
 // mensaje de bienvenida
-bubble('\u00a1Hola! Soy **ecoFlow**, tu asistente de gesti\u00f3n conectado a ecoSoftWEB.\n\nPuedo ayudarte a:\n\u00a0\u00a0\ud83d\udd0d Buscar entidades por CIF o nombre\n\u00a0\u00a0\ud83d\udcc4 Procesar facturas y documentos\n\u00a0\u00a0\u2705 Crear pre-entidades autom\u00e1ticamente\n\nEscr\u00edbeme o sube una imagen/PDF de una factura para empezar.','bot');
+bubble('\u00a1Hola! Soy **ecoFlow**, tu asistente inteligente conectado a ecoSoftWEB.\n\nPuedo ayudarte con mucho m\u00e1s:\n\u00a0\u00a0\ud83d\udd0d **Entidades**: Localizar o crear por CIF, nombre o direcci\u00f3n.\n\u00a0\u00a0\ud83d\udcc4 **Documentos**: Procesar facturas, albaranes y presupuestos.\n\u00a0\u00a0\u2705 **Gesti\u00f3n**: Altas r\u00e1pidas de pre-clientes y servicios.\n\u00a0\u00a0\ud83d\udce6 **Art\u00edculos**: Consultar stock y disponibilidad de productos.\n\u00a0\u00a0\ud83d\udcdd **Historial**: A\u00f1adir notas y seguimiento directamente.\n\nEscr\u00edbeme o sube un documento PDF/imagen para empezar.','bot');
 
 async function send(){
   const t=txt.value.trim();
