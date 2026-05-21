@@ -1,0 +1,49 @@
+{
+  "case_id": "ENT-MUT-003",
+  "session_id": "h-a09962-ENT-MUT-003-fbb0",
+  "mode": "real_mutating",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "crea un cliente llamado E2E_ENTITY_3860291666 con CIF B386029166677",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ENT-MUT-003-c8f4507a",
+      "ts_utc": "2026-03-26T20:07:26.654865+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "si, grábalo",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ENT-MUT-003-a5f1fcd3",
+      "ts_utc": "2026-03-26T20:07:28.705030+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": true,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "target_unresolved",
+    "details": [
+      "No se pudo resolver target para cleanup"
+    ]
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 3860291666
+  }
+}

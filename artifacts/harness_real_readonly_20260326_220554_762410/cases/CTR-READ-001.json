@@ -1,0 +1,60 @@
+{
+  "case_id": "CTR-READ-001",
+  "session_id": "h-762410-CTR-READ-001-a071",
+  "mode": "real_readonly",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "dime los contratos de ServiPrueba",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "CTR-READ-001-3d569bd7",
+      "ts_utc": "2026-03-26T21:06:05.822786+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "elige el primero",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "CTR-READ-001-0ee6eec5",
+      "ts_utc": "2026-03-26T21:06:07.865186+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 3,
+      "user_input": "qué periodicidad tiene",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "CTR-READ-001-07414fd8",
+      "ts_utc": "2026-03-26T21:06:09.913217+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 1888306736
+  }
+}

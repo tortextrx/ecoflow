@@ -1,0 +1,47 @@
+{
+  "case_id": "ENT-AMB-002",
+  "session_id": "h-c173dd-ENT-AMB-002-d7f8",
+  "mode": "semireal",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "Dime los ServiPrueba que hay",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ENT-AMB-002-a816b7f8",
+      "ts_utc": "2026-03-26T20:01:56.755929+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "el otro",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ENT-AMB-002-bbb2396c",
+      "ts_utc": "2026-03-26T20:01:58.787883+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 3662091292
+  }
+}

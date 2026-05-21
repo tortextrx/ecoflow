@@ -1,0 +1,49 @@
+{
+  "case_id": "MM-NR-001",
+  "session_id": "h-ccb18d-MM-NR-001-d6d4",
+  "mode": "real_mutating",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "Quiero registrar un gasto de 23.5 euros de material para proveedor 1",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "MM-NR-001-713ca7a3",
+      "ts_utc": "2026-03-26T21:06:58.240687+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "sí",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "MM-NR-001-21d1efff",
+      "ts_utc": "2026-03-26T21:07:00.281214+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": true,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "target_unresolved",
+    "details": [
+      "No se pudo resolver target para cleanup"
+    ]
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 1929397514
+  }
+}

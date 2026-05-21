@@ -115,3 +115,14 @@ class BorrarServicioTool:
         pkey = payload.get("pkey")
         r = await _connector.borrar_servicio(pkey)
         return {"success": r.get("mensaje")=="OK"}
+
+class ListarServiciosTool:
+    """Lista servicios aplicando los filtros soportados por ObtenerServicios.
+    Campos posibles: OPERARIO, CLIENTE, ESTADO, TIPO_SERVICIO, etc.
+    """
+    async def execute(self, filtros: dict) -> dict:
+        logger.info(f"[SERVICE_TRACE] listar_servicios filtros={filtros}")
+        r = await _connector.obtener_servicios(filtros)
+        lista = _parse_lista(r)
+        logger.info(f"[SERVICE_TRACE] listar_servicios resultado mensaje={r.get('mensaje')} count={len(lista)}")
+        return {"success": r.get("mensaje") == "OK", "data": lista, "found": bool(lista)}

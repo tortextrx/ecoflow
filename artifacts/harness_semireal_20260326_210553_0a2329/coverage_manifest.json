@@ -1,0 +1,35 @@
+{
+  "generated_at_utc": "2026-03-26T20:05:54.651382+00:00",
+  "total_cases_loaded": 15,
+  "by_domain": {
+    "entidades": 4,
+    "servicios": 2,
+    "contratos": 2,
+    "articulos": 2,
+    "facturacion": 3,
+    "transversal": 2
+  },
+  "by_category": {
+    "intention_routing": 1,
+    "disambiguation": 1,
+    "operation_create_modify": 4,
+    "meta_response": 1,
+    "query_followup": 1,
+    "query_selection": 3,
+    "operation_modify": 1,
+    "validation_block": 1,
+    "context_switch": 1,
+    "natural_confirmation": 1
+  },
+  "by_mode": {
+    "real_readonly": 6,
+    "semireal": 4,
+    "real_mutating": 4,
+    "any": 1
+  },
+  "by_expected_outcome": {
+    "expected_pass": 10,
+    "expected_fail_known": 4,
+    "skip": 1
+  }
+}

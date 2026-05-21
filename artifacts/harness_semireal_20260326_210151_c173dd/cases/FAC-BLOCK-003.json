@@ -1,0 +1,47 @@
+{
+  "case_id": "FAC-BLOCK-003",
+  "session_id": "h-c173dd-FAC-BLOCK-003-32c0",
+  "mode": "semireal",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "crea una factura de tipo no permitido para SerAgua",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "FAC-BLOCK-003-78a26b15",
+      "ts_utc": "2026-03-26T20:02:07.293386+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "confirmo",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "FAC-BLOCK-003-30508322",
+      "ts_utc": "2026-03-26T20:02:09.340657+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 3683720565
+  }
+}

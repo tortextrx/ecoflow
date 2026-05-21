@@ -1,0 +1,17 @@
+{
+  "run_id": "harness_real_mutating_20260327_000954_104d1b",
+  "suite_mode": "real_mutating",
+  "base_url": "http://127.0.0.1:18080",
+  "endpoint_mode": "internal_backend",
+  "preflight_required": true,
+  "run_seed": 20260326,
+  "case_files": [
+    "tests/cases/entities.yaml",
+    "tests/cases/services.yaml",
+    "tests/cases/contracts.yaml",
+    "tests/cases/articles.yaml",
+    "tests/cases/facturacion.yaml",
+    "tests/cases/transversal.yaml",
+    "tests/cases/multimodal.yaml"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "case_id": "SRV-READ-001",
+  "session_id": "h-762410-SRV-READ-001-9bad",
+  "mode": "real_readonly",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "consulta el servicio 32165",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "SRV-READ-001-606e6177",
+      "ts_utc": "2026-03-26T21:06:01.721494+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "y su fecha",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "SRV-READ-001-5a4615f1",
+      "ts_utc": "2026-03-26T21:06:03.767219+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 670797529
+  }
+}

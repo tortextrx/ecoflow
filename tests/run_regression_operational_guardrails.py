@@ -432,7 +432,20 @@ async def main() -> None:
 
         await run_case("13. Extracción semántica + no email", case_semantic_fields_no_email)
 
-        print("\nRESULTADO GLOBAL: PASS (13/13)")
+        # 14) ranking fuzzy estable (RapidFuzz o fallback) no debe romper contrato
+        async def case_fuzzy_ranking_stability() -> None:
+            candidates = [
+                {"PKEY": 101, "DENCOM": "ACME"},
+                {"PKEY": 102, "DENCOM": "ACME NORTE"},
+                {"PKEY": 103, "DENCOM": "OTRO"},
+            ]
+            ranked = resolver._rank_similar_names("acme", candidates, threshold=0.8)
+            assert_true(len(ranked) >= 1, "Debe devolver al menos una coincidencia fuzzy")
+            assert_true("score" in ranked[0], "Debe incluir score para trazabilidad")
+
+        await run_case("14. Estabilidad ranking fuzzy", case_fuzzy_ranking_stability)
+
+        print("\nRESULTADO GLOBAL: PASS (14/14)")
 
     except Exception:
         print("\nRESULTADO GLOBAL: FAIL")

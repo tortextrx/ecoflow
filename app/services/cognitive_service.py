@@ -1,8 +1,7 @@
-import json, logging, httpx, contextvars
+import json, logging, httpx
 from app.core.config import settings
 
 logger = logging.getLogger("ecoflow")
-ecoflow_trace_ctx = contextvars.ContextVar("ecoflow_trace_id", default="no-trace")
 
 class CognitiveService:
     """Motor de Intenciones v3.0 (Multi-Domain ERP).
@@ -23,7 +22,6 @@ class CognitiveService:
         - create_entity    : Dar de alta cliente/proveedor/acreedor.
         - query_entity     : Buscar o consultar datos de una entidad.
         - consultar_campo  : Pedir un campo específico (teléfono, email, dirección).
-        - modify_entity    : Modificar datos de entidad (email, teléfono, dirección, observaciones).
         - delete_entity    : Borrar entidad. RIESGO ALTO.
         
         SERVICIOS:
@@ -38,7 +36,6 @@ class CognitiveService:
         
         CONTRATOS:
         - create_contract  : Crear un contrato para un cliente.
-        - modify_contract  : Modificar un contrato existente por PKEY (precio, referencia, descripción, observaciones).
         - query_contract   : Consultar un contrato por PKEY o cliente.
         - list_contracts   : Listar contratos de un cliente.
         - delete_contract  : Borrar un contrato. RIESGO ALTO.
@@ -64,21 +61,11 @@ class CognitiveService:
         
         ENTIDADES EXTRAÍDAS (entities):
         - nombre_cliente   : Nombre comercial del cliente/empresa.
-        - tipo_entidad     : cliente, proveedor, acreedor, personal laboral, sucursal, usuario del sistema.
         - cif              : CIF o NIF del cliente.
-        - direccion        : Dirección postal.
-        - poblacion        : Población / ciudad.
-        - provincia        : Provincia.
-        - cp               : Código postal.
-        - telefono         : Teléfono.
-        - email            : Email.
         - pkey_servicio    : ID de servicio (5 dígitos normalmente).
         - pkey_contrato    : ID de contrato.
         - pkey_factura     : ID de factura/documento.
         - descripcion      : Descripción del trabajo, artículo o contrato.
-        - operario         : Nombre o referencia del operario.
-        - nombre_proveedor : Nombre del proveedor para compras/artículos.
-        - familia          : ID de familia de artículo si se indica.
         - campo            : Campo a consultar (telefono, email, direccion).
         - referencia       : Referencia del contrato, presupuesto u artículo.
         - precio           : Precio unitario.
@@ -102,18 +89,12 @@ class CognitiveService:
             "response_format": {"type": "json_object"}
         }
         headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
-        trace_id = ecoflow_trace_ctx.get()
 
         try:
             async with httpx.AsyncClient() as client:
-                resp = await client.post(self.url, json=payload, headers=headers, timeout=12.0)
-                resp.raise_for_status()
+                resp = await client.post(self.url, json=payload, headers=headers, timeout=10)
                 return json.loads(resp.json()["choices"][0]["message"]["content"])
-        except httpx.TimeoutException as te:
-            logger.error({"action": "llm_timeout", "trace_id": trace_id, "layer": "cognitive", "error": str(te)})
-            return {"intent": "unknown", "entities": {}, "error": "timeout"}
-        except Exception as e:
-            logger.error({"action": "llm_error", "trace_id": trace_id, "layer": "cognitive", "error": str(e)}, exc_info=True)
-            return {"intent": "unknown", "entities": {}, "error": "system_error"}
+        except Exception:
+            return {"intent": "unknown", "entities": {}}
 
 cognitive_service = CognitiveService()

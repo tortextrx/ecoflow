@@ -1,0 +1,28 @@
+cases:
+  - id: CTR-READ-001
+    domain: contratos
+    category: query_selection
+    description: consulta natural de contratos sobre entidad real
+    mode: real_readonly
+    expected_outcome: expected_pass
+    turns:
+      - user: "dime los contratos de {{contract_entity}}"
+      - user: "elige el primero"
+      - user: "qué periodicidad tiene"
+    expected_flow: contract
+
+  - id: CTR-MUT-002
+    domain: contratos
+    category: operation_create_modify
+    description: alta de contrato E2E y cleanup
+    mode: real_mutating
+    expected_outcome: expected_pass
+    turns:
+      - user: "crea un contrato para pkey 1 con descripcion E2E_CONTR_{{runtime.case_seed}} y precio 99"
+      - user: "ok"
+    cleanup:
+      action: delete_contract
+      target_source: last_numeric_id
+      verify_prompt: "consulta contrato {{runtime.last_numeric_id}}"
+      verify_present_markers: ["no", "no encontrado", "error"]
+

@@ -1,0 +1,75 @@
+{
+  "run_meta": {
+    "run_id": "harness_real_readonly_20260326_220554_762410",
+    "suite_mode": "real_readonly",
+    "base_url": "http://127.0.0.1:18080",
+    "run_seed": 20260326,
+    "case_files": [
+      "tests/cases/entities.yaml",
+      "tests/cases/services.yaml",
+      "tests/cases/contracts.yaml",
+      "tests/cases/articles.yaml",
+      "tests/cases/facturacion.yaml",
+      "tests/cases/transversal.yaml",
+      "tests/cases/multimodal.yaml"
+    ]
+  },
+  "counts": {
+    "FAIL": 5,
+    "SKIP_MODE": 10,
+    "SKIP": 1,
+    "UNEXPECTED_PASS": 1
+  },
+  "cleanup": {
+    "mutating_cases": 0,
+    "cleanup_executed": 0,
+    "cleanup_success": 0,
+    "cleanup_verified": 0,
+    "cleanup_failed_or_unverified": 0
+  },
+  "hard_fail_count": 6,
+  "hard_fails": [
+    {
+      "id": "ENT-ROUT-001",
+      "status": "FAIL",
+      "errors": [
+        "expected_flow=entity got=None",
+        "No aparecen campos esperados en respuesta final"
+      ]
+    },
+    {
+      "id": "SRV-READ-001",
+      "status": "FAIL",
+      "errors": [
+        "expected_flow=service got=None"
+      ]
+    },
+    {
+      "id": "CTR-READ-001",
+      "status": "FAIL",
+      "errors": [
+        "expected_flow=contract got=None"
+      ]
+    },
+    {
+      "id": "ART-READ-001",
+      "status": "FAIL",
+      "errors": [
+        "expected_flow=article got=None"
+      ]
+    },
+    {
+      "id": "FAC-READ-001",
+      "status": "FAIL",
+      "errors": [
+        "expected_flow=facturacion got=None"
+      ]
+    },
+    {
+      "id": "TRX-DIS-002",
+      "status": "UNEXPECTED_PASS",
+      "errors": []
+    }
+  ],
+  "generated_at_utc": "2026-03-26T21:06:26.270511+00:00"
+}

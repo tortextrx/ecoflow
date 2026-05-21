@@ -1,0 +1,21 @@
+{
+  "endpoint_mode": "internal_backend",
+  "target_base_url": "http://127.0.0.1:18080",
+  "target_chat_url": "http://127.0.0.1:18080/api/ecoflow/chat",
+  "status": "infra_preflight_fail",
+  "ok": false,
+  "checks": {
+    "root": {
+      "ok": false,
+      "status_code": null,
+      "error": "ConnectError('All connection attempts failed')",
+      "body_preview": ""
+    },
+    "chat": {
+      "ok": false,
+      "status_code": null,
+      "error": "ConnectError('All connection attempts failed')",
+      "body_preview": ""
+    }
+  }
+}

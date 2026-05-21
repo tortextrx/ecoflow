@@ -1,0 +1,62 @@
+{
+  "run_meta": {
+    "run_id": "harness_semireal_20260327_001029_088b1e",
+    "suite_mode": "semireal",
+    "base_url": "http://127.0.0.1:18080",
+    "endpoint_mode": "default",
+    "preflight_required": false,
+    "run_seed": 20260326,
+    "case_files": [
+      "tests/cases/entities.yaml",
+      "tests/cases/services.yaml",
+      "tests/cases/contracts.yaml",
+      "tests/cases/articles.yaml",
+      "tests/cases/facturacion.yaml",
+      "tests/cases/transversal.yaml"
+    ]
+  },
+  "counts": {
+    "SKIP_MODE": 10,
+    "INFRA_RUNTIME_FAIL": 4,
+    "SKIP": 1
+  },
+  "cleanup": {
+    "mutating_cases": 0,
+    "cleanup_executed": 0,
+    "cleanup_success": 0,
+    "cleanup_verified": 0,
+    "cleanup_failed_or_unverified": 0
+  },
+  "hard_fail_count": 4,
+  "hard_fails": [
+    {
+      "id": "ENT-AMB-002",
+      "status": "INFRA_RUNTIME_FAIL",
+      "errors": [
+        "infra_runtime_fail: fallo de transporte/conectividad durante ejecución del caso"
+      ]
+    },
+    {
+      "id": "ART-MOD-002",
+      "status": "INFRA_RUNTIME_FAIL",
+      "errors": [
+        "infra_runtime_fail: fallo de transporte/conectividad durante ejecución del caso"
+      ]
+    },
+    {
+      "id": "FAC-BLOCK-003",
+      "status": "INFRA_RUNTIME_FAIL",
+      "errors": [
+        "infra_runtime_fail: fallo de transporte/conectividad durante ejecución del caso"
+      ]
+    },
+    {
+      "id": "TRX-CTX-001",
+      "status": "INFRA_RUNTIME_FAIL",
+      "errors": [
+        "infra_runtime_fail: fallo de transporte/conectividad durante ejecución del caso"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-03-26T23:10:51.608074+00:00"
+}

@@ -9,12 +9,19 @@ ecoflow_trace_ctx = contextvars.ContextVar("ecoflow_trace_id", default="no-trace
 class BaseEcoSoftConnector:
     def __init__(self):
         self.base_url = "https://www.ecosoftapi.net"
-        self._auth = settings.ecosoft_token_auth
-        self._user = settings.ecosoft_token_usuario
 
     def _headers(self) -> dict:
+        from app.security.bearer_context import auth_context_var
+        ctx = auth_context_var.get()
+        
+        auth_header = "Bearer MISSING_TOKEN"
+        if ctx and ctx.ecosoft_authorization_raw:
+            raw = ctx.ecosoft_authorization_raw
+            # Si ya trae el prefijo 'Bearer', lo usamos tal cual; si no, lo añadimos.
+            auth_header = raw if raw.lower().startswith("bearer ") else f"Bearer {raw}"
+            
         return {
-            "Authorization": f"Bearer {self._auth}.{self._user}",
+            "Authorization": auth_header,
             "Content-Type": "application/json",
             "Accept": "application/json"
         }

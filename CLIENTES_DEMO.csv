@@ -1,0 +1,142 @@
+﻿PKEY;SUCURSAL;CIF;DENCOM;DENFIS;DIRECCION;POBLACION;PROVINCIA;CP;PAIS;TFNO1;MOVIL;EMAIL;REFERENCIA;ENCARGADO;AGENTE;GRUPO;ACTIVIDAD;ZONA;RUTA;FPAGO;PERIODICIDAD;DIA1;DIA2;DIA3;DIA4;IBAN;BIC_SWIFT;CCONTABLE;EMAILFACTURACION;AGENTE_TECNICO_EXTERNO
+1;1;B66555885;ServiPrueba;ECOSOFT CONSULTING SL - PROGRAMACION;Avda. Portugal, 45;Gijón;Asturias;33201;1;900000000;;hola@saaddemo.com;;;0;0;0;0;3;3;1;0;0;0;0;;;43000011;;0
+2;1;;CENTRO DE DIA SERVIPRUEBA;SERVIPRUEBA, S.L.;Avda. Portugal, 45;Gijón;Asturias;33201;1;900000000;;centrodedia@saaddemo.com;;;0;0;0;0;0;3;1;0;0;0;0;;;43001108;;0
+52;1;09385652L;Fran;FRANCISCO PÉREZ ALVAREZ;Tomas Zarracina, 25 - 11º A;Oviedo;Asturias;33105;1;698996633;;fran@saaddemo.com;;;54;0;0;1;0;0;0;0;0;0;0;;;43010000;;54
+54;2;71701175D;Maria Cuesta;MARIA CUESTA;Avenida de Castilla 22;Gijón;Asturias;33202;4;965958512;;comunicacion@ecosoft.es;;;50;17;0;1;0;0;0;0;0;0;0;;;43010000;mcuesta@ecosoft.es,comunicacion@ecosoft.es;100
+65;1;;MANU;MANU;;;;;1;;;web.man@ecosoft.es;;;54;0;0;0;0;0;0;0;0;0;0;;;43001110;manupuente98@gmail.com,web.monica@ecosoft.es,manupuente98gmail.com,web.man@ecosoft.es;54
+66;1;00000000T;CRISTIAN; CRISTIAN;Plaza Julio Alberto Blanco. Poligono de Asipo III, PORTAL 1, BAJO, Travesía Segunda;Cayés;Asturias;33428;1;;;cristian@saaddemo.com;;;54;0;0;1;0;0;0;0;0;0;0;;;43010000;cristian@ecosoft.es;54
+100;1;B00213654;Comunidad Uría 24;COMUNIDAD DE VECINOS URIA 24;Uria, 24;Oviedo;Asturias;33101;1;985999666;658888901;antoniogomez@gmail.com;;;52;0;0;0;0;1;1;17;27;0;0;;;43000001;empleo@ecosoft.es;0
+102;1;B33556889;(TO) TODO PAPEL;TODO PAPEL MATERIAL DE OFICINA, S.L.;POL. Asipo, Edifio I - Bajo 33;Llanera;Asturias;33428;1;985202020;641213540;oficina@todopapel.com;;;50;0;0;4;0;0;0;0;0;0;0;;;43000002;;0
+103;1;76253214A;Francisco García Pérez;FRANCISCO  GARCÍA PÉREZ;C/Central  nº2 4B;Oviedo;Asturias;3428;1;985000000;;sat1@ecosoft.es;;;0;0;0;0;0;3;1;0;0;0;0;;;43000003;sat@ecosoft.es,sat1@ecosoft.es;1
+106;1;10000000B;Gonzalez García;GONZALEZ GARCÍA;C/ Bilbao nº3 3ºD;Barcelona;BARCELONA;28048;1;933000000;;micliente@ecosoft.es;;;50;2;0;0;0;3;2;1;5;0;0;ES8200000000000000000000;;43000004;micliente@ecosoft.es;1
+107;1;07523652F;Manuel Fernandez;MANUEL FERNANDEZ EGEA;C/ Julio Albert Blanco nº2  2ºB;Oviedo;Asturias;33015;1;666555444;650000000;pepito@hotmail.com;;;0;0;0;0;0;3;1;0;0;0;0;;;43000005;;1
+108;1;A24665012;Hermanos Juan Garcia;ALMACENES HERMANOS JUAN GARCIA, S.A.;C/ Los almendros  nº12  3E;Madríd;Madrid;28080;1;913665544;TELEFONO MOVIL;admon@hermanosjuangarcia.com;;;52;4;2;0;0;3;1;0;0;0;0;;;43000006;admon@almaceneshermanosjuangarcia.com,admon@hermanosjuangarcia.com;1
+109;1;;ALBERTO;GONZALEZ;;;;;1;;;alberto@saaddemo.com;;;53;0;0;0;0;0;0;0;0;0;0;;;43001116;alberto@saaddemo.com;53
+110;1;04212599B;Julio Tatas;JULIO TATAS HERNANDEZ;Avda. Constitución, 112 - 3ºA;Gijón;Asturias;33205;1;985231314;;;;;0;0;0;1;0;3;1;0;0;0;0;ES6210101010101010101010;;43000007;empleo@ecosoft.es;1
+150;1;B00153201;Comunidad Constitución 35;COMUNIDAD CONSTITUCION 35, C.B.;Avda. Constitución 35;Gijón;Asturias;33204;1;;654003221;;;Juan Pablo Gomez;0;0;0;0;0;3;1;0;0;0;0;;;43000008;;1
+151;1;10568975S;Distribuciones Peláez;MÓNICA SÁNCHEZ PELÁEZ;C/ de la avenida. 8 - BAJO;Gijón;Asturias;33456;1;985336699;636221001;monica@distribucionespelaez.com;;;0;0;0;0;0;3;1;0;0;0;0;ES6210101010101010101010;;43000009;monica@distribucionespelaez.com;1
+152;1;09365658N;Pablo Rodriguez;PABLO RODRIGUEZ FEITO;Asturias Nº14, Bajo 1;Oviedo;Asturias;33004;1;985232636;;;;;0;0;0;0;0;3;1;0;0;0;0;ES0030230254025402542122;;43000010;;1
+153;1;A33256562;Asturiana de Distribuciones;ASTURIANA DE DISTRIBUCIONES, S.A.;Pol. Tremañes, Nave 5;Gijón;Asturias;33218;1;985781414;;administracion@asturianadedistribuciones.es;;;0;0;0;0;0;3;1;0;0;0;0;ES6210101010101010101010;;43001096;administracion@asturianadedistribuciones.es;1
+154;1;B33568001;ASD DESIG;ASD DESIG, S.L.;Matemático Pedralles, 33 - 4ºIzda;Oviedo;Asturias;33016;1;985632621;;info@asddesig.com;;;0;0;0;0;1;4;1;0;0;0;0;;;43001097;info@asddesig.com;1
+378;1;B00153201;Comunidad Constitución 38;COMUNIDAD CONSTITUCION 38, C.B.;Avda. Constitución 35;Gijón;Asturias;33204;1;;;;;;0;0;0;0;0;3;1;0;0;0;0;ES6210101010101010101010;;43010000;;1
+1000;1;B85632121;ACTION CAPITAL;ACTION CAPITAL, S.L.;CONDE DE XIQUENA, 13 - 7ºDcha.;Madrid;Madrid;28004;1;913000221;;info@actioncapital.com;;ANTONIO RUBIAL;0;0;0;0;0;3;1;0;0;0;0;ES2800496127192195034811;;43015309;info@actioncapital.com;0
+1020;1;B86222310;TOM Proyectos;TOM PROYECTOS, S.L.;Castellana, 156;MADRID;MADRID;28001;1;915632000;;tom@tomproyectos.com;;;0;1;1;1;0;3;1;5;0;0;0;ES6210101010101010101010;;43015520;tom@tomproyectos.com;0
+1021;0;B83757674;ALAVA REYES CONSULTORES, SL;ALAVA REYES CONSULTORES, SL;C/ ARTURO SORIA 329  6? E;MADRID;MADRID;28033;1;915910014;;info@alavareyes.es;ALAVAREYES;;0;0;0;0;0;4;3;0;0;0;0;ES2002362151235412354123;;43001090;mamoran@alavareyes.com,info@alavareyes.es;1
+1023;1;B33444541;ATLAS Asesoria;ATLAS ASESORIA, S.L.;Santa Cristina, 25 - Entlo;Oviedo;Oviedo;33101;1;985102320;;admon@atlasasesoria.com;;;0;0;0;0;0;4;1;0;0;0;0;;;43015230;admon@atlasasesoria.com;1
+1024;1;07452632B;Mariola Fernandez;MARIOLA FERNANDEZ ALTES;Cervantes, 12 - 4ºA;Oviedo;Oviedo;33102;1;985253665;;;;;0;0;0;0;0;4;1;0;0;0;0;;;43086690;alsira@arrakis.es;1
+1628;2;;MI CLIENTE;MI CLIENTE;;;;;1;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;;54
+2517;1;;salvador;SALVADOR;;;;;1;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;;60
+8410;1;B00153201;Comunidad Constitución 39;COMUNIDAD CONSTITUCION 39, C.B.;Avda. Constitución 35;Gijón;Asturias;33204;1;;;;;;0;0;0;0;0;3;1;0;0;0;0;;;;;1
+25202;1;B00123456;Comunidad Naranco 33;COMUNIDAD NARANCO 33, C.B.;Naranco, 33;Oviedo;Asturias;33110;1;985144771;;angelnar@gmail.com;;Angel Nar;0;0;0;0;0;3;1;0;0;0;0;;;43001094;info@email.com,angelnar@gmail.com;1
+25203;1;04563254P;Pedro Gómez;PEDRO GOMEZ PIQUER;Corrida, 34 - 3ºA;Gijón;Asturias;33201;1;985659012;;;;;0;1;1;0;0;3;1;0;0;0;0;ES6210101010101010101010;;43001095;EMAIL@EMAIL.COM;1
+25205;1;04177740C;MANUEL FERNANDEZ;MANUEL FERNANDEZ FERNANDEZ;Monte Naranco, 23 -2ºA;Oviedo;Asturias;33120;1;658996321;;manufer1925@hotmail.com;;;1;5;0;0;0;0;0;0;0;0;0;;;;manufer1925@hotmail.com;1
+25206;1;B33999001;STANDUP;STANDUP DESING, S.L.;Cervantes, 23 - Entlo;Oviedo;Asturias;33103;1;985654985;;hola@standup.es;;;0;0;0;0;0;3;1;0;0;0;0;ES6210101010101010101010;;43001093;hola@standup.es;1
+25209;1;71701176X;Adriana Gómez;ADRIANA GOMEZ GOMEZ;Ciudad Naranco, Tomas Herte, 232 -1ºA;Oviedo;Asturias;33104;1;654600214;;adrianagom14@gmail.com;;;54;5;0;3;0;0;0;0;0;0;0;ES6210101010101010101010;;43010000;adrianagom14@gmail.com;54
+25221;1;B00325666;COMUNIDAD CERVANTES 70;COMUNIDAD CERVANTES 70, C.B.;Cervantes 70;Oviedo;Asturias;33103;1;;654321123;marcoa202@gmail.com;;Marco Antonio Gazal;50;0;0;0;0;4;1;0;0;0;0;ES6210101010101010101010;;43001092;marcoa202@gmail.com;50
+25222;1;04563214Z;Victoria Plum;VICTORIA PLUM FERNANDEZ;Camino de los arces, 7;Urb. La Fresneda - Siero;Asturias;33429;1;985747012;;;;;50;0;0;0;0;3;1;0;0;0;0;ES6621000418401234567891;;43001091;;50
+25223;1;05642630V;Maria Roblades;MARIA ROBLADES GOMEZ;El Postigo, 132, 2ºA;Oviedo;Asturias;33101;1;985662233;;mrobleda@saaddemo.com;;;50;0;0;0;0;0;0;0;0;0;0;;;43001107;;50
+25224;1;B33968574;Talleres el Real;TALLERES EL REAL, S.L.;Pol. Espiritu Santo, Nave 34;Colloto;Asturias;33140;1;985747879;;admon@tallereselreal.es;;Marcos;50;0;0;0;0;4;2;0;0;0;0;ES2230173322114455669988;;;;50
+25226;1;08654124Y;Alejandro;ALEJANDRO GARCÍA SANTOMAS;Principal 45, 3º B;Madrid;Madrid;28002;1;654654002;;alejandrogs@gmail.com;;;50;0;0;1;0;0;0;0;0;0;0;ES5200817307010001878094;;43001098;alejandrogs@gmail.com;50
+25227;1;09658741Y;ANGELA MARTINEZ;ANGELA MARTINEZ ORLANDO;Estepona del sur, 34-1ºA;Oviedo;Asturias;33202;1;985741214;;angelinaorlando@gmail.com;;;50;0;0;0;0;0;0;0;0;0;0;;;43001099;angelinaorlando@gmail.com;50
+25229;1;65470254H;Javi;FRANCISCO JAVIER HERNÁNDEZ PÉREZ;Avda. del Cristo, 28 - 2ºA;Oviedo;Asturias;33003;1;666333666;;;;;54;0;0;1;0;0;0;0;0;0;0;;;43001122;sat@ecosoft.es,sat1@ecosoft.es,web@ecosoft.es,javitortex@gmail.com;54
+25230;1;04568744R;Josefina;MARIA JOSEFA MARCO TARNA;Moros, 43 - 1ºA;Gijón;Asturias;33202;1;985356595;;;;;50;0;0;0;0;0;0;0;0;0;0;ES1122223333444455556666;;43001100;;50
+25231;1;03219907E;Andrés Gonzalo;ANDRÉS GONZALO ALVAREZ;Moros, 32, 4ºB;Gijón;Asturais;33201;1;985354515;;;;;50;0;0;0;0;0;0;0;0;0;0;;;43001101;;50
+25234;1;B33545214;CENTRO DE DIA CENTAL;CENTRO DE DIA CENTRAL, S.L.;Gamonal, 43 - Bajos;Llanera;Asturias;33428;1;985662201;;tortex_@hotmail.com;;;100;0;0;0;0;4;6;15;0;0;0;ES6210101010101010101010;;43001102;tortex_@hotmail.com;50
+25235;2;07854125Q;Maria del Carmen;MARIA DEL CARMEN GOMEZ HOGUERO;González Besada,  34 - 4ºA, Oviedo, Asturias;Oviedo;Asturias;33104;1;985562323;;;;;50;0;0;0;0;0;0;0;0;0;0;ES6210101010101010101010;;43001103;;50
+25237;2;85250014P;JOAQUIN ;JOAQUIN GONZALEZ OPES;Uria, 121 - 1ºA;Oviedo;Asturias;44101;106;658817441;;joaquingopes@gmail.com;;;50;0;0;0;0;3;1;0;0;0;0;ES6210101010101010101010;;43001104;joaquingopes@gmail.com;50
+25238;2;05688744Q;Marco Opes;MARCO OPES GÓMEZ;Uria, 2 - 7ºA;Oviedo;Asturias;33001;1;985980890;;;;;25234;0;0;0;0;0;0;0;0;0;0;;;;;50
+25241;1;B12345678;MANUEL GONZALEZ;MANUEL GONZALEZ SANZ;GRAN VIA, 1;BILBAO;BIZKAIA;48001;1;;;tortex_@hotmail.com;;;25265;13;0;0;0;3;2;0;0;0;0;ES2421002332100200057008;;43001105;tortex_@hotmail.com,javitortex@gmail.com;25240
+25252;1;47000000Y;Javier Play;JAVIER PLAY;avenida del mar, 50;Oviedo;Asturias;33011;1;12345678;;sat@ecosoft.es;;;25229;0;0;0;0;0;0;0;0;0;0;ES6210101010101010101010;;43001106;sat@ecosoft.es;25229
+25258;0;11111115H;ecoSoft Pruebas;DESARROLLO WEB ECOSOFT;Dirección de pruebas;Población de pruebas;Provincia de pruebas;33333;1;985980890;;web@ecosoft.es;;;0;12;0;0;0;0;0;0;0;0;0;;;43001113;;0
+25259;1;10905530c;Prueba;PRUEBA;prueba;prueba;asturias;33510;1;688920936;;albertogonzalez@ecosoft.es;;;51;0;0;0;0;0;0;0;0;0;0;;;43001112;;53
+25260;1;;Satman;SATMAN;Oviedo;Oviedo;Asturias;33001;1;;;sat1@ecosoft.es;;;0;0;0;0;0;3;9;0;0;0;0;;;43001115;sat@ecosoft.es,sat1@ecosoft.es;50
+25261;1;87654321X;Cristian Sánchez;CRISTIAN SÁNCHEZ;Plaza Julio Alberto Blanco. Poligono de Asipo III, PORTAL 1, BAJO;Cayés;Asturias;33428;4;985980890;;sat@ecosoft.es;;;0;17;0;2;0;1;2;0;0;0;0;ES6210101010101010101010;;43001114;crism425@gmail.com;0
+25263;2;71717171C;PEPITO;JOSE RODRIGUEZ;Avda Argentina 25;Gijón;Asturias;33213;1;666555998;;;;;54;0;0;0;0;3;1;0;0;0;0;;;43001123;;54
+25264;1;11111111H;JUANITO;JUANITO;Calle Principal nº7, 4B;Gijón;Asturias;;1;;;;;;54;16;0;0;0;0;0;0;0;0;0;;;43010000;;54
+25265;1;12412121X;MICA;MICA;;;;;1;;;community@ecosoft.es;;;54;0;0;1;0;0;0;0;0;0;0;;;43010000;;54
+200454;1;;ecoSoft Consulting;ECOSOFT CONSULTING;Oviedo;Oviedo;Asturias;33001;1;;;sat@democomercio.com;;;54;7;0;0;0;0;0;0;0;0;0;;;43001119;empleo@ecosoft.es;25263
+200460;1;78523695Q;ENTIDAD FRANCIA;ENTIDAD FRANCIA;;;PARIS;;79;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;;59
+200461;1;56568989Y;JULIANA SILVA;JULIANA DA SILVA ;CALLE LA PAZ, 8 3ºE;VITORIA;ALAVA;01004;1;;621230804;ju.silvasantos1305@gmail.com;;;25242;0;0;2;0;4;6;0;0;0;0;;;43001125;;25240
+200465;1;12123123F;MARICARMEN ;MARICARMEN ;el acebo 3;pola de siero ;asturias;;1;985980890;;Mare74@hotmail.com;;;59;0;0;0;0;3;1;0;0;0;0;ES1400810161750001330837;;43010000;crism425@gmail.com;59
+200468;1;b12777888;TIENDA1;TIENDA1 SPAIN, S.L.U.;ORENSE 34, PLANTA 10. EDIFICIO II;MADRID;MADRID;00500;1;915701997;600807879;contabilidad@prueba.com;PL8;David;0;4;2;0;0;2;6;0;0;0;0;ES2000910051790002131024;;33000001659;asistencia@ecosoftconsulting.onmicrosoft.com;0
+200469;1;;Delegaciones pepito;PEPITO ;Calle Principal;Oviedo;Asturias;33669;1;;;master@delegacionespepito.com;;;200469;0;0;0;0;0;0;0;0;0;0;;;43010000;asistencia@ecoSoftConsulting.onmicrosoft.com,master@delegacionespepito.com;200469
+200472;1;12345688R;MANUEL;MANUEL APELLIDO;calle Asturias;Gijón;Asturias;33200 ;1;;632632632;prueba@ecosoft.es;;;54;0;0;0;0;0;0;0;0;0;0;;;43000997;;54
+200475;1;99988877B;Elena Cliente;ELENA CLIENTE;Plaza Mayor;Madrid;Madrid;911222;1;985898985;;empleo@ecosoft.es;152;;200478;4;0;0;0;0;0;0;0;0;0;ES5200817307010001878094;;43010000;mariacuesta.r@gmail.com;25239
+200476;1;;administracion publica;ADMINISTRACION PUBLICA;;;;;1;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;;59
+200477;1;;prueba alquiler;PRUEBA ALQUILER;;;;;1;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;40000463;;59
+200478;1;62549832K;JUAN GARCIA;JUAN GARCIA;;;;;1;;;juangarcia@demo.es;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;crism425@gmail.com;54
+200480;1;;MARIA GARCIA TARJETA;MARIA;AVENIDA PORTUGAL;GIJON;ASTURIAS;33207;1;;;emailcliente@empresa.es;;;54;4;0;0;0;3;5;0;0;0;0;;;;esteemail@prueba.es,emailcliente@empresa.es;54
+200482;1;64895546B;Cliente deuda ;CLIENTE DEUDA ;;;;;1;;;;;;25229;0;0;0;0;0;0;0;0;0;0;;;43010000;;25229
+200483;1;;Cris Prueba;CRIS PRUEBA;;;;33000;1;;;prueba@prueba.com;;;54;0;0;0;0;0;0;0;0;0;0;;;43001151;crism425@gmail.com;54
+200485;1;;Prueba cuentas contables;PRUEBA CUENTAS CONTABLES;;;;;1;;;;;;59;0;0;3;0;0;0;0;0;0;0;;;43010000;;59
+200486;1;;REAG;REAG; ;;;;1;;;;;;59;0;0;3;0;0;0;0;0;0;0;;;43010000;crism425@gmail.com;59
+200488;1;;AYUNTAMIENTO;AYUNTAMIENTO;PLAZA MAYOR;MADRID;MADRID;;1;;;mariacuesta.r@gmail.com;;;59;0;0;3;0;0;0;0;0;0;0;;;43010000;crism425@gmail.com;59
+200494;1;;ADUANAS;ADUANAS;;;;;4;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;;54
+200496;1;;FEDERICO GONZALEZ;FEDERICO GONZALEZ;;;;;1;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;;crism425@gmail.com;59
+200498;1;;Nombre de mi cliente;NOMBRE DE MI CLIENTE;;;;;202;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;;;54
+200499;1;;Preentidad;PREENTIDAD;;;;;1;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;;59
+200500;1;;cliente aleman;CLIENTE ALEMAN;;;;;4;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;;54
+200501;1;;CLIENTE DE PRUEBA;CLIENTE DE PRUEBA;LA DIRECCIÓN DE MI CLIENTE;POBLACIÓN;PROVINCIA;33000;1;;;micliente@ecosoft.es;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;micliente@ecosoft.es;54
+43013548;1;;MI EMPRESA CLIENTE;MI EMPRESA CLIENTE;;;;;1;;;;;;52;0;0;0;0;0;0;0;0;0;0;;;43010000;;200490
+43013549;13549;G52555166;CRISTINA;CRISTINA;CALLE FALSA 123;MICASA;ASTURIAS;33213;1;611111111;633333333;pruebas@areaprivada.com;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;pruebas@areaprivada.com;59
+43013550;2;;mi preentidad;MI PREENTIDAD;;;;;1;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;;54
+43013551;2;;Pepe García;PEPE GARCÍA;;;;;1;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;43001152;crism425@gmail.com;54
+43013554;1;;CLIENTE INTRACOMUNITARIO;CLIENTE INTRACOMUNITARIO;;;;;171;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;;59
+43013555;1;;MICA PRUEBAS ÁREA PRIVADA;MICA PRUEBAS ÁREA PRIVADA;;;;;1;;;community@ecosoft.es;;;25265;0;0;0;0;0;0;0;0;0;0;ES7720800216913040015708;;43010000;community@ecosoft.es;25265
+43013556;1;12345678Z;DENCOM CLIENTE;DENFIS CLIENTE;DIRECCION;POBLACION;PROVINCIA;33213;1;666111111;;;;;59;0;0;0;0;2;2;0;0;0;0;ES7720800216913040015708;;43010000;;59
+43013558;1;B12345679;JUAN GÓMEZ;JUAN GÓMEZ;;;;;1;;;mariacuesta.r@gmail.com;;;25229;0;0;0;0;0;0;0;0;0;0;;;43010000;JUAN@CLIENTE.COM,mariacuesta.r@gmail.com;25229
+43013561;1;;Cliente con recargo de equivalencia;CLIENTE CON RECARGO DE EQUIVALENCIA;;;;;1;;;;;;25239;0;0;0;0;0;0;0;0;0;0;;;;;25239
+43013562;2;;CLIENTE SAD;CLIENTE SAD;;;;;1;;;;;;59;0;0;0;0;0;0;0;0;0;0;;;43010000;;59
+43013563;1;;prueba;PRUEBA;;;;;0;;;;;;0;0;0;0;0;0;0;0;0;0;0;;;43010000;;0
+43013564;1;1515151512;FEDERICO;FEDERICO;;;;;108;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;43010000;;54
+43013565;1;10905530B;ALBERTO GONZALEZ GONZALEZ;ALBERTO GONZALEZ GONZALEZ SOCIEDAD ANONIMA;ALBERTO GONZALEZ GONZALEZ SOCIEDAD ANONIMA;CASTILLA Y LEON;CASTILLA Y LEON;;1;981340300;;albertogonzalezgijon@hotmail.com;;;109;0;0;0;0;0;0;0;0;0;0;;;43010000;albertogonzalezgijon@hotmail.com;109
+43013566;0;99999999R;Cristian ecoSoft;CRISTIAN ECOSOFT;Plaza Julio Alberto Blanco, Polígono de Asipo III, Portal 1, Bajo 2A;Cayés;Asturias;33428;1;985980890;;cristian@ecosoft.es;;;0;0;0;0;0;0;0;0;0;0;0;;;43001153;;0
+43013583;-1;12345679A;cliente ecoFlow tech s.l.;;;;;;-1;622622623;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013584;0;12345645A;Francisco Alegre;;Calle falsa n° 10 en Oviedo;;;;-1;654654654;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013585;1;B99988877;Test Forense Real SL;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013586;1;B12312312;Test Desorden SL;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013587;1;B99112233;Certificacion Manual;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013588;1;B12345678;EcoSoft;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013589;1;47059872D;Francisco Alegre;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013590;1;B99887766;E2ETestClient;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013591;1;B99887766;E2ETestClient;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013592;1;B99887766;E2ETestClient;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013593;1;B99887766;E2ETestClient;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013594;1;5 euros;Cable Red 2M E2E;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013595;1;B914433877;E2E_REAL_144338;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013596;1;B814511366;E2E_UPD_145113;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013597;1;B814520066;E2E_UPD_145200;;;;;;-1;;;entity.update.145200@example.com;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013598;1;B814530566;E2E_UPD_145305;;;;;;-1;;;entity.update.145305@example.com;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013599;1;B914536477;E2E_REAL_145364;;;;;;-1;;;e2e.real.145364@example.com;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013600;1;B614660944;E2E_SRV_146609;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013601;1;B614669544;E2E_SRV_146695;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013602;1;B614684744;E2E_SRV_146847;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013603;1;B614692844;E2E_SRV_146928;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013604;1;B614700244;E2E_SRV_147002;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013605;1;B614709244;E2E_SRV_147092;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013606;1;B614719044;E2E_SRV_147190;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013607;1;B614724544;E2E_SRV_147245;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013608;1;B614735844;E2E_SRV_147358;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013609;1;B614743344;E2E_SRV_147433;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013610;1;C914748288;E2E_REAL_147482_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013611;1;C914753688;E2E_REAL_147536_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013612;1;B714825155;E2E_CONTR_148251;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013613;1;C914831088;E2E_REAL_148310_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013614;1;B714878255;E2E_CONTR_148782;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013615;1;C914883288;E2E_REAL_148832_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013616;1;C914891688;E2E_REAL_148916_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013617;1;C914900588;E2E_REAL_149005_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013618;1;C917144488;E2E_REAL_171444_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013619;1;C917157388;E2E_REAL_171573_SUP;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013620;1;98765432A;Perico de los palotes s.l;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013621;1;78945611A;Proveedor Falso S.L.;;;;;;-1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013622;0;12344444A;Perico Delgado;Perico Delgado;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013623;0;58052985d;Intermediaciones multisectoriales s.l.;Intermediaciones multisectoriales s.l.;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013624;0;15153153A;distribuciones perez;distribuciones perez;;;;;1;625045852;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013635;1;78978978A;Instalaciones Martinez;;es;Oviedo;Asturias;33054;1;654654658;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013637;1;B921935311;ROUNDTRIP_219353;;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013638;1;B921946211;ROUNDTRIP_219462;;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013639;1;B921952711;ROUNDTRIP_219527;;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013640;1;4545456G;Distribuciones Javi SL;;Calle abundio gascón, 7;Oviedo;Asturias;33011;1;654652658;;javi@play.com;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013642;1;B952174711;ROUNDTRIP_521747;;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0
+43013643;1;B952471111;ROUNDTRIP_524711;;;;;;1;;;;;;0;-1;-1;0;0;0;0;0;0;0;0;;;;;0

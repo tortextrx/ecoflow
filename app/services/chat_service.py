@@ -5,6 +5,7 @@ from app.core.db import AsyncSessionLocal
 from app.core.config import settings
 from app.services.identity_resolver import IdentityResolver
 from app.repositories import conversation_repo
+from app.services.normalizers import classify_short_user_act
 
 logger = logging.getLogger("ecoflow")
 
@@ -42,6 +43,13 @@ class ChatService:
                     "context": {},
                     "session_version": "2.0-postgres"
                 })
+
+            # Estructura base de slots conversacionales (FASE 1A)
+            session.setdefault("flow_slots", {})
+            session.setdefault("pending_field", None)
+            session.setdefault("candidate", None)
+            session.setdefault("last_prompt_type", None)
+            session["last_user_act"] = classify_short_user_act(message or "")
             
             # Pasar al motor principal determinista (Lógica Pura)
             res = await orchestrator.dispatch(session, message, file_bytes, filename, trace_id=trace_id)
@@ -53,6 +61,8 @@ class ChatService:
             # la petición era vacía (apertura de conexión), pero forzamos por lo general:
             tech_reply = res.get("reply", "")
             raw_state = res.get("state", "idle")
+            # Persistimos siempre el estado devuelto por el orquestador para continuidad multi-turno.
+            session["state"] = raw_state
             
             # Solo aplicamos el coste de naturalización si hay respuesta de texto a mostrar y no es vacío,
             # y no es una subida de ficheros (multimodal a futuro donde mensaje=None).
@@ -64,6 +74,7 @@ class ChatService:
 
             # Guardamos el último bot message humanizado en sesión (útil para historial y debug)
             session["_last_bot_reply"] = human_reply
+            session["_last_tech_reply"] = tech_reply
             
             # Update DB and commit
             await conversation_repo.update_session_data(db, conv.conversation_id, session)

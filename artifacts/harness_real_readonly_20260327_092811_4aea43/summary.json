@@ -1,0 +1,61 @@
+{
+  "run_meta": {
+    "run_id": "harness_real_readonly_20260327_092811_4aea43",
+    "suite_mode": "real_readonly",
+    "base_url": "http://127.0.0.1:18080",
+    "endpoint_mode": "internal_backend",
+    "preflight_required": true,
+    "run_seed": 20260326,
+    "case_files": [
+      "tests/cases/entities.yaml",
+      "tests/cases/services.yaml",
+      "tests/cases/contracts.yaml",
+      "tests/cases/articles.yaml",
+      "tests/cases/facturacion.yaml",
+      "tests/cases/transversal.yaml",
+      "tests/cases/multimodal.yaml"
+    ]
+  },
+  "counts": {
+    "INFRA_PREFLIGHT_FAIL": 1
+  },
+  "cleanup": {
+    "mutating_cases": 0,
+    "cleanup_executed": 0,
+    "cleanup_success": 0,
+    "cleanup_verified": 0,
+    "cleanup_failed_or_unverified": 0
+  },
+  "hard_fail_count": 1,
+  "hard_fails": [
+    {
+      "id": "__preflight__",
+      "status": "INFRA_PREFLIGHT_FAIL",
+      "errors": [
+        "Preflight interno fallido: root/chat no válidos"
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-03-27T08:28:16.940957+00:00",
+  "preflight": {
+    "endpoint_mode": "internal_backend",
+    "target_base_url": "http://127.0.0.1:18080",
+    "target_chat_url": "http://127.0.0.1:18080/api/ecoflow/chat",
+    "status": "infra_preflight_fail",
+    "ok": false,
+    "checks": {
+      "root": {
+        "ok": false,
+        "status_code": null,
+        "error": "ConnectError('All connection attempts failed')",
+        "body_preview": ""
+      },
+      "chat": {
+        "ok": false,
+        "status_code": null,
+        "error": "ConnectError('All connection attempts failed')",
+        "body_preview": ""
+      }
+    }
+  }
+}

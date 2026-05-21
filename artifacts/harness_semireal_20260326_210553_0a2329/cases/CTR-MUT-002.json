@@ -1,0 +1,8 @@
+{
+  "case_id": "CTR-MUT-002",
+  "session_id": "mode_skip",
+  "mode": "semireal",
+  "turns": [],
+  "cleanup": {},
+  "metadata": {}
+}

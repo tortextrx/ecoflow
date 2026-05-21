@@ -1,0 +1,60 @@
+{
+  "case_id": "FAC-READ-001",
+  "session_id": "h-762410-FAC-READ-001-037f",
+  "mode": "real_readonly",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "dime las facturas de gasto de SerAgua",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "FAC-READ-001-1b9cd322",
+      "ts_utc": "2026-03-26T21:06:16.054056+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "abre el documento 2",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "FAC-READ-001-7dcfd0e4",
+      "ts_utc": "2026-03-26T21:06:18.083117+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 3,
+      "user_input": "que total tiene",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "FAC-READ-001-80bc2608",
+      "ts_utc": "2026-03-26T21:06:20.128080+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 3191999425
+  }
+}

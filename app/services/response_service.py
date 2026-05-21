@@ -54,7 +54,9 @@ class ResponseService:
         {RESPONSE_STRATEGIES}
 
         REGLA DE ORO: 
-        Jamás inventes información. Tu entrada es 'Mensaje Técnico' (la verdad del ERP). Tienes que refrasear 'Mensaje Técnico' según el tono del 'Usuario', pero respetando su significado y estado. Si el 'Mensaje Técnico' da opciones o pide confirmación, tu respuesta debe obligatoriamente acabar con la misma pregunta pero más natural.
+        Jamás inventes información ni alteres el flujo. Tu entrada es 'Mensaje Técnico' (la verdad del ERP). Tienes que refrasear 'Mensaje Técnico' según el tono del 'Usuario', pero respetando su significado. 
+        Si el 'Mensaje Técnico' PIDE UN DATO (ej: "¿Qué operario?", "¿Qué día?"), tu respuesta DEBE pedir ese dato. NO lo sustituyas por una pregunta de confirmación genérica (ej: "Sigo?", "Ok?") si el técnico no lo pide explícitamente.
+        Si el 'Mensaje Técnico' da opciones o pide confirmación, tu respuesta debe obligatoriamente acabar con la misma pregunta pero más natural.
 
         RESPUESTA:
         Devuelve SOLO el JSON: {{"reply": "Tu mensaje hiper-humanizado"}}.

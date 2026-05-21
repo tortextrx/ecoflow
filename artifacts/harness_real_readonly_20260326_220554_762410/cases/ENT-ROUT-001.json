@@ -1,0 +1,34 @@
+{
+  "case_id": "ENT-ROUT-001",
+  "session_id": "h-762410-ENT-ROUT-001-96ac",
+  "mode": "real_readonly",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "hola, dime el teléfono de serviprueba",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ENT-ROUT-001-107910b2",
+      "ts_utc": "2026-03-26T21:05:59.648719+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 1664661965
+  }
+}

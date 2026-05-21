@@ -26,5 +26,11 @@ class FacturacionConnector(BaseEcoSoftConnector):
     async def obtener_facturaciones(self, filtro: dict) -> dict:
         return await self._post("/API_Facturacion/ObtenerFacturaciones", filtro)
 
+    async def obtener_facturacion_lineas(self, payload: dict) -> dict:
+        return await self._post("/API_Facturacion/ObtenerFacturacionLineas", payload)
+
+    async def obtener_facturacion_linea(self, payload: dict) -> dict:
+        return await self._post("/API_Facturacion/ObtenerFacturacionLinea", payload)
+
     async def grabar_linea(self, payload: dict) -> dict:
         return await self._post("/API_Facturacion/grabarFacturacionLinea", payload)

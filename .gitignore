@@ -39,3 +39,6 @@ app.jsonl
 .git/ # (redundant but safe)
 .DS_Store
 Thumbs.db
+*.bak_*
+ecoflow_bkp.tar.gz
+prod_sync/

@@ -1,0 +1,51 @@
+cases:
+  - id: ENT-ROUT-001
+    domain: entidades
+    category: intention_routing
+    description: consulta exacta con saludo sobre entidad real demo
+    mode: real_readonly
+    expected_outcome: expected_pass
+    turns:
+      - user: "Hola, dime el teléfono de {{entity_dencom}}"
+        variant: true
+    expected_flow: entity
+    expected_fields:
+      must_include: ["tel", "telefono"]
+    expected_log_markers: ["state="]
+
+  - id: ENT-AMB-002
+    domain: entidades
+    category: disambiguation
+    description: nombre parcial que puede provocar selección ambigua
+    mode: semireal
+    expected_outcome: expected_fail_known
+    turns:
+      - user: "Dime los {{entity_partial}} que hay"
+      - user: "el otro"
+    expected_flow: disambiguation
+
+  - id: ENT-MUT-003
+    domain: entidades
+    category: operation_create_modify
+    description: alta real controlada E2E y cleanup obligatorio
+    mode: real_mutating
+    expected_outcome: expected_pass
+    turns:
+      - user: "crea un cliente llamado E2E_ENTITY_{{runtime.case_seed}} con CIF B{{runtime.case_seed}}77"
+      - user: "si, grábalo"
+    expected_flow: entity
+    cleanup:
+      action: delete_entity
+      target_source: last_numeric_id
+      verify_prompt: "consulta el cliente E2E_ENTITY_{{runtime.case_seed}}"
+      verify_present_markers: ["no", "no encontrado", "no existe"]
+
+  - id: ENT-SKIP-004
+    domain: entidades
+    category: meta_response
+    description: caso reservado para futura cobertura de metarespuestas complejas
+    mode: any
+    expected_outcome: skip
+    turns:
+      - user: "ya los tienes todos"
+

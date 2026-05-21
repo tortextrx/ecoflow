@@ -1,0 +1,14 @@
+{
+  "run_id": "harness_semireal_20260326_205945_2988b2",
+  "suite_mode": "semireal",
+  "base_url": "http://127.0.0.1:18080",
+  "run_seed": 20260326,
+  "case_files": [
+    "tests/cases/entities.yaml",
+    "tests/cases/services.yaml",
+    "tests/cases/contracts.yaml",
+    "tests/cases/articles.yaml",
+    "tests/cases/facturacion.yaml",
+    "tests/cases/transversal.yaml"
+  ]
+}

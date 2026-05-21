@@ -1,0 +1,8 @@
+{
+  "endpoint_mode": "internal_backend",
+  "target_base_url": "",
+  "target_chat_url": "/api/ecoflow/chat",
+  "status": "infra_preflight_fail",
+  "ok": false,
+  "error": "ECOFLOW_BASE_URL no está definida para modo internal_backend"
+}

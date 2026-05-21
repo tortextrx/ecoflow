@@ -1,0 +1,203 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 280" width="280" height="280" role="img" aria-label="ecoIA">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap');
+      .ecoia-text { font-family: 'Fredoka', 'Baloo 2', ui-rounded, 'Nunito', 'Quicksand', system-ui, -apple-system, sans-serif; }
+    ]]></style>
+
+    <!-- Filters -->
+    <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="petalSoft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="0.6"/>
+    </filter>
+    <filter id="specularBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+    <filter id="highlightBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="0.9"/>
+    </filter>
+
+    <!-- Orb gradient -->
+    <radialGradient id="orbGrad" cx="38%" cy="32%" r="82%">
+      <stop offset="0%"  stop-color="#5A5A62"/>
+      <stop offset="45%" stop-color="#3F3E40"/>
+      <stop offset="100%" stop-color="#1F1E20"/>
+    </radialGradient>
+
+    <!-- Inner ambient turquoise bounce light -->
+    <radialGradient id="ambientGlow" cx="50%" cy="100%" r="70%">
+      <stop offset="0%"  stop-color="#0F8D9F" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#0F8D9F" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#0F8D9F" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Rim light on orb -->
+    <radialGradient id="rimLight" cx="50%" cy="18%" r="58%">
+      <stop offset="82%" stop-color="#FFFFFF" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.60"/>
+    </radialGradient>
+
+    <!-- Orb specular highlights -->
+    <radialGradient id="specLarge" cx="50%" cy="50%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.55"/>
+      <stop offset="60%"  stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="specSmall" cx="50%" cy="50%" r="60%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- GLASS PETAL GRADIENTS (radial, bright top-left fading to dark bottom-right) -->
+    <radialGradient id="petalGlassTurq" cx="28%" cy="22%" r="85%">
+      <stop offset="0%"   stop-color="#B8F0F7" stop-opacity="0.80"/>
+      <stop offset="18%"  stop-color="#2DC8DE" stop-opacity="0.78"/>
+      <stop offset="55%"  stop-color="#0F8D9F" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#0A5D6A" stop-opacity="0.30"/>
+    </radialGradient>
+    <radialGradient id="petalGlassTurq2" cx="32%" cy="26%" r="80%">
+      <stop offset="0%"   stop-color="#E6FAFD" stop-opacity="0.70"/>
+      <stop offset="22%"  stop-color="#1BB5CC" stop-opacity="0.60"/>
+      <stop offset="60%"  stop-color="#0F8D9F" stop-opacity="0.40"/>
+      <stop offset="100%" stop-color="#0A5D6A" stop-opacity="0.18"/>
+    </radialGradient>
+    <radialGradient id="petalGlassGrey" cx="28%" cy="22%" r="85%">
+      <stop offset="0%"   stop-color="#DADADC" stop-opacity="0.60"/>
+      <stop offset="22%"  stop-color="#8B8A8D" stop-opacity="0.50"/>
+      <stop offset="60%"  stop-color="#5A595B" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#3A393B" stop-opacity="0.18"/>
+    </radialGradient>
+
+    <!-- Per-petal specular highlight gradient -->
+    <radialGradient id="petalShine" cx="50%" cy="50%" r="55%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.85"/>
+      <stop offset="55%"  stop-color="#FFFFFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="petalHotspot" cx="50%" cy="50%" r="55%">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#3FD0E3"/>
+      <stop offset="50%"  stop-color="#13A7BB"/>
+      <stop offset="100%" stop-color="#0A6A78"/>
+    </linearGradient>
+
+    <!-- Clip to keep the specular highlight inside the orb -->
+    <clipPath id="orbClip">
+      <circle cx="140" cy="140" r="62"/>
+    </clipPath>
+  </defs>
+
+  <!-- 1 · Outer halo glow -->
+  <circle cx="140" cy="140" r="78" fill="#0F8D9F" opacity="0.22" filter="url(#outerGlow)">
+    <animate attributeName="opacity" values="0.18;0.30;0.18" dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 2 · GLASS PETALS (4, each with its own 3D glass gradient + specular highlight) -->
+  <g filter="url(#petalSoft)">
+    <animateTransform attributeName="transform" type="rotate"
+                      values="-4 140 140; 4 140 140; -4 140 140"
+                      dur="30s" repeatCount="indefinite"/>
+
+    <!-- Petal 1: upper-right · turquoise -->
+    <g transform="rotate(30 178 108)">
+      <ellipse cx="178" cy="108" rx="44" ry="36" fill="url(#petalGlassTurq)"/>
+      <ellipse cx="162" cy="96"  rx="18" ry="9"  fill="url(#petalShine)" filter="url(#highlightBlur)"/>
+      <ellipse cx="158" cy="93"  rx="6"  ry="2.5" fill="url(#petalHotspot)"/>
+      <!-- Rim light on top edge -->
+      <ellipse cx="178" cy="74"  rx="38" ry="3"  fill="#FFFFFF" opacity="0.25" filter="url(#highlightBlur)"/>
+    </g>
+
+    <!-- Petal 2: lower-left · turquoise -->
+    <g transform="rotate(-28 106 176)">
+      <ellipse cx="106" cy="176" rx="40" ry="46" fill="url(#petalGlassTurq2)"/>
+      <ellipse cx="92"  cy="156" rx="14" ry="10" fill="url(#petalShine)" filter="url(#highlightBlur)"/>
+      <ellipse cx="90"  cy="152" rx="5"  ry="2.5" fill="url(#petalHotspot)"/>
+      <ellipse cx="106" cy="134" rx="3"  ry="34" fill="#FFFFFF" opacity="0.22" filter="url(#highlightBlur)"/>
+    </g>
+
+    <!-- Petal 3: upper-left · grey -->
+    <g transform="rotate(-38 100 102)">
+      <ellipse cx="100" cy="102" rx="34" ry="40" fill="url(#petalGlassGrey)"/>
+      <ellipse cx="88"  cy="84"  rx="12" ry="8"  fill="url(#petalShine)" filter="url(#highlightBlur)"/>
+      <ellipse cx="85"  cy="80"  rx="4"  ry="2"  fill="url(#petalHotspot)"/>
+      <ellipse cx="100" cy="66"  rx="3"  ry="28" fill="#FFFFFF" opacity="0.18" filter="url(#highlightBlur)"/>
+    </g>
+
+    <!-- Petal 4: right-middle · turquoise soft -->
+    <g transform="rotate(65 188 158)">
+      <ellipse cx="188" cy="158" rx="34" ry="44" fill="url(#petalGlassTurq2)"/>
+      <ellipse cx="176" cy="140" rx="12" ry="9"  fill="url(#petalShine)" filter="url(#highlightBlur)"/>
+      <ellipse cx="173" cy="136" rx="4"  ry="2"  fill="url(#petalHotspot)"/>
+      <ellipse cx="188" cy="118" rx="3"  ry="30" fill="#FFFFFF" opacity="0.20" filter="url(#highlightBlur)"/>
+    </g>
+  </g>
+
+  <!-- 3 · Main dark orb -->
+  <circle cx="140" cy="140" r="62" fill="url(#orbGrad)"/>
+
+  <!-- 4 · Inner ambient turquoise bounce glow -->
+  <g clip-path="url(#orbClip)">
+    <ellipse cx="140" cy="200" rx="70" ry="50" fill="url(#ambientGlow)"/>
+  </g>
+
+  <!-- 5 · Rim light on orb -->
+  <circle cx="140" cy="140" r="62" fill="url(#rimLight)"/>
+
+  <!-- 6 · Crisp edges -->
+  <circle cx="140" cy="140" r="62" fill="none" stroke="#0F8D9F" stroke-width="0.6" opacity="0.45"/>
+  <circle cx="140" cy="140" r="62" fill="none" stroke="#FFFFFF" stroke-width="0.4" opacity="0.25"/>
+
+  <!-- 7 · Glass specular highlight on orb -->
+  <g clip-path="url(#orbClip)">
+    <ellipse cx="114" cy="110" rx="40" ry="24" fill="url(#specLarge)"
+             transform="rotate(-30 114 110)" filter="url(#specularBlur)"/>
+    <ellipse cx="112" cy="106" rx="13" ry="6" fill="url(#specSmall)"
+             transform="rotate(-30 112 106)"/>
+  </g>
+
+  <!-- 8 · "eco" bigger -->
+  <text x="140" y="134"
+        class="ecoia-text"
+        text-anchor="middle"
+        font-weight="500"
+        font-size="30"
+        fill="#F4F5F7"
+        opacity="0.96"
+        letter-spacing="0.5">eco</text>
+
+  <!-- 9 · "IA" dominant — shadow + gradient -->
+  <text x="141" y="184"
+        class="ecoia-text"
+        text-anchor="middle"
+        font-weight="700"
+        font-size="56"
+        fill="#000000"
+        opacity="0.38"
+        letter-spacing="0.5">IA</text>
+  <text x="140" y="183"
+        class="ecoia-text"
+        text-anchor="middle"
+        font-weight="700"
+        font-size="56"
+        fill="url(#textGrad)"
+        letter-spacing="0.5">IA</text>
+  <!-- Subtle highlight on text top -->
+  <text x="140" y="183"
+        class="ecoia-text"
+        text-anchor="middle"
+        font-weight="700"
+        font-size="56"
+        fill="none"
+        stroke="#FFFFFF"
+        stroke-width="0.4"
+        opacity="0.35"
+        letter-spacing="0.5">IA</text>
+</svg>

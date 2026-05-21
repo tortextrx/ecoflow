@@ -1,0 +1,49 @@
+{
+  "case_id": "MM-NR-002",
+  "session_id": "h-a09962-MM-NR-002-1047",
+  "mode": "real_mutating",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "quiero registrar un gasto de 17 euros de material para proveedor E2E_PROV_3739495896",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "MM-NR-002-1c70ef63",
+      "ts_utc": "2026-03-26T20:07:47.393638+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "sí",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "MM-NR-002-b532cd90",
+      "ts_utc": "2026-03-26T20:07:49.444262+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": true,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "target_unresolved",
+    "details": [
+      "No se pudo resolver target para cleanup"
+    ]
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 3739495896
+  }
+}

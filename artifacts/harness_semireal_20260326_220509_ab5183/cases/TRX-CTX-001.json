@@ -1,0 +1,60 @@
+{
+  "case_id": "TRX-CTX-001",
+  "session_id": "h-ab5183-TRX-CTX-001-8a71",
+  "mode": "semireal",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "quiero dar de alta una entidad",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "TRX-CTX-001-60909d8a",
+      "ts_utc": "2026-03-26T21:05:28.453442+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "quiero dar de alta un contrato",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "TRX-CTX-001-2767c4d0",
+      "ts_utc": "2026-03-26T21:05:30.493610+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 3,
+      "user_input": "si, ServiPrueba",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "TRX-CTX-001-16db7eca",
+      "ts_utc": "2026-03-26T21:05:32.544044+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 777282757
+  }
+}

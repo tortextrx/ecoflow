@@ -9,8 +9,9 @@ class Settings(BaseSettings):
     port: int = 18080
     database_url: str = "postgresql+asyncpg://ecoflow_user:password@localhost/ecoflow_db"
     ecosoft_base_url: str = "https://www.ecosoftapi.net"
-    ecosoft_token_auth: str = ""
-    ecosoft_token_usuario: str = ""
+    ecoflow_security_token: str = ""
+    ecoflow_internal_chat_allow_demo_erp_token: bool = False
+    ecoflow_internal_chat_demo_erp_token: str = ""
     ecosoft_default_sucursal: int = 1
     ecosoft_default_gasto_articulo_ref: str = "GASTO_GENERICO"
     openrouter_api_key: str = ""

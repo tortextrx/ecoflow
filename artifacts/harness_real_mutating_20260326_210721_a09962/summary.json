@@ -1,0 +1,75 @@
+{
+  "run_meta": {
+    "run_id": "harness_real_mutating_20260326_210721_a09962",
+    "suite_mode": "real_mutating",
+    "base_url": "http://127.0.0.1:18080",
+    "run_seed": 20260326,
+    "case_files": [
+      "tests/cases/entities.yaml",
+      "tests/cases/services.yaml",
+      "tests/cases/contracts.yaml",
+      "tests/cases/articles.yaml",
+      "tests/cases/facturacion.yaml",
+      "tests/cases/transversal.yaml",
+      "tests/cases/multimodal.yaml"
+    ]
+  },
+  "counts": {
+    "SKIP_MODE": 10,
+    "FAIL": 1,
+    "SKIP": 1,
+    "CLEANUP_FAIL": 4,
+    "UNEXPECTED_PASS": 1
+  },
+  "cleanup": {
+    "mutating_cases": 6,
+    "cleanup_executed": 0,
+    "cleanup_success": 0,
+    "cleanup_verified": 0,
+    "cleanup_failed_or_unverified": 6
+  },
+  "hard_fail_count": 6,
+  "hard_fails": [
+    {
+      "id": "ENT-MUT-003",
+      "status": "FAIL",
+      "errors": [
+        "expected_flow=entity got=None"
+      ]
+    },
+    {
+      "id": "SRV-MUT-002",
+      "status": "CLEANUP_FAIL",
+      "errors": [
+        "Cleanup no verificado/sin éxito en real_mutating"
+      ]
+    },
+    {
+      "id": "CTR-MUT-002",
+      "status": "CLEANUP_FAIL",
+      "errors": [
+        "Cleanup no verificado/sin éxito en real_mutating"
+      ]
+    },
+    {
+      "id": "FAC-MUT-002",
+      "status": "CLEANUP_FAIL",
+      "errors": [
+        "Cleanup no verificado/sin éxito en real_mutating"
+      ]
+    },
+    {
+      "id": "MM-NR-001",
+      "status": "CLEANUP_FAIL",
+      "errors": [
+        "Cleanup no verificado/sin éxito en real_mutating"
+      ]
+    },
+    {
+      "id": "MM-NR-002",
+      "status": "UNEXPECTED_PASS",
+      "errors": []
+    }
+  ],
+  "generated_at_utc": "2026-03-26T20:07:49.458217+00:00"
+}

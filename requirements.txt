@@ -1,17 +1,13 @@
-fastapi
-uvicorn
-httpx
-pydantic
+fastapi>=0.115.0
 pydantic-settings
-python-dotenv
-sqlalchemy
+uvicorn[standard]
+sqlalchemy[asyncio]>=2.0.0
+alembic
 asyncpg
+httpx
+openai>=1.50.0
 tenacity
-paramiko
-openai
-pdfplumber
-pdf2image
-Pillow
+python-jose
 python-multipart
-python-magic-bin ; platform_system == 'Windows'
-python-magic ; platform_system != 'Windows'
+aiofiles
+

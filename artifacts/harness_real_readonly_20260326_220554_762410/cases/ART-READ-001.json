@@ -1,0 +1,47 @@
+{
+  "case_id": "ART-READ-001",
+  "session_id": "h-762410-ART-READ-001-7449",
+  "mode": "real_readonly",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "busca el artículo servicio de ayuda a domicilio (20 horas)",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ART-READ-001-2c259fae",
+      "ts_utc": "2026-03-26T21:06:11.957673+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "y su proveedor",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ART-READ-001-226dbe47",
+      "ts_utc": "2026-03-26T21:06:14.000783+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 2316274578
+  }
+}

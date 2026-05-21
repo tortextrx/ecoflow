@@ -1,0 +1,33 @@
+cases:
+  - id: MM-NR-001
+    domain: multimodal
+    category: non_regression_documental
+    description: ticket/documento compra -> gasto con proveedor existente
+    mode: real_mutating
+    expected_outcome: expected_pass
+    tags: [non_regression]
+    turns:
+      - user: "Quiero registrar un gasto de 23.5 euros de material para proveedor 1"
+      - user: "sí"
+    cleanup:
+      action: delete_factura
+      target_source: last_numeric_id
+      verify_prompt: "consulta factura {{runtime.last_numeric_id}}"
+      verify_present_markers: ["no", "no encontrado", "error", "pendiente"]
+
+  - id: MM-NR-002
+    domain: multimodal
+    category: non_regression_documental
+    description: flujo de gasto con acreedor/proveedor nuevo E2E
+    mode: real_mutating
+    expected_outcome: expected_fail_known
+    tags: [non_regression]
+    turns:
+      - user: "quiero registrar un gasto de 17 euros de material para proveedor E2E_PROV_{{runtime.case_seed}}"
+      - user: "sí"
+    cleanup:
+      action: delete_factura
+      target_source: last_numeric_id
+      verify_prompt: "consulta factura {{runtime.last_numeric_id}}"
+      verify_present_markers: ["no", "no encontrado", "error", "pendiente"]
+

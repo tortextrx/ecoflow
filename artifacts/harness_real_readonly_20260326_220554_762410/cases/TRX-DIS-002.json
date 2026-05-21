@@ -1,0 +1,60 @@
+{
+  "case_id": "TRX-DIS-002",
+  "session_id": "h-762410-TRX-DIS-002-1af3",
+  "mode": "real_readonly",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "dime el teléfono de ServiPrueba",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "TRX-DIS-002-5db3fa3e",
+      "ts_utc": "2026-03-26T21:06:22.167145+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "esa misma",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "TRX-DIS-002-13d701a2",
+      "ts_utc": "2026-03-26T21:06:24.221595+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 3,
+      "user_input": "no, me refiero al de CRISTIAN SÁNCHEZ",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "TRX-DIS-002-e52b5d85",
+      "ts_utc": "2026-03-26T21:06:26.262294+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 2716142076
+  }
+}

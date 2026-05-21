@@ -1,0 +1,60 @@
+{
+  "case_id": "ART-MOD-002",
+  "session_id": "h-ab5183-ART-MOD-002-6aed",
+  "mode": "semireal",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "busca el artículo BETA-SFP-155M-2KM",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ART-MOD-002-1eb7ecfa",
+      "ts_utc": "2026-03-26T21:05:18.212148+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "modifica la referencia a BETA-SFP-155M-2KM-X",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ART-MOD-002-0abfbc66",
+      "ts_utc": "2026-03-26T21:05:20.270175+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 3,
+      "user_input": "y ahora dime su proveedor",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "ART-MOD-002-e14ad4bb",
+      "ts_utc": "2026-03-26T21:05:22.327342+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": false,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "not_required",
+    "details": []
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 2531911497
+  }
+}

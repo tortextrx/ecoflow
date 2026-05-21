@@ -1,0 +1,83 @@
+[
+  {
+    "dataset_name": "clientes",
+    "path": "CLIENTES_DEMO.csv",
+    "sha256": "0ceded21f6cb18365130ab9bb0ff552a2ff67f51a4958f69cb9f2b9a77fc27d3",
+    "row_count_loaded": 141,
+    "loaded_at_utc": "2026-03-26T19:59:45.081266+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "proveedores",
+    "path": "PROVEEDORES_DEMO.csv",
+    "sha256": "910cd17e6f5e46c9797601198f105bab0eba14d294d8e431949eca165d428b98",
+    "row_count_loaded": 24,
+    "loaded_at_utc": "2026-03-26T19:59:45.086911+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "acreedores",
+    "path": "ACREEDORES_DEMO.csv",
+    "sha256": "0a59f18155a154f9a9fb6f3089718e698ee38b2dbcfbcb93a0dba17d674c00c3",
+    "row_count_loaded": 50,
+    "loaded_at_utc": "2026-03-26T19:59:45.092378+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "personal_laboral",
+    "path": "PERSONAL_LABORAL_DEMO.csv",
+    "sha256": "9af5d1121a039e9a169cfb247428f3f66ed31862d7396cd4a7ab1e6c7e23f85a",
+    "row_count_loaded": 26,
+    "loaded_at_utc": "2026-03-26T19:59:45.096218+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "preentidades",
+    "path": "PREENTIDADES_DEMO.csv",
+    "sha256": "df2758d938d518bd838ee9e272b0adc326dda03fe8a70f76033b2293d928a8ac",
+    "row_count_loaded": 10,
+    "loaded_at_utc": "2026-03-26T19:59:45.098849+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "articulos",
+    "path": "ARTICULOS_DEMO.csv",
+    "sha256": "b6fb5ae9162ac6ae00ef1a68ea921f6f5fea86798925d7210892a2d38bc81a87",
+    "row_count_loaded": 20,
+    "loaded_at_utc": "2026-03-26T19:59:45.102484+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "servicios",
+    "path": "SERVICIOS_DEMO.csv",
+    "sha256": "81c0ae9777715e5fa05e4ec5866cf89682467d1abf6d064beb51758ba590400c",
+    "row_count_loaded": 78,
+    "loaded_at_utc": "2026-03-26T19:59:45.111151+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "contratos",
+    "path": "CONTRATOS_DEMO.csv",
+    "sha256": "e9a6e46713d4bc856332802a0ac097c92c516e20e8f00813fa0f1f1d6314f602",
+    "row_count_loaded": 147,
+    "loaded_at_utc": "2026-03-26T19:59:45.203094+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  },
+  {
+    "dataset_name": "facturacion",
+    "path": "FACTURACION_COMPRAS_Y_GASTOS.csv",
+    "sha256": "a112dd069cb8254f28b55dd76c7790e3bdcd5cbb0a31b6ef0494b5fa33253b62",
+    "row_count_loaded": 1129,
+    "loaded_at_utc": "2026-03-26T19:59:45.252012+00:00",
+    "delimiter_detected": ";",
+    "encoding_detected": "utf-8-sig"
+  }
+]

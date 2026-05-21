@@ -1,0 +1,588 @@
+# Auditor├¡a READ-ONLY de serverIA
+# Generada: 2026-05-16T12:34:52.564732
+# Host: 10.20.167.5  User: root
+
+======================================================================
+  HASHES LOCALES (referencia)
+======================================================================
+  2f5cf43647a638e86f829260144108ef  app/services/orchestrator.py
+  c07818314927f748b8c4074e91e4b228  app/services/orchestrator_routing.py
+  c96dc5131b742cd5d6edf0c7fe2aed82  app/services/cognitive_service.py
+  a6fc86058c2eccd13dd9bd73a9e64485  app/services/response_service.py
+  07e2f87b12974d138c17cce2ec9132fa  app/services/chat_service.py
+  b6424123931fe62f842320f2daa192a4  app/services/resolver.py
+  822fd5b33aa4fc90942088ec0ddfe0be  app/services/normalizers.py
+  03d42e5f0d8d21d326578c17e6e4a36d  app/services/conversational_logic.py
+  5d38145c6b2fbf5bd936ea7e0e96c64b  app/api/routes_chat.py
+  d35bc80575b7893b7f391e6a5b2fbbf1  app/security/bearer_context.py
+  8ecbc3011a157a12836a097e970b5879  app/core/config.py
+  7b841d64de483c033a85d5c1a38efdf2  app/main.py
+  99d47535e31af8ae8e207a6a0f7b156b  requirements.txt
+
+[Conectando a 10.20.167.5 ...]
+[Conexi├│n OK]
+
+======================================================================
+  1. Identidad del servidor
+======================================================================
+  [hostname] serveria
+  [IPs] 10.20.167.5 172.17.0.1
+  [kernel] Linux serveria 6.8.0-90-generic #91-Ubuntu SMP PREEMPT_DYNAMIC Tue Nov 18 14:14:30 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+  [OS] Description:	Ubuntu 24.04.2 LTS
+  [uptime]  12:34:55 up 106 days, 17:17,  4 users,  load average: 0,69, 0,55, 0,59
+  [fecha servidor] s├íb 16 may 2026 12:34:55 CEST
+  [usuario actual] root
+
+======================================================================
+  2. Recursos
+======================================================================
+
+--- memoria ---
+               total        used        free      shared  buff/cache   available
+Mem:            23Gi       9,6Gi       469Mi        10Mi        13Gi        13Gi
+Swap:          4,0Gi       2,2Gi       1,8Gi
+
+--- disco ---
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        69G   46G   21G  70% /
+/dev/sda2        69G   46G   21G  70% /
+/dev/sda2        69G   46G   21G  70% /
+
+--- cores ---
+8
+
+--- loadavg ---
+0.63 0.54 0.58 2/1425 2250604
+
+======================================================================
+  3. Servicios systemd (ecoflow, ecobot, ecofast)
+======================================================================
+  ecobot.service                           loaded    active   running ecoBot FastAPI Service
+  ecofast-license.service                  loaded    active   running ecoFast License API Service
+  ecoflow.service                          loaded    active   running ecoFlow - Capa conversacional transaccional para ecoSoftWEB
+  grub-common.service                      loaded    inactive dead    Record successful boot for GRUB
+  nginx.service                            loaded    active   running A high performance web server and a reverse proxy server
+  postgresql.service                       loaded    active   exited  PostgreSQL RDBMS
+  postgresql@16-main.service               loaded    active   running PostgreSQL Cluster 16-main
+  snapd.recovery-chooser-trigger.service   loaded    inactive dead    Wait for the Ubuntu Core chooser trigger
+  systemd-update-utmp-runlevel.service     loaded    inactive dead    Record Runlevel Change in UTMP
+  systemd-update-utmp.service              loaded    active   exited  Record System Boot/Shutdown in UTMP
+
+--- ecoflow status (sin tocar) ---
+ÔùÅ ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB
+     Loaded: loaded (/etc/systemd/system/ecoflow.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2026-05-07 16:56:05 CEST; 1 week 1 day ago
+   Main PID: 857118 (uvicorn)
+      Tasks: 8 (limit: 28737)
+     Memory: 54.8M (peak: 75.2M swap: 20.7M swap peak: 20.7M)
+        CPU: 14min 50.101s
+     CGroup: /system.slice/ecoflow.service
+             ÔööÔöÇ857118 /home/ecoflow/venv/bin/python3.12 /home/ecoflow/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 18080 --workers 1
+
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.409449+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[AUTH] Context established. ERP Token: Bearer eyJ...gyA=="}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.409905+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] === NUEVA PETICI├ôN ==="}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.410034+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] Entrada: session='test_token_demo_002' mensaje='hola'"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.428687+00:00", "level": "INFO", "logger": "ecoflow", "msg": "new_conversation_created actor=5212662588d216d845055f812ca92391ad3801519f78ecbfd2fe9aed93f9b6cb conv=72508c6b-b33c-4207-89e4-26cda6f7dc8d"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.744855+00:00", "level": "ERROR", "logger": "ecoflow", "msg": "{'action': 'llm_error', 'trace_id': 'no-trace', 'layer': 'cognitive', 'error': \"Client error '404 Not Found' for url 'https://openrouter.ai/api/v1/chat/completions'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404\"}", "exc": "Traceback (most recent call last):\n  File \"/home/ecoflow/app/services/cognitive_service.py\", line 216, in v4_analyze\n    resp.raise_for_status()\n  File \"/home/ecoflow/venv/lib/python3.12/site-packages/httpx/_models.py\", line 829, in raise_for_status\n    raise HTTPStatusError(message, request=request, response=self)\nhttpx.HTTPStatusError: Client error '404 Not Found' for url 'https://openrouter.ai/api/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.745706+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] v4_packet: domain=unknown op=unknown conf=0.00"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.745895+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[GENERAL] Fallback sin contexto, intent=unknown"}
+may 07 17:01:40 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:40.745850+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] Respuesta T├®cnica (Orquestador): No he entendido bien la solicitud. Puedo ayudarte con:\nÔÇó **E..."}
+may 07 17:01:40 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:40.746051+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] Respuesta Humana  (Res. Layer): ┬íHola! ­ƒÿè No he pillado del todo lo que necesitas. Pero estoy..."}
+may 07 17:01:40 serveria ecoflow[857118]: INFO:     127.0.0.1:47318 - "POST /api/ecoflow/chat HTTP/1.1" 200 OK
+
+--- ecoflow.service file (read-only) ---
+[Unit]
+Description=ecoFlow - Capa conversacional transaccional para ecoSoftWEB
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=ecoflow
+Group=ecoflow
+WorkingDirectory=/home/ecoflow
+EnvironmentFile=/home/ecoflow/.env
+ExecStart=/home/ecoflow/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 18080 --workers 1
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ecoflow
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
+======================================================================
+  4. Puertos en escucha
+======================================================================
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                                                                                                                                                                                                                                                                      
+LISTEN 0      4096      127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=1608467,fd=17))                                                                                                                                                                                                                               
+LISTEN 0      2048       127.0.0.1:8001       0.0.0.0:*    users:(("uvicorn",pid=16735,fd=7))                                                                                                                                                                                                                                          
+LISTEN 0      2048       127.0.0.1:8000       0.0.0.0:*    users:(("python3",pid=1333707,fd=3),("python3",pid=1333706,fd=3),("python3",pid=1333705,fd=3),("python3",pid=1333704,fd=3),("python3",pid=1333703,fd=3),("python3",pid=1333702,fd=3),("python3",pid=1333701,fd=3),("python3",pid=1333700,fd=3),("uvicorn",pid=1333696,fd=3))
+LISTEN 0      200        127.0.0.1:5432       0.0.0.0:*    users:(("postgres",pid=3574860,fd=6))                                                                                                                                                                                                                                       
+LISTEN 0      4096       127.0.0.1:38813      0.0.0.0:*    users:(("containerd",pid=3816599,fd=9))                                                                                                                                                                                                                                     
+LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=1608467,fd=15))                                                                                                                                                                                                                               
+LISTEN 0      2048       127.0.0.1:18080      0.0.0.0:*    users:(("uvicorn",pid=857118,fd=16))                                                                                                                                                                                                                                        
+LISTEN 0      511          0.0.0.0:443        0.0.0.0:*    users:(("nginx",pid=2092700,fd=7),("nginx",pid=2092699,fd=7),("nginx",pid=2092698,fd=7),("nginx",pid=2092697,fd=7),("nginx",pid=2092696,fd=7),("nginx",pid=2092695,fd=7),("nginx",pid=2092694,fd=7),("nginx",pid=2092693,fd=7),("nginx",pid=2092690,fd=7))                  
+LISTEN 0      511          0.0.0.0:80         0.0.0.0:*    users:(("nginx",pid=2092700,fd=5),("nginx",pid=2092699,fd=5),("nginx",pid=2092698,fd=5),("nginx",pid=2092697,fd=5),("nginx",pid=2092696,fd=5),("nginx",pid=2092695,fd=5),("nginx",pid=2092694,fd=5),("nginx",pid=2092693,fd=5),("nginx",pid=2092690,fd=5))                  
+LISTEN 0      100          0.0.0.0:25         0.0.0.0:*    users:(("master",pid=1220059,fd=13))                                                                                                                                                                                                                                        
+LISTEN 0      4096         0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=310211,fd=3),("systemd",pid=1,fd=248))                                                                                                                                                                                                                   
+LISTEN 0      4096       127.0.0.1:631        0.0.0.0:*    users:(("cupsd",pid=1916446,fd=7))                                                                                                                                                                                                                                          
+LISTEN 0      4096           [::1]:631           [::]:*    users:(("cupsd",pid=1916446,fd=6))                                                                                                                                                                                                                                          
+LISTEN 0      2              [::1]:3350          [::]:*    users:(("xrdp-sesman",pid=3574823,fd=11))                                                                                                                                                                                                                                   
+LISTEN 0      2                  *:3389             *:*    users:(("xrdp",pid=3574866,fd=11))                                                                                                                                                                                                                                          
+LISTEN 0      511             [::]:80            [::]:*    users:(("nginx",pid=2092700,fd=6),("nginx",pid=2092699,fd=6),("nginx",pid=2092698,fd=6),("nginx",pid=2092697,fd=6),("nginx",pid=2092696,fd=6),("nginx",pid=2092695,fd=6),("nginx",pid=2092694,fd=6),("nginx",pid=2092693,fd=6),("nginx",pid=2092690,fd=6))                  
+LISTEN 0      100             [::]:25            [::]:*    users:(("master",pid=1220059,fd=14))                                                                                                                                                                                                                                        
+LISTEN 0      4096            [::]:22            [::]:*    users:(("sshd",pid=310211,fd=4),("systemd",pid=1,fd=252))
+
+======================================================================
+  5. Nginx (configs sin modificar)
+======================================================================
+nginx version: nginx/1.24.0 (Ubuntu)
+---
+total 12
+drwxr-xr-x 2 root root 4096 mar 20 12:15 .
+drwxr-xr-x 8 root root 4096 may 16 06:37 ..
+lrwxrwxrwx 1 root root   34 abr  4  2025 default -> /etc/nginx/sites-available/default
+lrwxrwxrwx 1 root root   33 abr  4  2025 ecobot -> /etc/nginx/sites-available/ecobot
+-rw-r--r-- 1 root root 2499 mar 20 12:15 ecobot.bak.sprint0
+---
+total 8
+drwxr-xr-x 2 root root 4096 mar 31  2025 .
+drwxr-xr-x 8 root root 4096 may 16 06:37 ..
+
+--- vhost que contenga ecoflow ---
+/etc/nginx/sites-available/ecobot.bak_sprint2
+/etc/nginx/sites-available/ecobot
+### /etc/nginx/sites-available/ecobot.bak_sprint2 ###
+server {
+    listen 443 ssl;
+    server_name ecobot.es www.ecobot.es;
+
+    ssl_certificate /etc/ssl/ecobot/fullchain.pem;
+    ssl_certificate_key /etc/ssl/ecobot/privkey.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    # =========================================================
+    # ecoFast PANEL (HTML)
+    # =========================================================
+    location /api/ecofast/panel {
+        proxy_pass http://127.0.0.1:8001/api/ecofast/panel;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # =========================================================
+    # ecoFast PANEL (est├íticos)
+    # =========================================================
+    location /api/ecofast/static/ {
+        proxy_pass http://127.0.0.1:8001/api/ecofast/static/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # =========================================================
+    # ecoFast License API (PRODUCCI├ôN - NO TOCAR)
+    # =========================================================
+    location /api/ecofast/ {
+        rewrite ^/api/ecofast/(.*)$ /$1 break;
+
+        proxy_pass http://127.0.0.1:8001;
+        proxy_http_version 1.1;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Connection "";
+
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 10s;
+    }
+
+    # =========================================================
+    # Archivos est├íticos web (NO API)
+    # =========================================================
+    location ~* ^/(?!api/).*\.(png|jpg|jpeg|gif|ico|css|js|html)$ {
+        root /var/www/ecobot;
+        try_files $uri =404;
+    }
+
+    # =========================================================
+    # Backend principal (ecoBot)
+    # =========================================================
+
+    # =========================================================
+    # ecoFlow API ÔÇö Sprint 0 ÔÇö added 2026-03-20
+    # DO NOT REMOVE without updating ecoflow.service
+    # =========================================================
+    location /ecoflow/ {
+        proxy_pass http://127.0.0.1:18080/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 30s;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_http_version 1.1;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}### /etc/nginx/sites-available/ecobot ###
+server {
+    listen 443 ssl;
+    server_name ecobot.es www.ecobot.es;
+    ssl_certificate /etc/letsencrypt/live/ecobot.es-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ecobot.es-0001/privkey.pem; # managed by Certbot
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    # =========================================================
+    # ecoFast PANEL (HTML)
+    # =========================================================
+    location /api/ecofast/panel {
+        proxy_pass http://127.0.0.1:8001/api/ecofast/panel;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # =========================================================
+    # ecoFast PANEL (est├íticos)
+    # =========================================================
+    location /api/ecofast/static/ {
+        proxy_pass http://127.0.0.1:8001/api/ecofast/static/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # =========================================================
+    # ecoFast License API (PRODUCCI├ôN - NO TOCAR)
+    # =========================================================
+    location /api/ecofast/ {
+
+======================================================================
+  6. Estructura de /home/ecoflow
+======================================================================
+total 4372
+drwxr-x--- 24 ecoflow ecoflow   4096 may  7 16:56 .
+drwxr-xr-x  8 root    root      4096 mar 20 12:05 ..
+-rw-r--r--  1 root    root      8067 mar 27 01:13 ACREEDORES_DEMO.csv
+drwxr-xr-x  3 ecoflow ecoflow   4096 mar 20 12:13 alembic
+-rw-r--r--  1 ecoflow ecoflow    626 mar 20 12:13 alembic.ini
+drwxr-xr-x 14 ecoflow ecoflow   4096 abr  8 17:18 app
+-rw-r--r--  1 root    root    782773 abr  8 17:18 app_backup_auth_20260408_171850.tar.gz
+-rw-r--r--  1 root    root    784414 may  7 16:50 app_backup_v5_security_20260507_165050.tar.gz
+-rw-r--r--  1 root    root    784704 may  7 16:52 app_backup_v5_security_20260507_165208.tar.gz
+-rw-r--r--  1 root    root    784805 may  7 16:54 app_backup_v5_security_20260507_165452.tar.gz
+-rw-r--r--  1 root    root    784866 may  7 16:56 app_backup_v5_security_20260507_165604.tar.gz
+-rw-r--r--  1 root    root      5021 mar 21 22:13 app\services\cognitive_service.py
+-rw-r--r--  1 root    root     42293 mar 21 22:13 app\services\orchestrator.py
+-rw-r--r--  1 root    root      2306 mar 21 22:13 app\services\orchestrator_routing.py
+-rw-r--r--  1 root    root      5004 mar 21 22:13 app\services\tools\contratos_tools.py
+-rw-r--r--  1 root    root      2223 mar 21 22:13 app\services\tools\registry.py
+-rw-r--r--  1 root    root      2813 mar 27 01:13 ARTICULOS_DEMO.csv
+drwxr-xr-x 30 root    root      4096 abr  6 13:19 artifacts
+drwxr-xr-x  4 root    root      4096 mar 26 16:07 backup_c2_20260326_160743
+drwxr-xr-x  3 root    root      4096 mar 26 16:30 backup_c3_20260326_163021
+drwxr-xr-x  3 root    root      4096 mar 26 18:03 backup_c4_20260326_180313
+drwxr-xr-x  4 root    root      4096 mar 22 03:56 .backup_contractfix_20260322_035619
+drwxr-xr-x  2 root    root      4096 mar 27 01:29 .backup_core_continuity_20260327_012957
+drwxr-xr-x  2 root    root      4096 mar 22 03:18 .backup_deletefix_20260322_031842
+drwxr-xr-x  4 root    root      4096 mar 22 19:51 .backup_entity_guided_fix_20260322_195118
+drwxr-xr-x  3 root    root      4096 mar 22 10:25 .backup_final_validation_20260322_102521
+drwxr-xr-x  2 root    root      4096 mar 27 09:53 .backup_mmnr002_20260327_095331
+drwxr-xr-x  2 root    root      4096 mar 27 11:43 .backup_mmnr002_deploy_20260327_114316
+drwxr-xr-x  4 root    root      4096 mar 22 12:05 .backup_operational_guardrails_20260322_120538
+drwxr-xr-x  2 root    root      4096 mar 22 03:02 .backup_rescue_20260322_030229
+drwxr-xr-x  2 root    root      4096 mar 22 03:28 .backup_servicefix_20260322_032838
+drwxr-xr-x  3 root    root      4096 mar 27 01:05 .backup_tests_harness_20260327_010557
+-rw-r--r--  1 ecoflow ecoflow    220 mar 31  2024 .bash_logout
+-rw-r--r--  1 ecoflow ecoflow   3771 mar 31  2024 .bashrc
+drwxrwxr-x  3 ecoflow ecoflow   4096 mar 20 12:13 .cache
+-rw-r--r--  1 root    root     20410 mar 27 01:13 CLIENTES_DEMO.csv
+drwxr-xr-x  5 ecoflow ecoflow   4096 may 19  2025 .config
+-rw-r--r--  1 root    root     52781 mar 27 01:14 CONTRATOS_DEMO.csv
+drwxr-xr-x  2 root    root      4096 may  7 16:50 docs
+-rw-------  1 ecoflow ecoflow    742 may  7 16:56 .env
+-rw-r--r--  1 ecoflow ecoflow    495 mar 20 12:13 .env.example
+-rw-r--r--  1 ecoflow ecoflow   5290 jul 18  2023 .face
+lrwxrwxrwx  1 ecoflow ecoflow      5 jul 18  2023 .face.icon -> .face
+-rw-r--r--  1 root    root    183062 mar 27 01:14 FACTURACION_COMPRAS_Y_GASTOS.csv
+-rw-r--r--  1 root    root      3885 mar 27 01:13 PERSONAL_LABORAL_DEMO.csv
+-rw-r--r--  1 root    root      1524 mar 27 01:13 PREENTIDADES_DEMO.csv
+-rw-r--r--  1 ecoflow ecoflow    807 mar 31  2024 .profile
+-rw-r--r--  1 root    root      3571 mar 27 01:13 PROVEEDORES_DEMO.csv
+-rw-r--r--  1 root    root       613 abr  7 14:57 repro.sh
+-rw-r--r--  1 ecoflow ecoflow    165 mar 20 12:46 requirements.txt
+-rw-r--r--  1 root    root        59 mar 20 21:08 samples_erp.json
+-rw-r--r--  1 root    root     25793 mar 27 01:14 SERVICIOS_DEMO.csv
+drwxr-xr-x  5 ecoflow ecoflow   4096 mar 27 01:08 tests
+-rw-r--r--  1 root    root      1335 abr  7 15:55 test_service_hardening.sh
+-rw-r--r--  1 root    root      3154 mar 27 13:16 tmp_forensic_serveria_runner.py
+-rw-r--r--  1 root    root       857 abr  7 14:28 tmp_repro_serveria.py
+drwxr-xr-x  5 ecoflow ecoflow   4096 mar 20 12:05 venv
+-rw-r--r--  1 ecoflow ecoflow   1600 feb 23  2024 .Xdefaults
+-rw-r--r--  1 ecoflow ecoflow     14 feb 23  2024 .xscreensaver
+
+--- /home/ecoflow/app (1 nivel) ---
+total 68
+drwxr-xr-x 14 ecoflow ecoflow 4096 abr  8 17:18 .
+drwxr-x--- 24 ecoflow ecoflow 4096 may  7 16:56 ..
+drwxr-xr-x  3 ecoflow ecoflow 4096 mar 22 02:46 api
+drwxr-xr-x  3 root    root    4096 mar 22 03:55 _backup
+drwxr-xr-x  3 root    root    4096 mar 20 20:45 connectors
+drwxr-xr-x  3 ecoflow ecoflow 4096 mar 22 02:46 core
+-rw-r--r--  1 ecoflow ecoflow   35 abr  6 15:23 debug_resolver.log
+-rw-r--r--  1 ecoflow ecoflow    0 mar 20 12:13 __init__.py
+-rw-r--r--  1 ecoflow ecoflow 1754 mar 22 21:07 main.py
+drwxr-xr-x  3 ecoflow ecoflow 4096 mar 20 20:45 mappers
+drwxr-xr-x  5 ecoflow ecoflow 4096 mar 20 12:15 models
+-rw-r--r--  1 root    root    2996 mar 20 13:22 process_new.py
+drwxr-xr-x  2 root    root    4096 mar 20 12:43 providers
+drwxr-xr-x  2 ecoflow ecoflow 4096 mar 22 21:07 __pycache__
+drwxr-xr-x  3 ecoflow ecoflow 4096 mar 20 12:40 repositories
+drwxr-xr-x  2 root    root    4096 abr  8 17:18 security
+drwxr-xr-x  4 ecoflow ecoflow 4096 abr  7 15:00 services
+drwxr-xr-x  2 root    root    4096 mar 22 21:01 static
+
+--- backups *.bak* y *.tar.gz en /home/ecoflow ---
+/home/ecoflow/tests/test_e2e_production.py.bak_20260322_024608
+/home/ecoflow/app_backup_v5_security_20260507_165452.tar.gz
+/home/ecoflow/app_backup_v5_security_20260507_165208.tar.gz
+/home/ecoflow/app/api/routes_chat.py.bak_20260322_024608
+/home/ecoflow/app/services/orchestrator.py.bak_20260322_2024
+/home/ecoflow/app/services/orchestrator.py.bak_
+/home/ecoflow/app/services/resolver.py.bak_20260406_1257
+/home/ecoflow/app/services/orchestrator.py.bak_20260322_024608
+/home/ecoflow/app/services/orchestrator.py.bak_20260406_1512
+/home/ecoflow/app/services/orchestrator.py.bak_20260406_1009
+/home/ecoflow/app/services/orchestrator.py.bak_c1_20260326_152050
+/home/ecoflow/app/services/orchestrator_routing.py.bak_20260322_024608
+/home/ecoflow/app/services/chat_service.py.bak_20260322_024608
+/home/ecoflow/app/services/orchestrator.py.bak_20260406_1535
+/home/ecoflow/app/services/orchestrator.py.bak_20260406_1257
+/home/ecoflow/app/services/resolver.py.bak_20260406_1535
+/home/ecoflow/app/services/resolver.py.bak_20260406_1512
+/home/ecoflow/app/core/config.py.bak_20260322_024608
+/home/ecoflow/app_backup_v5_security_20260507_165604.tar.gz
+/home/ecoflow/app_backup_v5_security_20260507_165050.tar.gz
+
+======================================================================
+  7. Entorno Python de ecoflow
+======================================================================
+lrwxrwxrwx 1 ecoflow ecoflow 10 mar 20 12:05 /home/ecoflow/venv/bin/python -> python3.12
+lrwxrwxrwx 1 ecoflow ecoflow 10 mar 20 12:05 /home/ecoflow/venv/bin/python3 -> python3.12
+lrwxrwxrwx 1 ecoflow ecoflow 19 mar 20 12:05 /home/ecoflow/venv/bin/python3.12 -> /usr/bin/python3.12
+---
+Python 3.12.3
+---
+asyncpg==0.31.0
+fastapi==0.135.1
+httpx==0.28.1
+openai==2.29.0
+pydantic==2.12.5
+pydantic-settings==2.13.1
+pydantic_core==2.41.5
+SQLAlchemy==2.0.48
+tenacity==9.1.4
+
+======================================================================
+  8. .env de producci├│n (enmascarado)
+======================================================================
+APP_NAME=ecoFlow
+APP_VERSION=0.1.0
+DEBUG=false
+HOST=127.0.0.1
+PORT=18080
+DATABASE_URL=post..._db (len=73)
+ECOSOFT_BASE_URL=https://www.ecosoftapi.net
+ECOSOFT_DEFAULT_SUCURSAL=1
+ECOSOFT_DEFAULT_GASTO_ARTICULO_REF=GASTO_GENERICO
+OPENROUTER_API_KEY=sk-o...95a (len=73)
+OPENAI_API_KEY=<empty>
+MEDIA_BASE_PATH=/var/ecoflow/media
+LOG_PATH=/var/log/ecoflow/app.jsonl
+JOB_MAX_ATTEMPTS=3
+JOB_STALE_MINUTES=5
+AUTO_APPROVE_MAX_AMOUNT=0.0
+ECOFLOW_SECURITY_TOKEN=eyJh...CJ9 (len=36)
+ECOFLOW_INTERNAL_CHAT_ALLOW_DEMO_ERP_TOKEN=true
+ECOFLOW_INTERNAL_CHAT_DEMO_ERP_TOKEN=Bear...Q== (len=68)
+
+======================================================================
+  9. Modelo LLM configurado en c├│digo de producci├│n
+======================================================================
+/home/ecoflow/app/services/cognitive_service.py:202:            "model": "anthropic/claude-3.5-sonnet",
+/home/ecoflow/app/services/response_service.py:73:            "model": "openai/gpt-4o-mini",
+
+--- ┬┐se llama v4_analyze con contexto? ---
+87:        analysis = await cognitive_service.v4_analyze(message)
+
+--- ┬┐is_probable_listing est├í en el c├│digo vivo? ---
+84:    is_probable_listing = any(k in msg_c for k in entity_list_hints)
+
+86:        if is_probable_listing and not has_create_signal:
+
+91:    if is_probable_listing:
+
+======================================================================
+  10. Diff c├│digo local vs producci├│n (MD5)
+======================================================================
+  STATUS     REMOTO                             LOCAL                              FICHERO
+  MATCH      2f5cf43647a638e86f829260144108ef   2f5cf43647a638e86f829260144108ef   app/services/orchestrator.py
+  DIFF       e329d1064a7b5a6d1363e31a2afc5aff   c07818314927f748b8c4074e91e4b228   app/services/orchestrator_routing.py
+  MATCH      c96dc5131b742cd5d6edf0c7fe2aed82   c96dc5131b742cd5d6edf0c7fe2aed82   app/services/cognitive_service.py
+  DIFF       6a142ae1e61a88e15d5bfc182cab6460   a6fc86058c2eccd13dd9bd73a9e64485   app/services/response_service.py
+  MATCH      07e2f87b12974d138c17cce2ec9132fa   07e2f87b12974d138c17cce2ec9132fa   app/services/chat_service.py
+  MATCH      b6424123931fe62f842320f2daa192a4   b6424123931fe62f842320f2daa192a4   app/services/resolver.py
+  MATCH      822fd5b33aa4fc90942088ec0ddfe0be   822fd5b33aa4fc90942088ec0ddfe0be   app/services/normalizers.py
+  MATCH      03d42e5f0d8d21d326578c17e6e4a36d   03d42e5f0d8d21d326578c17e6e4a36d   app/services/conversational_logic.py
+  MATCH      5d38145c6b2fbf5bd936ea7e0e96c64b   5d38145c6b2fbf5bd936ea7e0e96c64b   app/api/routes_chat.py
+  MATCH      d35bc80575b7893b7f391e6a5b2fbbf1   d35bc80575b7893b7f391e6a5b2fbbf1   app/security/bearer_context.py
+  MATCH      8ecbc3011a157a12836a097e970b5879   8ecbc3011a157a12836a097e970b5879   app/core/config.py
+  DIFF       74f88f861458d45f145f7f76d02dac7e   7b841d64de483c033a85d5c1a38efdf2   app/main.py
+  DIFF       d7aad6f00d6ef505318325fccfe32fa8   99d47535e31af8ae8e207a6a0f7b156b   requirements.txt
+
+======================================================================
+  11. Logs recientes de ecoflow (├║ltimas 80 l├¡neas)
+======================================================================
+may 07 16:52:31 serveria ecoflow[855007]: INFO:     Application startup complete.
+may 07 16:52:31 serveria ecoflow[855007]: INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+may 07 16:52:31 serveria ecoflow[855007]: INFO:     Shutting down
+may 07 16:52:31 serveria ecoflow[855007]: INFO:     Waiting for application shutdown.
+may 07 16:52:31 serveria ecoflow[855007]: {"ts": "2026-05-07T14:52:31.692657+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_shutdown"}
+may 07 16:52:31 serveria ecoflow[855007]: INFO:     Application shutdown complete.
+may 07 16:52:31 serveria ecoflow[855007]: INFO:     Finished server process [855007]
+may 07 16:52:31 serveria systemd[1]: ecoflow.service: Deactivated successfully.
+may 07 16:52:31 serveria systemd[1]: Stopped ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB.
+may 07 16:52:31 serveria systemd[1]: ecoflow.service: Consumed 1.963s CPU time.
+may 07 16:52:31 serveria systemd[1]: Started ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB.
+may 07 16:52:33 serveria ecoflow[855048]: INFO:     Started server process [855048]
+may 07 16:52:33 serveria ecoflow[855048]: INFO:     Waiting for application startup.
+may 07 16:52:33 serveria ecoflow[855048]: {"ts": "2026-05-07T14:52:33.633921+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_starting version=0.1.0 port=18080"}
+may 07 16:52:33 serveria ecoflow[855048]: {"ts": "2026-05-07T14:52:33.703454+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_ready (unified architecture)"}
+may 07 16:52:33 serveria ecoflow[855048]: INFO:     Application startup complete.
+may 07 16:52:33 serveria ecoflow[855048]: INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+may 07 16:53:29 serveria ecoflow[855048]: {"ts": "2026-05-07T14:53:29.648410+00:00", "level": "WARNING", "logger": "ecoflow", "msg": "[SECURITY] Missing or invalid Authorization header format."}
+may 07 16:53:29 serveria ecoflow[855048]: INFO:     85.152.52.168:0 - "POST /api/ecoflow/chat HTTP/1.0" 401 Unauthorized
+may 07 16:53:35 serveria ecoflow[855048]: {"ts": "2026-05-07T14:53:35.009163+00:00", "level": "WARNING", "logger": "ecoflow", "msg": "[SECURITY] Missing or invalid Authorization header format."}
+may 07 16:53:35 serveria ecoflow[855048]: INFO:     85.152.52.168:0 - "POST /api/ecoflow/chat HTTP/1.0" 401 Unauthorized
+may 07 16:54:06 serveria ecoflow[855048]: INFO:     85.152.52.168:0 - "GET /ecoflow-chat/ HTTP/1.0" 304 Not Modified
+may 07 16:54:27 serveria ecoflow[855048]: INFO:     127.0.0.1:43280 - "GET /api/ecoflow/config/internal HTTP/1.1" 200 OK
+may 07 16:54:52 serveria systemd[1]: Stopping ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB...
+may 07 16:54:52 serveria ecoflow[855048]: INFO:     Shutting down
+may 07 16:54:53 serveria ecoflow[855048]: INFO:     Waiting for application shutdown.
+may 07 16:54:53 serveria ecoflow[855048]: {"ts": "2026-05-07T14:54:53.082881+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_shutdown"}
+may 07 16:54:53 serveria ecoflow[855048]: INFO:     Application shutdown complete.
+may 07 16:54:53 serveria ecoflow[855048]: INFO:     Finished server process [855048]
+may 07 16:54:53 serveria systemd[1]: ecoflow.service: Deactivated successfully.
+may 07 16:54:53 serveria systemd[1]: Stopped ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB.
+may 07 16:54:53 serveria systemd[1]: ecoflow.service: Consumed 2.146s CPU time.
+may 07 16:54:53 serveria systemd[1]: Started ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB.
+may 07 16:54:55 serveria ecoflow[856591]: INFO:     Started server process [856591]
+may 07 16:54:55 serveria ecoflow[856591]: INFO:     Waiting for application startup.
+may 07 16:54:55 serveria ecoflow[856591]: {"ts": "2026-05-07T14:54:55.052376+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_starting version=0.1.0 port=18080"}
+may 07 16:54:55 serveria ecoflow[856591]: {"ts": "2026-05-07T14:54:55.116832+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_ready (unified architecture)"}
+may 07 16:54:55 serveria ecoflow[856591]: INFO:     Application startup complete.
+may 07 16:54:55 serveria ecoflow[856591]: INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+may 07 16:55:07 serveria ecoflow[856591]: INFO:     85.152.52.168:0 - "GET /ecoflow-chat/ HTTP/1.0" 304 Not Modified
+may 07 16:56:05 serveria systemd[1]: Stopping ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB...
+may 07 16:56:05 serveria ecoflow[856591]: INFO:     Shutting down
+may 07 16:56:05 serveria ecoflow[856591]: INFO:     Waiting for application shutdown.
+may 07 16:56:05 serveria ecoflow[856591]: {"ts": "2026-05-07T14:56:05.419553+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_shutdown"}
+may 07 16:56:05 serveria ecoflow[856591]: INFO:     Application shutdown complete.
+may 07 16:56:05 serveria ecoflow[856591]: INFO:     Finished server process [856591]
+may 07 16:56:05 serveria systemd[1]: ecoflow.service: Deactivated successfully.
+may 07 16:56:05 serveria systemd[1]: Stopped ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB.
+may 07 16:56:05 serveria systemd[1]: ecoflow.service: Consumed 2.088s CPU time.
+may 07 16:56:05 serveria systemd[1]: Started ecoflow.service - ecoFlow - Capa conversacional transaccional para ecoSoftWEB.
+may 07 16:56:07 serveria ecoflow[857118]: INFO:     Started server process [857118]
+may 07 16:56:07 serveria ecoflow[857118]: INFO:     Waiting for application startup.
+may 07 16:56:07 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:07.506416+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_starting version=0.1.0 port=18080"}
+may 07 16:56:07 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:07.575446+00:00", "level": "INFO", "logger": "ecoflow", "msg": "ecoflow_ready (unified architecture)"}
+may 07 16:56:07 serveria ecoflow[857118]: INFO:     Application startup complete.
+may 07 16:56:07 serveria ecoflow[857118]: INFO:     Uvicorn running on http://127.0.0.1:18080 (Press CTRL+C to quit)
+may 07 16:56:47 serveria ecoflow[857118]: INFO:     85.152.52.168:0 - "GET /ecoflow-chat/ HTTP/1.0" 200 OK
+may 07 16:56:47 serveria ecoflow[857118]: INFO:     85.152.52.168:0 - "GET /api/ecoflow/static/ecoScanCalidad.png HTTP/1.0" 200 OK
+may 07 16:56:47 serveria ecoflow[857118]: INFO:     85.152.52.168:0 - "GET /api/ecoflow/static/chat.js?v=5.1 HTTP/1.0" 200 OK
+may 07 16:56:47 serveria ecoflow[857118]: INFO:     85.152.52.168:0 - "GET /api/ecoflow/config/internal HTTP/1.0" 200 OK
+may 07 16:56:54 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:54.947500+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[AUTH] Context established. ERP Token: Bearer eyJ...p8Q=="}
+may 07 16:56:54 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:54.948026+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:a9d5b329-722e-4895-b152-cce9ffb4dbf8] === NUEVA PETICI├ôN ==="}
+may 07 16:56:54 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:54.948154+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:a9d5b329-722e-4895-b152-cce9ffb4dbf8] Entrada: session='eco_tha1i5ce' mensaje='Enn que puedes ayudarme?'"}
+may 07 16:56:54 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:54.975676+00:00", "level": "INFO", "logger": "ecoflow", "msg": "new_conversation_created actor=524660262364d3be034492c044f4ac98fd1cf695d5740b58fb6eb9508471502d conv=d30e3887-8307-4df5-9292-0d69585769b4"}
+may 07 16:56:55 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:55.301746+00:00", "level": "ERROR", "logger": "ecoflow", "msg": "{'action': 'llm_error', 'trace_id': 'no-trace', 'layer': 'cognitive', 'error': \"Client error '404 Not Found' for url 'https://openrouter.ai/api/v1/chat/completions'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404\"}", "exc": "Traceback (most recent call last):\n  File \"/home/ecoflow/app/services/cognitive_service.py\", line 216, in v4_analyze\n    resp.raise_for_status()\n  File \"/home/ecoflow/venv/lib/python3.12/site-packages/httpx/_models.py\", line 829, in raise_for_status\n    raise HTTPStatusError(message, request=request, response=self)\nhttpx.HTTPStatusError: Client error '404 Not Found' for url 'https://openrouter.ai/api/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"}
+may 07 16:56:55 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:55.303403+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:a9d5b329-722e-4895-b152-cce9ffb4dbf8] v4_packet: domain=unknown op=unknown conf=0.00"}
+may 07 16:56:55 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:55.303808+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[GENERAL] Fallback sin contexto, intent=unknown"}
+may 07 16:56:57 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:57.699454+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:a9d5b329-722e-4895-b152-cce9ffb4dbf8] Respuesta T├®cnica (Orquestador): No he entendido bien la solicitud. Puedo ayudarte con:\nÔÇó **E..."}
+may 07 16:56:57 serveria ecoflow[857118]: {"ts": "2026-05-07T14:56:57.699677+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:a9d5b329-722e-4895-b152-cce9ffb4dbf8] Respuesta Humana  (Res. Layer): ┬íHola! No estoy seguro de lo que necesitas exactamente, pero..."}
+may 07 16:56:57 serveria ecoflow[857118]: INFO:     85.152.52.168:0 - "POST /api/ecoflow/chat HTTP/1.0" 200 OK
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.409449+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[AUTH] Context established. ERP Token: Bearer eyJ...gyA=="}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.409905+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] === NUEVA PETICI├ôN ==="}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.410034+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] Entrada: session='test_token_demo_002' mensaje='hola'"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.428687+00:00", "level": "INFO", "logger": "ecoflow", "msg": "new_conversation_created actor=5212662588d216d845055f812ca92391ad3801519f78ecbfd2fe9aed93f9b6cb conv=72508c6b-b33c-4207-89e4-26cda6f7dc8d"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.744855+00:00", "level": "ERROR", "logger": "ecoflow", "msg": "{'action': 'llm_error', 'trace_id': 'no-trace', 'layer': 'cognitive', 'error': \"Client error '404 Not Found' for url 'https://openrouter.ai/api/v1/chat/completions'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404\"}", "exc": "Traceback (most recent call last):\n  File \"/home/ecoflow/app/services/cognitive_service.py\", line 216, in v4_analyze\n    resp.raise_for_status()\n  File \"/home/ecoflow/venv/lib/python3.12/site-packages/httpx/_models.py\", line 829, in raise_for_status\n    raise HTTPStatusError(message, request=request, response=self)\nhttpx.HTTPStatusError: Client error '404 Not Found' for url 'https://openrouter.ai/api/v1/chat/completions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.745706+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] v4_packet: domain=unknown op=unknown conf=0.00"}
+may 07 17:01:37 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:37.745895+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[GENERAL] Fallback sin contexto, intent=unknown"}
+may 07 17:01:40 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:40.745850+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] Respuesta T├®cnica (Orquestador): No he entendido bien la solicitud. Puedo ayudarte con:\nÔÇó **E..."}
+may 07 17:01:40 serveria ecoflow[857118]: {"ts": "2026-05-07T15:01:40.746051+00:00", "level": "INFO", "logger": "ecoflow", "msg": "[TRACE:861e306c-011f-4356-a54c-cda35ee71438] Respuesta Humana  (Res. Layer): ┬íHola! ­ƒÿè No he pillado del todo lo que necesitas. Pero estoy..."}
+may 07 17:01:40 serveria ecoflow[857118]: INFO:     127.0.0.1:47318 - "POST /api/ecoflow/chat HTTP/1.1" 200 OK
+
+--- conteo de errores LLM en ├║ltimas 24h ---
+matches: 0
+
+--- ├║ltimos 3 errores 404/llm ---
+
+
+======================================================================
+  12. Proceso ecoflow corriendo
+======================================================================
+ 857118  8-19:38:57  0.1  0.2 /home/ecoflow/venv/bin/python3.12 /home/ecoflow/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 18080 --workers 1
+  16735 23-05:44:55  0.1  0.0 /home/ecofast/venv/bin/python3 /home/ecofast/venv/bin/uvicorn app:app --host 127.0.0.1 --port 8001
+ 857139  8-19:38:55  0.0  0.0 postgres: 16/main: ecoflow_user ecoflow_db 127.0.0.1(41396) idle
+1333696  8-01:41:08  0.2  0.0 /home/ecosoft/ecobot/venv/bin/python3 /home/ecosoft/ecobot/venv/bin/uvicorn api_backend:app --host 127.0.0.1 --port 8000 --workers 8
+
+======================================================================
+  13. Fechas de modificaci├│n de ficheros clave en producci├│n
+======================================================================
+2026-04-08 12:16:12.691211749 +0200  /home/ecoflow/app/services/cognitive_service.py
+2026-04-08 12:16:12.655211561 +0200  /home/ecoflow/app/services/orchestrator.py
+2026-03-27 14:34:37.535497331 +0100  /home/ecoflow/app/services/orchestrator_routing.py
+2026-05-07 16:56:04.911106631 +0200  /home/ecoflow/.env
+
+======================================================================
+  14. ecoBot y ecoFast (solo identificaci├│n, sin inspeccionar a fondo)
+======================================================================
+--- ecobot status ---
+ÔùÅ ecobot.service - ecoBot FastAPI Service
+     Loaded: loaded (/etc/systemd/system/ecobot.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2026-05-08 10:53:54 CEST; 1 week 1 day ago
+   Main PID: 1333696 (uvicorn)
+      Tasks: 270 (limit: 28737)
+     Memory: 6.2G (peak: 7.8G swap: 1.5G swap peak: 1.5G)
+        CPU: 3h 19min 53.712s
+     CGroup: /system.slice/ecobot.service
+
+--- ecofast status ---
+Unit ecofast.service could not be found.
+
+--- directorios ---
+/home/ecofast
+
+[Auditor├¡a completada ÔÇö 2026-05-16T12:35:03.935705]

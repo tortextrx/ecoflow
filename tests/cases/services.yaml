@@ -1,0 +1,27 @@
+cases:
+  - id: SRV-READ-001
+    domain: servicios
+    category: query_followup
+    description: consulta de servicio real + follow-up de fecha
+    mode: real_readonly
+    expected_outcome: expected_pass
+    turns:
+      - user: "consulta el servicio {{service_pkey}}"
+      - user: "y su fecha"
+    expected_flow: service
+
+  - id: SRV-MUT-002
+    domain: servicios
+    category: operation_create_modify
+    description: alta de servicio E2E sobre entidad real y cleanup
+    mode: real_mutating
+    expected_outcome: expected_pass
+    turns:
+      - user: "abre un servicio para proveedor 1 con descripcion E2E_SRV_{{runtime.case_seed}}"
+      - user: "adelante"
+    cleanup:
+      action: delete_service
+      target_source: last_numeric_id
+      verify_prompt: "consulta el servicio {{runtime.last_numeric_id}}"
+      verify_present_markers: ["no", "no encontrado", "error"]
+

@@ -34,6 +34,20 @@ class ListarFacturacionesTool:
         lista = _parse_lista(r)
         return {"success": r.get("mensaje")=="OK", "data": lista, "found": bool(lista)}
 
+class ListarFacturacionLineasTool:
+    """Lista líneas de un documento de facturación por PKEY."""
+    async def execute(self, payload: dict) -> dict:
+        r = await _connector.obtener_facturacion_lineas(payload)
+        lista = _parse_lista(r)
+        return {"success": r.get("mensaje") == "OK", "data": lista, "found": bool(lista)}
+
+class ObtenerFacturacionLineaTool:
+    """Obtiene una línea concreta de facturación por PKEY+LINEA."""
+    async def execute(self, payload: dict) -> dict:
+        r = await _connector.obtener_facturacion_linea(payload)
+        lista = _parse_lista(r)
+        return {"success": r.get("mensaje") == "OK", "data": lista[0] if lista else {}, "found": bool(lista)}
+
 class BorrarFacturacionTool:
     async def execute(self, payload: dict) -> dict:
         pkey = payload.get("pkey")

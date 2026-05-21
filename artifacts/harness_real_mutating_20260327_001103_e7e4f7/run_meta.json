@@ -1,0 +1,11 @@
+{
+  "run_id": "harness_real_mutating_20260327_001103_e7e4f7",
+  "suite_mode": "real_mutating",
+  "base_url": "http://127.0.0.1:18080",
+  "endpoint_mode": "internal_backend",
+  "preflight_required": true,
+  "run_seed": 20260326,
+  "case_files": [
+    "tests/cases/multimodal.yaml"
+  ]
+}

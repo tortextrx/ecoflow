@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-03-27T08:27:52.064168+00:00",
+  "total_cases_loaded": 2,
+  "by_domain": {
+    "multimodal": 2
+  },
+  "by_category": {
+    "non_regression_documental": 2
+  },
+  "by_mode": {
+    "real_mutating": 2
+  },
+  "by_expected_outcome": {
+    "expected_pass": 2
+  }
+}

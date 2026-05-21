@@ -1,0 +1,8 @@
+{
+  "case_id": "ENT-SKIP-004",
+  "session_id": "skip",
+  "mode": "real_readonly",
+  "turns": [],
+  "cleanup": {},
+  "metadata": {}
+}

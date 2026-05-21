@@ -1,0 +1,24 @@
+cases:
+  - id: ART-READ-001
+    domain: articulos
+    category: query_selection
+    description: búsqueda natural de artículo por descripción y proveedor
+    mode: real_readonly
+    expected_outcome: expected_pass
+    turns:
+      - user: "busca el artículo {{article_desc}}"
+        variant: true
+      - user: "y su proveedor"
+    expected_flow: article
+
+  - id: ART-MOD-002
+    domain: articulos
+    category: operation_modify
+    description: modificación sobre artículo activo y consulta posterior
+    mode: semireal
+    expected_outcome: expected_fail_known
+    turns:
+      - user: "busca el artículo {{article_ref}}"
+      - user: "modifica la referencia a {{article_ref}}-X"
+      - user: "y ahora dime su proveedor"
+

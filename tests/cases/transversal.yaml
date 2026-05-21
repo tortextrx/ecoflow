@@ -1,0 +1,24 @@
+cases:
+  - id: TRX-CTX-001
+    domain: transversal
+    category: context_switch
+    description: cambio de dominio entidad -> contrato sin contaminación
+    mode: semireal
+    expected_outcome: expected_pass
+    turns:
+      - user: "quiero dar de alta una entidad"
+      - user: "quiero dar de alta un contrato"
+      - user: "si, {{entity_dencom}}"
+    expected_log_markers: ["state="]
+
+  - id: TRX-DIS-002
+    domain: transversal
+    category: natural_confirmation
+    description: confirmaciones naturales y metarespuestas
+    mode: real_readonly
+    expected_outcome: expected_fail_known
+    turns:
+      - user: "dime el teléfono de {{entity_dencom}}"
+      - user: "esa misma"
+      - user: "no, me refiero al de {{multirol_name}}"
+

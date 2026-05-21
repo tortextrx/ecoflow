@@ -1,13 +1,25 @@
 import logging, uuid
-from fastapi import APIRouter, UploadFile, File, Form, Header, HTTPException
+from fastapi import APIRouter, UploadFile, File, Form, Header, HTTPException, Depends
 from fastapi.responses import JSONResponse
 from typing import Optional
 from app.services.chat_service import ChatService
 from app.models.schemas.chat import ChatResponse
+from app.security.bearer_context import AuthContext, extract_and_validate_bearer
 
 logger = logging.getLogger("ecoflow")
 router = APIRouter()
 chat_service = ChatService()
+
+@router.get("/api/ecoflow/config/internal")
+async def get_internal_config():
+    """Endpoint para que el chat de desarrollo obtenga sus tokens si está permitido."""
+    from app.core.config import settings
+    if settings.ecoflow_internal_chat_allow_demo_erp_token:
+        return {
+            "security_token": settings.ecoflow_security_token,
+            "demo_erp_token": settings.ecoflow_internal_chat_demo_erp_token
+        }
+    return JSONResponse(status_code=403, content={"detail": "Internal chat demo not allowed."})
 
 # 10 MB Max attachment size
 MAX_FILE_SIZE = 10 * 1024 * 1024
@@ -19,7 +31,8 @@ async def chat(
     message: Optional[str] = Form("", max_length=1000),
     file: Optional[UploadFile] = File(None),
     x_trace_id: Optional[str] = Header(None, max_length=100),
-    x_ecoflow_test_mode: Optional[str] = Header(None, max_length=20)
+    x_ecoflow_test_mode: Optional[str] = Header(None, max_length=20),
+    auth_context: AuthContext = Depends(extract_and_validate_bearer)
 ):
     trace_id = x_trace_id or str(uuid.uuid4())
     

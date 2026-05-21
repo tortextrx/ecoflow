@@ -1,0 +1,23 @@
+{
+  "entity_dencom": "ServiPrueba",
+  "entity_denfis": "ECOSOFT CONSULTING SL - PROGRAMACION",
+  "entity_phone": "900000000",
+  "entity_email": "hola@saaddemo.com",
+  "entity_partial": "ServiPrueba",
+  "article_desc": "SERVICIO DE AYUDA A DOMICILIO (20 HORAS)",
+  "article_ref": "BETA-SFP-155M-2KM",
+  "service_client_desc": "CENTRO DE DIA CENTAL",
+  "service_pkey": "32165",
+  "contract_entity": "ServiPrueba",
+  "contract_pkey": "71",
+  "fact_entity": "SerAgua",
+  "fact_doc": "2",
+  "provider_name": "ServiPrueba",
+  "acreedor_name": "ServiPrueba",
+  "multirol_name": "CRISTIAN SÁNCHEZ",
+  "multirol_roles": [
+    "acreedor",
+    "cliente",
+    "proveedor"
+  ]
+}

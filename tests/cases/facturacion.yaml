@@ -1,0 +1,39 @@
+cases:
+  - id: FAC-READ-001
+    domain: facturacion
+    category: query_selection
+    description: listado y apertura de documento real de compras/gastos
+    mode: real_readonly
+    expected_outcome: expected_pass
+    turns:
+      - user: "dime las facturas de gasto de {{fact_entity}}"
+      - user: "abre el documento {{fact_doc}}"
+      - user: "que total tiene"
+    expected_flow: facturacion
+
+  - id: FAC-MUT-002
+    domain: facturacion
+    category: operation_create_modify
+    description: create controlado de gasto con cleanup verificable
+    mode: real_mutating
+    expected_outcome: expected_pass
+    turns:
+      - user: "quiero registrar un gasto de 23.5 euros de material para proveedor 1"
+      - user: "sí"
+    cleanup:
+      action: delete_factura
+      target_source: last_numeric_id
+      verify_prompt: "consulta factura {{runtime.last_numeric_id}}"
+      verify_present_markers: ["no", "no encontrado", "error", "pendiente"]
+
+  - id: FAC-BLOCK-003
+    domain: facturacion
+    category: validation_block
+    description: create bloqueado por tipo no permitido (known fail until full instrumentation)
+    mode: semireal
+    expected_outcome: expected_fail_known
+    turns:
+      - user: "crea una factura de tipo no permitido para {{fact_entity}}"
+      - user: "confirmo"
+    expected_block: true
+

@@ -1,0 +1,49 @@
+{
+  "case_id": "SRV-MUT-002",
+  "session_id": "h-a09962-SRV-MUT-002-30f0",
+  "mode": "real_mutating",
+  "turns": [
+    {
+      "index": 1,
+      "user_input": "abre un servicio para proveedor 1 con descripcion E2E_SRV_3378697962",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "SRV-MUT-002-3bbec511",
+      "ts_utc": "2026-03-26T20:07:30.767819+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    },
+    {
+      "index": 2,
+      "user_input": "adelante",
+      "response_state": "infra_error",
+      "response_reply": "CONNECT_ERROR: All connection attempts failed",
+      "trace_id": "SRV-MUT-002-def47dc3",
+      "ts_utc": "2026-03-26T20:07:32.808984+00:00",
+      "expected_state": null,
+      "raw_response": {
+        "reply": "CONNECT_ERROR: All connection attempts failed",
+        "state": "infra_error"
+      }
+    }
+  ],
+  "cleanup": {
+    "required": true,
+    "executed": false,
+    "success": false,
+    "verified": false,
+    "verification_status": "target_unresolved",
+    "details": [
+      "No se pudo resolver target para cleanup"
+    ]
+  },
+  "metadata": {
+    "markers": [
+      "final_state=infra_error"
+    ],
+    "case_seed": 3378697962
+  }
+}

@@ -1,0 +1,27 @@
+﻿PKEY;SUCURSAL;CIF;DENCOM;DENFIS;DIRECCION;POBLACION;PROVINCIA;CP;PAIS;TFNO1;MOVIL;EMAIL;REFERENCIA;ENCARGADO;AGENTE;GRUPO;ACTIVIDAD;ZONA;RUTA;FPAGO;PERIODICIDAD;DIA1;DIA2;DIA3;DIA4;IBAN;BIC_SWIFT;CCONTABLE;EMAILFACTURACION;AGENTE_TECNICO_EXTERNO
+50;1;09546325Z;Marta;MARTA TOME ALVAREZ;Uria,m 34 - 6º Dcha;Oviedo;Asturias;33100;1;985666321;654987123;direccion@saaddemo.com;;;0;0;0;1;0;0;0;0;0;0;0;;;41000003;;0
+51;1;09564215X;Julia;JULIA ALVAREZ FERNANDEZ;Avda. América, 33 - 5ºDcha;Oviedo;Asturias;33103;1;641253689;;admon@saaddemo.com;;;0;0;0;1;0;0;0;0;0;0;0;;;41000004;;0
+52;1;09385652L;Fran;FRANCISCO PÉREZ ALVAREZ;Tomas Zarracina, 25 - 11º A;Oviedo;Asturias;33105;1;698996633;;fran@saaddemo.com;;;54;0;0;1;0;0;0;0;0;0;0;;;43010000;;54
+53;1;96968654X;Manuel;MANUEL GÓMEZ GÓMEZ;Avda. del Cristo, 26 - 3ºC;Oviedo;Asturias;33104;1;658888999;;manuel@saaddemo.com;;;0;0;0;1;0;0;0;0;0;0;0;;;41000006;;0
+54;2;71701175D;Maria Cuesta;MARIA CUESTA;Avenida de Castilla 22;Gijón;Asturias;33202;4;965958512;;comunicacion@ecosoft.es;;;50;17;0;1;0;0;0;0;0;0;0;;;43010000;mcuesta@ecosoft.es,comunicacion@ecosoft.es;100
+55;1;09386521Z;Fernando;FERNANDO BOBES;Camino de Santiago, 30;Madrid;Madrid;28001;1;658888996;;fbobes@saadservicios.com;;;50;0;0;1;0;0;0;0;0;0;0;;;;;50
+56;1;09685471X;Andrés;ANDRÉS FERNANDEZ FERNANDEZ;Principal, 43 - 1ºA;Madrid;Madrid;28001;1;658963963;;andres@saaddemo.com;;;50;0;0;1;0;0;0;0;0;0;0;;;;;50
+58;1;;MARIA JESUS;MARIA JESUS;Calle Avilés;MADRID;MADRID;01200;1;;;;;;54;0;0;1;0;0;0;0;0;0;0;;;;;54
+59;1;11122233P;CRISTINA;CRISTINA;Avenida de las Palmeras 25;Gijón;Asturias;33000;1;;;;;;54;21;0;1;0;0;0;0;0;0;0;;;;;54
+65;1;;MANU;MANU;;;;;1;;;web.man@ecosoft.es;;;54;0;0;0;0;0;0;0;0;0;0;;;43001110;manupuente98@gmail.com,web.monica@ecosoft.es,manupuente98gmail.com,web.man@ecosoft.es;54
+66;1;00000000T;CRISTIAN; CRISTIAN;Plaza Julio Alberto Blanco. Poligono de Asipo III, PORTAL 1, BAJO, Travesía Segunda;Cayés;Asturias;33428;1;;;cristian@saaddemo.com;;;54;0;0;1;0;0;0;0;0;0;0;;;43010000;cristian@ecosoft.es;54
+96;1;;ELENA ASAC;ELENA ASAC;;;;;1;;;;;;54;0;0;0;0;0;0;0;0;0;0;;;;;54
+109;1;;ALBERTO;GONZALEZ;;;;;1;;;alberto@saaddemo.com;;;53;0;0;0;0;0;0;0;0;0;0;;;43001116;alberto@saaddemo.com;53
+111;1;66666666Q;Maira;MAIRA GOMEZ TUYA;Principal, 12 - 6ºIzda;La Corredoria;Asturias;33101;1;985985985;;maira@saaddemo.com;;;53;0;0;1;0;0;0;0;0;0;0;;;41000007;;1
+115;1;15689475W;MONTSE;MONTSE;CALLE ASTURIAS;AVILES;ASTURIAS;33000;1;;;montse@saaddemo.com;;;54;0;0;1;0;0;0;0;0;0;0;;;;;54
+25223;1;05642630V;Maria Roblades;MARIA ROBLADES GOMEZ;El Postigo, 132, 2ºA;Oviedo;Asturias;33101;1;985662233;;mrobleda@saaddemo.com;;;50;0;0;0;0;0;0;0;0;0;0;;;43001107;;50
+25228;1;99888777F;Anton;ANTON LABORDA LUIS;Uria, 34 - 7ºA;Oviedo;Asturias;33001;1;989989989;;marketing2@saaddemo.com;;;50;0;0;1;0;0;0;0;0;0;0;;;41000020;;50
+25229;1;65470254H;Javi;FRANCISCO JAVIER HERNÁNDEZ PÉREZ;Avda. del Cristo, 28 - 2ºA;Oviedo;Asturias;33003;1;666333666;;;;;54;0;0;1;0;0;0;0;0;0;0;;;43001122;sat@ecosoft.es,sat1@ecosoft.es,web@ecosoft.es,javitortex@gmail.com;54
+25239;1;22222222J;Elena;ELENA MENDEZ RODRIGUEZ;AVENIDA ARGENTINA 22;OVIEDO;ASTURIAS;33000;1;666555444;;web@ecosoft.es;;;54;1;0;1;0;0;0;0;0;0;0;;;;;54
+25265;1;12412121X;MICA;MICA;;;;;1;;;community@ecosoft.es;;;54;0;0;1;0;0;0;0;0;0;0;;;43010000;;54
+200487;1;37269428K;Fede;FEDERICO GONZÁLEZ FERNÁNDEZ;;;;;1;;;;;;59;0;0;1;0;0;0;0;0;0;0;;;;;59
+200489;1;11222555G;Adrián;ADRIÁN GARCÍA LÓPEZ;;;;;1;;;;;;54;0;0;1;0;0;0;0;0;0;0;;;;;54
+200490;1;55444333G;Paqui;FRANCISCA BUENO PÉREZ;;;;;1;;;;;;54;0;0;1;0;0;0;0;0;0;0;;;;;54
+200491;1;32132132M;Paula;PAULA RODRIGUEZ PEREZ;;;;;1;;;;;;54;0;0;1;0;0;0;0;0;0;0;;;;;54
+200492;1;11222777L;Jose;JOSE FERNÁNDEZ LÓPEZ;;;;;1;;;;;;54;0;0;1;0;0;0;0;0;0;0;;;;;54
+200493;1;85820056H;Guille;GUILLERMO REVÉS ALLER;;;;;1;;;;;;54;9;0;1;0;0;0;0;0;0;0;;;;;54

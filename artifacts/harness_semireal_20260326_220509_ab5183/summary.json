@@ -1,0 +1,44 @@
+{
+  "run_meta": {
+    "run_id": "harness_semireal_20260326_220509_ab5183",
+    "suite_mode": "semireal",
+    "base_url": "http://127.0.0.1:18080",
+    "run_seed": 20260326,
+    "case_files": [
+      "tests/cases/entities.yaml",
+      "tests/cases/services.yaml",
+      "tests/cases/contracts.yaml",
+      "tests/cases/articles.yaml",
+      "tests/cases/facturacion.yaml",
+      "tests/cases/transversal.yaml"
+    ]
+  },
+  "counts": {
+    "SKIP_MODE": 10,
+    "KNOWN_FAIL": 1,
+    "SKIP": 1,
+    "UNEXPECTED_PASS": 2,
+    "PASS": 1
+  },
+  "cleanup": {
+    "mutating_cases": 0,
+    "cleanup_executed": 0,
+    "cleanup_success": 0,
+    "cleanup_verified": 0,
+    "cleanup_failed_or_unverified": 0
+  },
+  "hard_fail_count": 2,
+  "hard_fails": [
+    {
+      "id": "ART-MOD-002",
+      "status": "UNEXPECTED_PASS",
+      "errors": []
+    },
+    {
+      "id": "FAC-BLOCK-003",
+      "status": "UNEXPECTED_PASS",
+      "errors": []
+    }
+  ],
+  "generated_at_utc": "2026-03-26T21:05:32.547332+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "run_id": "harness_real_readonly_20260327_001454_72431a",
+  "suite_mode": "real_readonly",
+  "base_url": "",
+  "endpoint_mode": "internal_backend",
+  "preflight_required": true,
+  "run_seed": 20260326,
+  "case_files": [
+    "tests/cases/entities.yaml",
+    "tests/cases/services.yaml",
+    "tests/cases/contracts.yaml",
+    "tests/cases/articles.yaml",
+    "tests/cases/facturacion.yaml",
+    "tests/cases/transversal.yaml",
+    "tests/cases/multimodal.yaml"
+  ]
+}

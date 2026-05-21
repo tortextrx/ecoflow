@@ -42,3 +42,9 @@ class ObtenerArticuloTool:
         r = await _connector.obtener_articulo(pkey)
         lista = _parse_lista(r)
         return {"success": r.get("mensaje")=="OK", "data": lista[0] if lista else {}, "found": bool(lista)}
+
+
+class ModificarArticuloTool:
+    async def execute(self, p: dict) -> dict:
+        r = await _connector.modificar_articulo(p)
+        return {"success": r.get("mensaje") == "OK", "response": r}
